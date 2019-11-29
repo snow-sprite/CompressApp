@@ -1,0 +1,69 @@
+/* 全局样式 */
+@charset "UTF-8";
+
+html {
+  color: #333;
+  background: #FFF;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+input,
+textarea,
+p,
+th,
+td,
+span {
+  margin: 0;
+  padding: 0;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  min-width: 1200px;
+  color: #333;
+  font-family: 'open sans', 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial, 'Microsoft YaHei', "sans-serif";
+}
+
+img {
+  vertical-align: top;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  transition-duration: .2s;
+  -moz-transition-duration: .2s;
+  /* Firefox 4 */
+  -webkit-transition-duration: .2s;
+  /* Safari 和 Chrome */
+  -o-transition-duration: .2s;
+  /* Opera */
+}
+
+a:hover {
+  color: #397BFF;
+}
