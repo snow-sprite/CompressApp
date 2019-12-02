@@ -111,10 +111,8 @@
   outline: 0;
   width: 500px;
   height: 40px;
-  /* border: 0; */
   font-size: 20px;
   padding: 0 10px 0;
-  /* display: block; */
 }
 .online-file-button {
   outline: 0;
@@ -129,3 +127,87 @@
   outline: 0;
   background: rgb(248, 184, 121);
 }
+.settings-key {
+  outline: 0;
+  width: 400px;
+  height: 40px;
+  font-size: 20px;
+  padding: 0 10px 0;
+}
+.api-keys-list {
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 500px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  top: 50%;
+  transform: translateY(-200px);
+  -webkit-transform: translateY(-200px);
+  -moz-transform: translateY(-200px);
+  -ms-transform: translateY(-200px);
+  -o-transform: translateY(-200px);
+}
+.api-key {
+  display: flex;
+  justify-content: space-between;
+}
+/* switch-button-start   ------- */
+.switch-box {
+  display: block;
+  margin-top: 6px;
+}
+.switch-box .switch-box-input {
+  display: none;
+}
+.switch-box.is-success .switch-box-input:checked:not(:disabled)~.switch-box-slider {
+  background: #54d98c;
+}
+.switch-box.is-success .switch-box-input:checked:not(:disabled)~.switch-box-slider:after {
+  background: #2ecc71;
+}
+.switch-box .switch-box-input:checked~.switch-box-slider:after {
+  left: 16px;
+}
+.switch-box .switch-box-slider {
+  position: relative;
+  display: inline-block;
+  height: 8px;
+  width: 32px;
+  background: #d5d5d5;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.switch-box .switch-box-slider:after {
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #eeeeee;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);
+  content: '';
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+/* -------------   switch-button-end*/
+
+/* change-default-placeholder-color ----- */
+input::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+input::-moz-input-placeholder {
+  color: #ccc;
+}
+
+input::-ms-input-placeholder {
+  color: #ccc;
+}
+/*-------- change-default-placeholder-color*/
