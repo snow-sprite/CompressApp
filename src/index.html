@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-12-03 08:32:57
+ * @LastEditTime: 2019-12-03 21:37:13
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \ElectronApp\src\index.html
+ -->
 <!DOCTYPE html>
 <html>
 
@@ -12,74 +20,96 @@
 <body>
   <div class="work-area">
     <ul class="tabs">
-      <li class="tab">
+      <li class="tab tab-local">
+        <span class="icon-left icon-local"></span>
         <span class="tab-text">Local</span>
-        <i></i>
+        <i class="after-icon"></i>
       </li>
-      <li class="tab">
+      <li class="tab tab-online">
+        <span class="icon-left icon-online"></span>
         <span class="tab-text">Online</span>
-        <i></i>
+        <i class="after-icon"></i>
       </li>
-      <li class="tab">
+      <li class="tab tab-settings">
+        <span class="icon-left icon-settings"></span>
         <span class="tab-text">Settings</span>
-        <i></i>
+        <i class="after-icon"></i>
       </li>
       <p class="statement">
         <span>Compress and generate</span>
-        <span>&copy;zhiozhou&lt;Cid&gt;</span>
       </p>
+      <i class="copyright">&copy;zhiozhou&lt;Cid&gt;</i>
     </ul>
     <div class="content">
-      <!-- TODO Local -->
-      
+      <!-- Local -->
+      <div class="local-content">
+        <label for="file">
+          <div class="upload-area">
+            <div class="top-line">
+              <hr class="row-line row-line-top" />
+            </div>
+            <div class="collmn-line right-line"></div>
+            <div class="bottom-line">
+              <hr class="row-line row-line-bottom" />
+            </div>
+            <div class="collmn-line left-line"></div>
+            <p class="upload-area-img"></p>
+            <span class="upload-area-text">请拖拽或点击上传</span>
+            <input id="file" type="file" style="display: none;" />
+          </div>
+        </label>
+      </div>
       <!-- Online -->
-      <!-- <div class="online-search-box">
-        <p><span class="online-search-title">Please enter online image URL:</span></p>
+      <div class="online-search-box">
+        <p><span class="online-search-title">Please enter online image URL:</span></p><br/>
         <div class="online-search-box2">
           <input class="online-search-text" type="text" placeholder="url..">
           <button class="online-file-button">Download</button>
         </div>
-      </div> -->
+      </div>
 
       <!-- Settings -->
-      <!-- <div class="api-keys-list">
-        <div class="api-key">
-          <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-          <div class="switch-box is-success">
-            <input id="apiKey1" name="apiKey" class="switch-box-input" type="radio" checked>
-            <label for="apiKey1" class="switch-box-slider"></label>
+      <div class="settings-content">
+        <div class="api-keys-list">
+          <div class="api-key">
+            <input type="text" class="settings-key" placeholder="Tinypng Api key...">
+            <div class="switch-box is-success">
+              <input id="apiKey1" name="apiKey" class="switch-box-input" type="radio" checked>
+              <label for="apiKey1" class="switch-box-slider"></label>
+            </div>
+          </div>
+          <div class="api-key">
+            <input type="text" class="settings-key" placeholder="Tinypng Api key...">
+            <div class="switch-box is-success">
+              <input id="apiKey2" name="apiKey" class="switch-box-input" type="radio">
+              <label for="apiKey2" class="switch-box-slider"></label>
+            </div>
+          </div>
+          <div class="api-key">
+            <input type="text" class="settings-key" placeholder="Tinypng Api key...">
+            <div class="switch-box is-success">
+              <input id="apiKey3" name="apiKey" class="switch-box-input" type="radio">
+              <label for="apiKey3" class="switch-box-slider"></label>
+            </div>
+          </div>
+          <div class="api-key">
+            <input type="text" class="settings-key" placeholder="Tinypng Api key...">
+            <div class="switch-box is-success">
+              <input id="apiKey4" name="apiKey" class="switch-box-input" type="radio">
+              <label for="apiKey4" class="switch-box-slider"></label>
+            </div>
+          </div>
+          <div class="api-key">
+            <input type="text" class="settings-key" placeholder="Tinypng Api key...">
+            <div class="switch-box is-success">
+              <input id="apiKey5" name="apiKey" class="switch-box-input" type="radio">
+              <label for="apiKey5" class="switch-box-slider"></label>
+            </div>
           </div>
         </div>
-        <div class="api-key">
-          <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-          <div class="switch-box is-success">
-            <input id="apiKey2" name="apiKey" class="switch-box-input" type="radio">
-            <label for="apiKey2" class="switch-box-slider"></label>
-          </div>
         </div>
-        <div class="api-key">
-          <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-          <div class="switch-box is-success">
-            <input id="apiKey3" name="apiKey" class="switch-box-input" type="radio">
-            <label for="apiKey3" class="switch-box-slider"></label>
-          </div>
         </div>
-        <div class="api-key">
-          <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-          <div class="switch-box is-success">
-            <input id="apiKey4" name="apiKey" class="switch-box-input" type="radio">
-            <label for="apiKey4" class="switch-box-slider"></label>
-          </div>
-        </div>
-        <div class="api-key">
-          <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-          <div class="switch-box is-success">
-            <input id="apiKey5" name="apiKey" class="switch-box-input" type="radio">
-            <label for="apiKey5" class="switch-box-slider"></label>
-          </div>
-        </div>
-      </div> -->
-    </div>
-  </div>
+      </div>
 </body>
+<script src="./js/dom.js"></script>
 </html>
