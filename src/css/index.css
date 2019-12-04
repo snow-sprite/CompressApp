@@ -12,8 +12,8 @@
   flex-direction: column;
   box-sizing: border-box;
   padding: 10px;
-  padding-top: 40px;
-  background: linear-gradient(to bottom, rgba(51,51,51,0.6), #ccc 70%, rgba(51,51,51,0.3)),
+  padding-top: 20px;
+  background: linear-gradient(to bottom, rgba(17, 17, 17, 1), #ccc 70%, rgba(17, 17, 17, 1)),
   rgba(0, 0, 0, 0.2);
   position: relative;
 }
@@ -99,12 +99,12 @@
   letter-spacing: 0.04em;
 }
 .content {
-  width: 650px;
+  width: 670px;
   height: 100%;
   box-sizing: border-box;
   padding: 10px;
   padding-top: 40px;
-  background: linear-gradient(to top, rgba(51,51,51,0.6), #ccc 70%, rgba(51,51,51,0.3));
+  background: linear-gradient(to top, rgba(17, 17, 17, 1), #ccc 70%, rgba(17, 17, 17,1));
 }
 
 .online-search-box {
