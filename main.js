@@ -11,7 +11,7 @@ function createWindow() {
   // 创建浏览器窗口。
   win = new BrowserWindow({
     width: 900,
-    height: 600,
+    height: 622,
     webPreferences: {
       nodeIntegration: true
     }
@@ -21,7 +21,7 @@ function createWindow() {
   win.loadFile('src/index.html')
 
   // 打开开发者工具
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   // 当 window 被关闭，这个事件会被触发。
   win.on('closed', () => {
@@ -56,3 +56,4 @@ app.on('activate', () => {
 
 // 在这个文件中，你可以续写应用剩下主进程代码。
 // 也可以拆分成几个文件，然后用 require 导入。
+require('./bus/eventBus')
