@@ -41,7 +41,7 @@ window.onload = function() {
     e.stopPropagation()
   })
 
-  ipcRenderer.on('dragEventReply', function(event, arg) {
-    console.log('argsss', arg)
-  })
+  // ipcRenderer.on('dragEventReply', function(event, arg) {
+  //   console.log('argsss', arg)
+  // })
 }
