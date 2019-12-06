@@ -18,6 +18,10 @@
   },
   "devDependencies": {
     "electron-builder": "^21.2.0",
-    "electron-packager": "^14.1.1"
+    "electron-packager": "^14.1.1",
+    "fstream": "^1.0.12",
+    "tar": "^5.0.5",
+    "zip-local": "^0.3.4",
+    "zlib": "^1.0.5"
   }
 }
