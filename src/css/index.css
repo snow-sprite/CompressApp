@@ -223,6 +223,74 @@
   width: 100%;
   height: 100%;
 }
+.show-result {
+  width: 100%;
+  height: 38%;
+  margin-top: 2%;
+  border: 1px solid #fff;
+  box-sizing: border-box;
+  padding: 20px;
+  overflow-y: scroll;
+}
+.thumb-box {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.thumb-box:first-of-type {
+  margin-top: 0;
+}
+.detail {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+.thumb {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 1px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.thumb-left {
+  width: 35%;
+}
+.thumb-right {
+  width: 65%;
+}
+.thumb-right span {
+  cursor: pointer;
+  display: inline-block;
+  width: 240px;
+  vertical-align: middle;
+  color: #fff;
+}
+.thumb-right span:hover {
+  color: rgb(51, 153, 255);
+}
+.ellp {
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+.thumb-name {
+  font-size: 14px;
+  color: #fff;
+  display: inline-block;
+}
+.dir {
+  width: 16px;
+  height: 16px;
+  margin-bottom: 1px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.status {
+  width: 30%;
+  color: #ccc;
+  text-align: right;
+}
 .top-line {
   width: 100%;
   height: 2px;

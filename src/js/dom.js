@@ -30,8 +30,9 @@ window.onload = function() {
   uploadArea.addEventListener('drop', function(e) {
     e.preventDefault()
     e.stopPropagation()
+    console.log('e', e)
     for (f of e.dataTransfer.files) {
-      console.log('file', f.path)
+      // console.log('fpath', f.path)
       let filesPath = f.path
       ipcRenderer.send('dragEventMessage', filesPath)
     }
@@ -41,7 +42,21 @@ window.onload = function() {
     e.stopPropagation()
   })
 
-  // ipcRenderer.on('dragEventReply', function(event, arg) {
-  //   console.log('argsss', arg)
-  // })
+  ipcRenderer.on('dragEventReply', function(event, data) {
+    if (data) {
+      console.log('DONE')
+    }
+  })
+
+  // 渲染待压缩图片列表
+  // var appPicsList
+  ipcRenderer.on('filesList', function(e, data) {
+    console.log('wow', data)
+    // if (data.length > 0) {
+    //   $('#result-list').show()
+    // }
+    // appPicsList = data
+    // var appPicsListHtml = doT.template($('#resultlisttmpl').text())
+    // $('#result-list').html(appPicsListHtml(data))
+  })
 }
