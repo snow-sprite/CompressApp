@@ -1,4 +1,5 @@
 window.onload = function() {
+  window
   const { ipcRenderer } = require('electron')
   var localBtn = document.querySelector('.tab-local'),
     onlineBtn = document.querySelector('.tab-online'),
@@ -52,11 +53,6 @@ window.onload = function() {
   // var appPicsList
   ipcRenderer.on('filesList', function(e, data) {
     console.log('wow', data)
-    // if (data.length > 0) {
-    //   $('#result-list').show()
-    // }
     // appPicsList = data
-    // var appPicsListHtml = doT.template($('#resultlisttmpl').text())
-    // $('#result-list').html(appPicsListHtml(data))
   })
 }

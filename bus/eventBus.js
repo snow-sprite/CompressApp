@@ -42,35 +42,35 @@ function readFPath(fPath, eventReply) {
       })
       eventReply.reply('filesList', renderArr)
       // tinypng api
-      tinify
-        .fromFile(path.resolve(fPath))
-        .toFile(
-          `${targetPath}/${minName.split(".")[0]}.min.${minName.split(".")[1]}`,
-          () => {
-            FINISHEDFILENUM += 1;
-            // TODO sync压缩
-            if (FILENUM === FINISHEDFILENUM) {
-              let targetPathArr = targetPath.split("/");
-              let targetFileName = targetPathArr[targetPathArr.length - 1];
-              let newTargetPath = targetPath.replace(
-                targetPathArr[targetPathArr.length - 1],
-                ""
-              );
-              zipper.zip(targetPath, function(errZip, zipped) {
-                if (errZip) throw errZip;
-                zipped.compress();
-                zipped.save(`${newTargetPath}${targetFileName}.zip`, function(
-                  errSave
-                ) {
-                    if (errSave) throw errSave;
-                    eventReply.reply("dragEventReply", true);
-                    // TODO 打完压缩包后删除目标文件夹
-                    // rebuildTarget(targetPath, event, true);
-                  });
-              });
-            }
-          }
-        );
+      // tinify
+      //   .fromFile(path.resolve(fPath))
+      //   .toFile(
+      //     `${targetPath}/${minName.split(".")[0]}.min.${minName.split(".")[1]}`,
+      //     () => {
+      //       FINISHEDFILENUM += 1;
+      //       // TODO sync压缩
+      //       if (FILENUM === FINISHEDFILENUM) {
+      //         let targetPathArr = targetPath.split("/");
+      //         let targetFileName = targetPathArr[targetPathArr.length - 1];
+      //         let newTargetPath = targetPath.replace(
+      //           targetPathArr[targetPathArr.length - 1],
+      //           ""
+      //         );
+      //         zipper.zip(targetPath, function(errZip, zipped) {
+      //           if (errZip) throw errZip;
+      //           zipped.compress();
+      //           zipped.save(`${newTargetPath}${targetFileName}.zip`, function(
+      //             errSave
+      //           ) {
+      //               if (errSave) throw errSave;
+      //               eventReply.reply("dragEventReply", true);
+      //               // TODO 打完压缩包后删除目标文件夹
+      //               // rebuildTarget(targetPath, event, true);
+      //             });
+      //         });
+      //       }
+      //     }
+      //   );
     } else if (stat.isDirectory()) {
       // read dir...
       fs.readdir(fPath, function(errDir, files) {
