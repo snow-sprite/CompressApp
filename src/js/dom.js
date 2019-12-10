@@ -53,6 +53,8 @@ window.onload = function() {
   // var appPicsList
   ipcRenderer.on('filesList', function(e, data) {
     console.log('wow', data)
+    console.log("test");
+    console.log("test");
     // appPicsList = data
   })
 }
