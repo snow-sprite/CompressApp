@@ -79,7 +79,6 @@
 } */
 
 .after-icon {
-  display: none;
   content: '';
   width: 3px;
   height: 56px;
@@ -99,7 +98,7 @@
   letter-spacing: 0.04em;
 }
 .content {
-  width: 670px;
+  width: 690px;
   height: 100%;
   box-sizing: border-box;
   padding: 10px;
@@ -108,7 +107,6 @@
 }
 
 .online-search-box {
-  display: none;
   width: 600px;
   height: 200px;
   margin: 0 auto;
@@ -177,7 +175,6 @@
   -o-transform: translateY(-200px);
 }
 .settings-content {
-  display: none;
   width: 100%;
   height: 100%;
 }
@@ -327,10 +324,10 @@
   -o-transform: scaleY(3);
 }
 .right-line {
-  right: 2px;
+  right: -2px;
 }
 .left-line {
-  left: 4px;
+  left: 0px;
 }
 .upload-area {
   cursor: pointer;
