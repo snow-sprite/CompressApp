@@ -9,7 +9,6 @@
     name: 'minify_your_images'
   }
 </script>
-
 <style>
   /* CSS */
 </style>
