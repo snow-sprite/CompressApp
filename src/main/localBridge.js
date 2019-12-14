@@ -3,7 +3,9 @@ import {
 } from 'electron'
 import zipper from 'zip-local'
 import tinify from 'tinify'
-
+import {
+  pathLink
+} from '../lib/formatter'
 import fs from 'fs'
 import path from 'path'
 
@@ -38,21 +40,16 @@ function readFPath (fPath, eventReply) {
     if (stat.isFile()) {
       //  compressing...
       /* 重构数据结构
-       * @return [{name: '', size: '', path: ''}]
+       * @return[{
+         name: '',
+         size: '',
+         path: '',
+         compressedSize: '',
+         compressedPath: ''
+        }]
        */
-      let minNameArrLeng
       let minName
-      let reg = new RegExp('windows', 'gi')
-      if (reg.test(process.env.OS)) {
-        // windows OS
-        fPath = fPath.replace(/\\/g, '\\')
-        minNameArrLeng = fPath.split('\\').length
-        minName = fPath.split('\\')[minNameArrLeng - 1]
-      } else {
-        // mac OS
-        minNameArrLeng = fPath.split('/').length
-        minName = fPath.split('/')[minNameArrLeng - 1]
-      }
+      minName = pathLink(fPath, false)
       // 这里的作用是排除以'.'开头的系统文件等
       if (!nameReg.test(minName)) {
         renderArr.push({
@@ -66,7 +63,7 @@ function readFPath (fPath, eventReply) {
       }
       eventReply.sender.send('filesList', renderArr)
 
-      // 重新生成的新名字
+      // 重新生成的新名字及其路径
       let generatePath = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
       // tinypng api
       tinify

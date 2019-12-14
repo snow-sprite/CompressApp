@@ -27,8 +27,7 @@
     </label>
     <!-- result -->
     <!-- TODO 参考tinipngy官网样式 -->
-     <!-- v-if="appPicsList.length > 0" -->
-    <ul id="result-list" class="show-result">
+    <ul id="result-list" class="show-result" v-if="appPicsList.length > 0">
       <li class="thumb-box" v-for="(item, ind) in appPicsList" :key="ind">
         <div class="detail">
           <div class="thumb-left ellp">

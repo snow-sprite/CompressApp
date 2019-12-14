@@ -9,8 +9,11 @@ import '../../static/css/master.css'
 import '../../static/css/index.css'
 
 // mixins
-import defaultDragEvent from '../lib/defaultDragEvent'
-import defaultRefreshEvent from '../lib/defaultRefreshEvent'
+import {
+  defaultDragEvent,
+  defaultRefreshEvent
+} from '../lib/defaultEvent'
+
 // filters
 import filters from '../lib/filters'
 Object.keys(filters).forEach(fil => {

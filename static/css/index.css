@@ -331,6 +331,7 @@
   justify-content: space-between;
   box-sizing: border-box;
   padding-top: 3px;
+  padding-left: 10px;
 }
 .top-line {
   width: 100%;
