@@ -23,9 +23,10 @@ function createWindow () {
     height: 600,
     width: 900,
     opacity: 0.96,
-    useContentSize: true
+    useContentSize: true,
+    maximizable: false,
     // transparent: true,
-    // resizable: false
+    resizable: false
   })
 
   mainWindow.loadURL(winURL)

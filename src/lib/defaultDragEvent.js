@@ -1,6 +1,6 @@
 // vue mixin { dragEvent }
-const mixin = {
-  name: 'mixin',
+const disableDefaultDragEvent = {
+  name: 'disableDefaultDragEvent',
   data () {
     return {}
   },
@@ -20,4 +20,4 @@ const mixin = {
   }
 }
 
-export default mixin
+export default disableDefaultDragEvent

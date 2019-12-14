@@ -9,7 +9,8 @@ import '../../static/css/master.css'
 import '../../static/css/index.css'
 
 // mixins
-import mixin from '../lib/mixin'
+import defaultDragEvent from '../lib/defaultDragEvent'
+import defaultRefreshEvent from '../lib/defaultRefreshEvent'
 // filters
 import filters from '../lib/filters'
 Object.keys(filters).forEach(fil => {
@@ -23,6 +24,6 @@ new Vue({
   components: { App },
   router,
   store,
-  mixins: [mixin],
+  mixins: [defaultDragEvent, defaultRefreshEvent],
   template: '<App/>'
 }).$mount('#app')
