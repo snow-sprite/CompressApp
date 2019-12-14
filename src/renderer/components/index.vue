@@ -12,6 +12,10 @@
         <span class="tab-text">{{ item.name }}</span>
         <i :class="{'after-icon': activeNavInd === ind}"></i>
       </li>
+      <div class="charts-box">
+        <span class="charts-title">Data Show：{{ count }}</span>
+        <div id="charts" class="charts"></div>
+      </div>
       <p class="statement">
         <span>Compress and generate</span>
       </p>
@@ -29,7 +33,7 @@
   import Local from '@/components/Local'
   import Online from '@/components/Online'
   import Settings from '@/components/Settings'
-
+  import { mapState } from 'vuex'
   export default {
     name: 'minify_your_images',
     data () {
@@ -44,14 +48,89 @@
         }]
       }
     },
+    computed: {
+      ...mapState({
+        count: state => state.Counter.count
+      })
+    },
     components: {
       Local,
       Online,
       Settings
     },
+    mounted () {
+      // 获取当前apikey下载量
+      this.getCompressedCount()
+      // 设置apicount值
+      this.listenCount()
+    },
+    watch: {
+      count (newV, oldV) {
+        // 设置图表
+        if (newV) {
+          this.setPieCharts()
+        }
+      }
+    },
     methods: {
       jumpMap (ind) {
         this.activeNavInd = ind
+      },
+      getCompressedCount () {
+        this.$store.dispatch('getCompressedCount', 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN')
+      },
+      setPieCharts () {
+        let pieCharts = this.$echarts.init(document.getElementById('charts'))
+        let options = {
+          legend: {
+            data: ['used', 'unused'],
+            bottom: 0
+          },
+          series: [{
+            type: 'pie',
+            radius: '80%',
+            center: ['50%', '50%'],
+            selectedMode: 'single',
+            label: {
+              normal: {
+                position: 'inner',
+                formatter: '{b}: {d}%'
+              }
+            },
+            labelLine: {
+              normal: {
+                show: false
+              }
+            },
+            data: [
+              {value: this.count, name: 'used', selected: true},
+              {value: 500 - this.count, name: 'unused'}
+            ]
+          }],
+          color: [new this.$echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+            offset: 0,
+            color: 'rgb(254,196,44)'
+          }, {
+            offset: 1,
+            color: 'rgb(204, 186, 172)'
+          }]),
+          new this.$echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+            offset: 0,
+            color: 'rgb(129, 180, 238)'
+          }, {
+            offset: 1,
+            color: 'rgb(25, 153, 207)'
+          }])]
+        }
+        pieCharts.setOption(options)
+      },
+      listenCount () {
+        let that = this
+        this.$electron.ipcRenderer.on('rebuildCount', function (event, data) {
+          if (data) {
+            that.$store.dispatch('getCompressedCount', 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN')
+          }
+        })
       }
     }
   }

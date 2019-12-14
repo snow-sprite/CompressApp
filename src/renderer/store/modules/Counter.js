@@ -1,20 +1,23 @@
+import tinify from 'tinify'
+import { validityApi } from '../../../lib/formatter'
+
 const state = {
-  main: 0
+  count: 0
 }
 
 const mutations = {
-  DECREMENT_MAIN_COUNTER (state) {
-    state.main--
-  },
-  INCREMENT_MAIN_COUNTER (state) {
-    state.main++
+  CALCULATE_COUNT (state, count) {
+    state.count = count
   }
 }
 
 const actions = {
-  someAsyncTask ({ commit }) {
-    // do something async
-    commit('INCREMENT_MAIN_COUNTER')
+  getCompressedCount ({ commit }, apiKey) {
+    tinify.key = apiKey
+    validityApi()
+      .then(() => {
+        commit('CALCULATE_COUNT', tinify.compressionCount)
+      })
   }
 }
 

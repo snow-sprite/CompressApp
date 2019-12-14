@@ -84,6 +84,7 @@ function readFPath (fPath, eventReply) {
                     }
                   }
                   eventReply.sender.send('finishedItem', renderArr)
+                  eventReply.sender.send('rebuildCount', tinify.compressionCount)
                 }
               })
             }

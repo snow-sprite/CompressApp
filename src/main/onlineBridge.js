@@ -27,5 +27,6 @@ function compressOnlineImg (eventReply, url) {
     .toFile(path.join(onlineCompressTarget, `/${minName}`), () => {
       console.log('Finished!')
       eventReply.sender.send('compressedOnlineImg', arr)
+      eventReply.sender.send('rebuildCount', tinify.compressionCount)
     })
 }

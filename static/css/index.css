@@ -17,6 +17,17 @@
   rgba(0, 0, 0, 0.2);
   position: relative;
 }
+.charts-box {
+  margin-top: 20px;
+}
+.charts-title {
+  font-size: 18px;
+  color: #fff;
+}
+.charts {
+  width: 100%;
+  height: 210px;
+}
 .statement {
   width: 100%;
   position: absolute;
@@ -167,7 +178,7 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  top: 37%;
+  top: 40%;
   transform: translateY(-200px);
   -webkit-transform: translateY(-200px);
   -moz-transform: translateY(-200px);
@@ -420,6 +431,12 @@
   font-size: 18px;
 }
 /* switch-button-start   ------- */
+.set-title {
+  color: #fff;
+  font-size: 24px;
+  width: 500px;
+  margin: 0 auto;
+}
 .switch-box {
   display: block;
   margin-top: 6px;

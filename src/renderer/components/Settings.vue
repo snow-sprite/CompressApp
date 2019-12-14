@@ -1,6 +1,7 @@
 <template>
   <!-- Settings -->
   <div class="settings-content">
+    <div class="set-title">Set your Apikeys here</div>
     <div class="api-keys-list">
       <div class="api-key">
         <input type="text" class="settings-key" placeholder="Tinypng Api key...">
