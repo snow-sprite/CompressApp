@@ -9,7 +9,12 @@ import '../../static/css/master.css'
 import '../../static/css/index.css'
 
 // mixins
-import dragEvent from '../utils/dragEvent'
+import mixin from '../lib/mixin'
+// filters
+import filters from '../lib/filters'
+Object.keys(filters).forEach(fil => {
+  Vue.filter(fil, filters[fil])
+})
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
@@ -18,6 +23,6 @@ new Vue({
   components: { App },
   router,
   store,
-  mixins: [dragEvent],
+  mixins: [mixin],
   template: '<App/>'
 }).$mount('#app')

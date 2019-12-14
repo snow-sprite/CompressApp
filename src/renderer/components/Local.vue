@@ -27,7 +27,8 @@
     </label>
     <!-- result -->
     <!-- TODO 参考tinipngy官网样式 -->
-    <ul id="result-list" class="show-result" v-if="appPicsList.length > 0">
+     <!-- v-if="appPicsList.length > 0" -->
+    <ul id="result-list" class="show-result">
       <li class="thumb-box" v-for="(item, ind) in appPicsList" :key="ind">
         <div class="detail">
           <div class="thumb-left ellp">
@@ -37,14 +38,17 @@
           <div class="prev-size size">
             <span>
               <!-- 123.5 KB -->
-              {{ item.size }}
+              {{ item.size | sizeFormat }}
             </span>
           </div>
         </div>
         <div class="thumb-right ellp">
           <!-- <img class="dir" src="static/img/wenjianjia.svg" alt="">
           <span class="ellp" :title="item.path">{{ item.path }}</span> -->
-          <div class="progress success">
+          <div 
+            class="progress"
+            :class="{'compressing': !item.compressedSize, 'success': item.compressedSize}"
+          >
             <div class="bar" style="width: 100%;"></div>
             <!-- <span class="compressing">Compressing</span>
             <span class="finished">Finished</span> -->
@@ -53,11 +57,11 @@
         <div class="status">
           <span class="next-size size">
             <!-- 678.9 kb -->
-            {{ item.compressedSize }}
+            {{ item.compressedSize | sizeFormat }}
           </span>
           <div class="find-percent">
-            <span class="find">查看</span>
-            <span class="percent">-100%</span>
+            <span class="find" v-if="item.compressedSize" @click="openPath(item.compressedPath)">查看</span>
+            <span class="percent" v-if="item.compressedSize">-{{ Math.ceil((item.size - item.compressedSize) / item.size * 100) }}%</span>
           </div>
         </div>
       </li>
@@ -95,7 +99,7 @@
           this.$electron.ipcRenderer.send('uploadEventMessage', filePath)
         }
       },
-      listenFileList () {
+      listenFileList () { // 监听ipcMain事件
         let that = this
         // 获取要压缩的图片列表
         this.$electron.ipcRenderer.on('filesList', function (e, data) {
@@ -103,11 +107,15 @@
             that.appPicsList = data
           }
         })
+        // 获取已经压缩完成的列表
         this.$electron.ipcRenderer.on('finishedItem', function (event, data) {
           if (data) {
             that.appPicsList = data
           }
         })
+      },
+      openPath (path) { // 根据path打开对话框
+        this.$store.dispatch('openPath', path)
       }
     }
   }
@@ -171,6 +179,15 @@
     line-height: 1em;
     color: #fff;
   }
+  div.progress.success div.bar {
+    background: #94e623;
+  }
+
+  div.progress.compressing div.bar {
+    width: 100%;
+    background-color: #3ee283;
+  }
+
   @-moz-keyframes progress {
       from {
           background-position: 0

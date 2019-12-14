@@ -25,6 +25,7 @@ let renderArr = []
 // 验证文件是不是以'.'开头的系统文件等
 let nameReg = new RegExp(/^\./)
 
+// 与render进程通信
 ipcMain.on('uploadEventMessage', function (event, fPath) {
   sourcePath = fPath
   targetPath = path.resolve(`${fPath}-compresed`)
@@ -58,29 +59,31 @@ function readFPath (fPath, eventReply) {
           name: minName,
           size: stat.size,
           path: `${fPath}`,
-          compressedSize: null
+          compressedSize: null,
+          compressedPath: null
         })
         FILENUM = renderArr.length
       }
       eventReply.sender.send('filesList', renderArr)
 
       // 重新生成的新名字
-      let generateName = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
+      let generatePath = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
       // tinypng api
       tinify
         .fromFile(path.resolve(fPath))
         .toFile(
-          generateName,
+          generatePath,
           () => {
             FINISHEDFILENUM += 1
-            // 得到压缩后文件的size，推到原有数组里
+            // 得到压缩后文件的size和path，推到原有数组里
             if (!nameReg.test(minName)) {
-              fs.lstat(generateName, function (errDoneFile, doneFileStat) {
+              fs.lstat(generatePath, function (errDoneFile, doneFileStat) {
                 if (errDoneFile) throw errDoneFile
                 if (FINISHEDFILENUM >= 0) {
                   for (let item of renderArr) {
                     if (item.name === minName) {
                       item.compressedSize = doneFileStat.size
+                      item.compressedPath = targetPath
                     }
                   }
                   eventReply.sender.send('finishedItem', renderArr)
