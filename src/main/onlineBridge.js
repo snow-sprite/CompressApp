@@ -14,8 +14,6 @@ const onlineCompressTarget = `/Users/${process.env.LOGNAME}/Downloads`
 const API_KEY = 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN'
 tinify.key = API_KEY
 
-var arr = [1, 2, 3]
-
 ipcMain.on('onlineImgCompress', function (event, url) {
   compressOnlineImg(event, url)
 })
@@ -25,8 +23,9 @@ function compressOnlineImg (eventReply, url) {
   let minName = pathLink(url, true)
   tinify.fromUrl(url)
     .toFile(path.join(onlineCompressTarget, `/${minName}`), () => {
-      console.log('Finished!')
-      eventReply.sender.send('compressedOnlineImg', arr)
+      // 下载成功打开下载目录---「download」
+      eventReply.sender.send('compressedOnlineImg', onlineCompressTarget)
+      // 将当前apikey的编译量传送给页面
       eventReply.sender.send('rebuildCount', tinify.compressionCount)
     })
 }

@@ -17,8 +17,19 @@
   rgba(0, 0, 0, 0.2);
   position: relative;
 }
+.charts-loading {
+  margin: 0 auto;
+  margin-top: 160px;
+  width: 80%;
+  height: 172px;
+}
 .charts-box {
-  margin-top: 20px;
+  margin-top: 120px;
+}
+
+.charts-loading img {
+  width: 100%;
+  height: 100%;
 }
 .charts-title {
   font-size: 18px;
@@ -29,6 +40,9 @@
   height: 210px;
 }
 .statement {
+  border-top: 1px solid #999;
+  box-sizing: border-box;
+  padding-top: 10px;
   width: 100%;
   position: absolute;
   left: 0;
@@ -136,6 +150,13 @@
 .online-search-box2 {
   display: flex;
   justify-content: space-between;
+  /* margin-bottom: 30px; */
+}
+.online-box {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .online-search-text {
   outline: 0;
@@ -154,8 +175,13 @@
   color: #fff;
   background: #808080;
   border: 0;
+  padding: 0;
 }
-.online-file-button:hover {
+.download-text-box {
+  box-sizing: border-box;
+  padding: 12px 10px;
+}
+.online-download-btn:hover {
   outline: 0;
   background: #ddd;
   cursor: pointer;

@@ -12,8 +12,11 @@
         <span class="tab-text">{{ item.name }}</span>
         <i :class="{'after-icon': activeNavInd === ind}"></i>
       </li>
+      <div class="charts-loading" v-if="!count">
+        <img src="static/img/load/loading1.gif" alt="">
+      </div>
       <div class="charts-box">
-        <span class="charts-title">Data Show：{{ count }}</span>
+        <!-- <span class="charts-title">Usage of 500 pictures：{{ count }}</span> -->
         <div id="charts" class="charts"></div>
       </div>
       <p class="statement">
@@ -82,9 +85,15 @@
       setPieCharts () {
         let pieCharts = this.$echarts.init(document.getElementById('charts'))
         let options = {
-          legend: {
-            data: ['used', 'unused'],
-            bottom: 0
+          title: {
+            show: true,
+            text: 'Usage of 500 pictures',
+            textStyle: {
+              color: '#cdd0d5',
+              fontSize: 16
+            },
+            x: 'center',
+            y: 'bottom'
           },
           series: [{
             type: 'pie',
@@ -94,7 +103,7 @@
             label: {
               normal: {
                 position: 'inner',
-                formatter: '{b}: {d}%'
+                formatter: '{b}({c}): {d}%'
               }
             },
             labelLine: {
@@ -107,19 +116,19 @@
               {value: 500 - this.count, name: 'unused'}
             ]
           }],
-          color: [new this.$echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+          color: [new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
             offset: 0,
-            color: 'rgb(254,196,44)'
+            color: 'rgb(251, 118, 63)'
           }, {
             offset: 1,
             color: 'rgb(204, 186, 172)'
           }]),
-          new this.$echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+          new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
             offset: 0,
-            color: 'rgb(129, 180, 238)'
+            color: 'rgb(0, 250, 150)'
           }, {
             offset: 1,
-            color: 'rgb(25, 153, 207)'
+            color: 'rgb(136,206,250)'
           }])]
         }
         pieCharts.setOption(options)
@@ -137,5 +146,5 @@
 </script>
 
 <style>
-  /* CSS */
+
 </style>
