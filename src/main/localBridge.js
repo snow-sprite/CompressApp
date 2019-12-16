@@ -9,9 +9,6 @@ import {
 import fs from 'fs'
 import path from 'path'
 
-const API_KEY = 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN'
-tinify.key = API_KEY
-
 // 源文件夹
 var sourcePath = ''
 // 目标文件夹
@@ -26,9 +23,12 @@ let renderArr = []
 
 // 验证文件是不是以'.'开头的系统文件等
 let nameReg = new RegExp(/^\./)
+// 验证是否是windows平台
+let windowsReg = new RegExp('windows', 'gi')
 
 // 与render进程通信
-ipcMain.on('uploadEventMessage', function (event, fPath) {
+ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
+  tinify.key = globalKey
   sourcePath = fPath
   targetPath = path.resolve(`${fPath}-compresed`)
   compresePic(event)
@@ -64,7 +64,15 @@ function readFPath (fPath, eventReply) {
       eventReply.sender.send('filesList', renderArr)
 
       // 重新生成的新名字及其路径
-      let generatePath = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
+      let generatePath
+      if (windowsReg.test(process.env.OS)) {
+        // windows OS
+        generatePath = `${targetPath}\\\\${minName.split('.')[0]}.min.${minName.split('.')[1]}`
+      } else {
+        // mac OS
+        generatePath = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
+      }
+      console.log(222, generatePath)
       // tinypng api
       tinify
         .fromFile(path.resolve(fPath))
@@ -75,6 +83,7 @@ function readFPath (fPath, eventReply) {
             // 得到压缩后文件的size和path，推到原有数组里
             if (!nameReg.test(minName)) {
               fs.lstat(generatePath, function (errDoneFile, doneFileStat) {
+                console.log('count', FILENUM, FINISHEDFILENUM)
                 if (errDoneFile) throw errDoneFile
                 if (FINISHEDFILENUM >= 0) {
                   for (let item of renderArr) {

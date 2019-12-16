@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Online',
   data () {
@@ -33,6 +34,11 @@ export default {
       onlineInputs: [0],
       onlineInputActive: -1
     }
+  },
+  computed: {
+    ...mapState({
+      globalKey: state => state.settings.globalKey
+    })
   },
   mounted () {
     this.listenOnlineEvent()
@@ -47,9 +53,7 @@ export default {
     compressDownload (ind) {
       if (!this.onlineImgs[ind]) return false
       this.onlineInputActive = ind
-      console.log(ind, this.onlineInputs[ind])
-      console.log(12, this.onlineImgs)
-      this.$electron.ipcRenderer.send('onlineImgCompress', this.onlineImgs[ind])
+      this.$electron.ipcRenderer.send('onlineImgCompress', this.onlineImgs[ind], this.globalKey)
     },
     listenOnlineEvent () {
       this.$electron.ipcRenderer.on('compressedOnlineImg', (event, downloadPath) => {

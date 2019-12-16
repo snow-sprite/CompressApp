@@ -12,10 +12,10 @@
         <span class="tab-text">{{ item.name }}</span>
         <i :class="{'after-icon': activeNavInd === ind}"></i>
       </li>
-      <div class="charts-loading" v-if="!count">
+      <div class="charts-loading" v-show="!count">
         <img src="static/img/load/loading2.gif" alt="">
       </div>
-      <div class="charts-box">
+      <div class="charts-box" v-show="count">
         <!-- <span class="charts-title">Usage of 500 pictures：{{ count }}</span> -->
         <div id="charts" class="charts"></div>
       </div>
@@ -53,7 +53,8 @@
     },
     computed: {
       ...mapState({
-        count: state => state.Counter.count
+        count: state => state.Counter.count,
+        globalKey: state => state.settings.globalKey
       })
     },
     components: {
@@ -71,6 +72,14 @@
       count (newV, oldV) {
         // 设置图表
         if (newV) {
+          this.$store.dispatch('getCompressedCount', this.globalKey)
+          this.setPieCharts()
+        }
+      },
+      globalKey (newV, oldV) {
+        // 设置图表
+        if (newV) {
+          this.$store.dispatch('getCompressedCount', this.globalKey)
           this.setPieCharts()
         }
       }
@@ -80,7 +89,7 @@
         this.activeNavInd = ind
       },
       getCompressedCount () {
-        this.$store.dispatch('getCompressedCount', 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN')
+        this.$store.dispatch('getCompressedCount', this.globalKey)
       },
       setPieCharts () {
         let pieCharts = this.$echarts.init(document.getElementById('charts'))
@@ -135,10 +144,9 @@
         pieCharts.setOption(options)
       },
       listenCount () {
-        let that = this
-        this.$electron.ipcRenderer.on('rebuildCount', function (event, data) {
+        this.$electron.ipcRenderer.on('rebuildCount', (event, data) => {
           if (data) {
-            that.$store.dispatch('getCompressedCount', 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN')
+            this.$store.dispatch('getCompressedCount', this.globalKey)
           }
         })
       }

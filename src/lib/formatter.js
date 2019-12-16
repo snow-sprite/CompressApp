@@ -17,6 +17,7 @@ export const pathLink = (link, flag) => {
   }
   // flag: { true } 生成xx.min.xxx格式图片 否则输出原名程
   tName = flag ? `${tName.split('.')[0]}.min.${tName.split('.')[1]}` : tName
+  console.log('wowowowow', tName)
   return tName
 }
 

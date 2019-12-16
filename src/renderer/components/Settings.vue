@@ -1,41 +1,19 @@
 <template>
   <!-- Settings -->
   <div class="settings-content">
-    <div class="set-title">Set your Apikeys here</div>
+    <div class="set-title">Set your Api keys here</div>
     <div class="api-keys-list">
-      <div class="api-key">
-        <input type="text" class="settings-key" placeholder="Tinypng Api key...">
+      <div class="api-key" v-for="(apiKey, ind) in keysList" :key="ind">
+        <input type="text" class="settings-key" placeholder="Tinypng Api key..." :value="apiKey">
         <div class="switch-box is-success">
-          <input id="apiKey1" name="apiKey" class="switch-box-input" type="radio" checked>
-          <label for="apiKey1" class="switch-box-slider"></label>
-        </div>
-      </div>
-      <div class="api-key">
-        <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-        <div class="switch-box is-success">
-          <input id="apiKey2" name="apiKey" class="switch-box-input" type="radio">
-          <label for="apiKey2" class="switch-box-slider"></label>
-        </div>
-      </div>
-      <div class="api-key">
-        <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-        <div class="switch-box is-success">
-          <input id="apiKey3" name="apiKey" class="switch-box-input" type="radio">
-          <label for="apiKey3" class="switch-box-slider"></label>
-        </div>
-      </div>
-      <div class="api-key">
-        <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-        <div class="switch-box is-success">
-          <input id="apiKey4" name="apiKey" class="switch-box-input" type="radio">
-          <label for="apiKey4" class="switch-box-slider"></label>
-        </div>
-      </div>
-      <div class="api-key">
-        <input type="text" class="settings-key" placeholder="Tinypng Api key...">
-        <div class="switch-box is-success">
-          <input id="apiKey5" name="apiKey" class="switch-box-input" type="radio">
-          <label for="apiKey5" class="switch-box-slider"></label>
+          <input
+            :id="'apiKey' + ind"
+            name="apiKey"
+            class="switch-box-input"
+            type="radio"
+            :checked="activeKeyInd === ind"
+            @click="setActiveKey(ind)">
+          <label :for="'apiKey' + ind" class="switch-box-slider"></label>
         </div>
       </div>
     </div>
@@ -43,7 +21,41 @@
 </template>
 <script>
 export default {
-  name: 'Settings'
+  name: 'Settings',
+  data () {
+    return {
+      keysList: [
+        'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN',
+        '',
+        '',
+        '',
+        '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK'
+      ],
+      activeKeyInd: Number(localStorage.getItem('keyInd')) || 0, // 激活的key
+      activeKey: localStorage.getItem('activeKey') || '' // 激活的key
+    }
+  },
+  mounted () {
+    // 保存keysList到本地
+    localStorage.setItem('tinyKeys', JSON.stringify([]))
+    let localTinyKeys = localStorage.getItem('tinyKeys')
+    let localTinyKeysParsed = JSON.parse(localTinyKeys)
+    for (let k of this.keysList) {
+      localTinyKeysParsed.push(k)
+    }
+    localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
+    this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
+  },
+  methods: {
+    setActiveKey (ind) {
+      // 设置当前激活的key
+      this.activeKeyInd = ind
+      this.activeKey = this.keysList[ind]
+      localStorage.setItem('keyInd', ind)
+      this.$store.dispatch('getCompressedCount', this.keysList[ind])
+      localStorage.setItem('activeKey', this.keysList[ind])
+    }
+  }
 }
 </script>
 

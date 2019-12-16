@@ -5,7 +5,7 @@
       <div 
         class="upload-area"
         @dragover.prevent
-        @drop="dropFileUpload"
+        @drop="fileUpload"
       >
         <div class="top-line">
           <hr class="row-line row-line-top" />
@@ -22,7 +22,7 @@
           type="file" 
           style="display: none;" 
           ref="inputBtn" 
-          @change="clickFileUpload"/>
+          @change="fileUpload"/>
       </div>
     </label>
     <!-- result -->
@@ -69,55 +69,58 @@
 </template>
 
 <script>
-  export default {
-    name: 'Local',
-    data () {
-      return {
-        appPicsList: [] // 渲染待压缩图片列表
+import { mapState } from 'vuex'
+export default {
+  name: 'Local',
+  data () {
+    return {
+      appPicsList: [] // 渲染待压缩图片列表
+    }
+  },
+  computed: {
+    ...mapState({
+      globalKey: state => state.settings.globalKey
+    })
+  },
+  components: {},
+  mounted () {
+    this.listenFileList()
+  },
+  methods: {
+    fileUpload (e) { // 拖拽文件上传
+      e.preventDefault()
+      e.stopPropagation()
+      let fileDataPath = ''
+      if (e.type === 'drop') {
+        fileDataPath = e.dataTransfer.files
+      } else {
+        fileDataPath = e.target.files
+      }
+      for (let f of fileDataPath) {
+        let filePath = f.path
+        this.$electron.ipcRenderer.send('uploadEventMessage', filePath, this.globalKey)
       }
     },
-    components: {},
-    mounted () {
-      this.listenFileList()
+    listenFileList () { // 监听ipcMain事件
+      // 获取要压缩的图片列表
+      this.$electron.ipcRenderer.on('filesList', (e, data) => {
+        if (data) {
+          this.appPicsList = data
+        }
+      })
+      // 获取已经压缩完成的列表
+      this.$electron.ipcRenderer.on('finishedItem', (event, data) => {
+        if (data) {
+          this.$store.dispatch('getCompressedCount', this.globalKey)
+          this.appPicsList = data
+        }
+      })
     },
-    methods: {
-      dropFileUpload (e) { // 拖拽文件上传
-        e.preventDefault()
-        e.stopPropagation()
-        // e.target.files
-        for (let f of e.dataTransfer.files) {
-          let filePath = f.path
-          this.$electron.ipcRenderer.send('uploadEventMessage', filePath)
-        }
-      },
-      clickFileUpload (e) { // 点击文件上传
-        e.preventDefault()
-        e.stopPropagation()
-        for (let f of e.target.files) {
-          let filePath = f.path
-          this.$electron.ipcRenderer.send('uploadEventMessage', filePath)
-        }
-      },
-      listenFileList () { // 监听ipcMain事件
-        let that = this
-        // 获取要压缩的图片列表
-        this.$electron.ipcRenderer.on('filesList', function (e, data) {
-          if (data) {
-            that.appPicsList = data
-          }
-        })
-        // 获取已经压缩完成的列表
-        this.$electron.ipcRenderer.on('finishedItem', function (event, data) {
-          if (data) {
-            that.appPicsList = data
-          }
-        })
-      },
-      openPath (path) { // 根据path打开对话框
-        this.$store.dispatch('openPath', path)
-      }
+    openPath (path) { // 根据path打开对话框
+      this.$store.dispatch('openPath', path)
     }
   }
+}
 </script>
 
 <style>

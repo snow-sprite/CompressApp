@@ -9,10 +9,8 @@ import {
 // import fs from 'fs'
 import path from 'path'
 
-const API_KEY = 'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN'
-tinify.key = API_KEY
-
-ipcMain.on('onlineImgCompress', function (event, url) {
+ipcMain.on('onlineImgCompress', function (event, url, globalKey) {
+  tinify.key = globalKey
   compressOnlineImg(event, url)
 })
 

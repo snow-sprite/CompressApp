@@ -36,7 +36,7 @@
   color: #fff;
 }
 .charts {
-  width: 100%;
+  width: 220px;
   height: 210px;
 }
 .statement {
@@ -337,6 +337,7 @@
   white-space: nowrap;
 }
 .thumb-left span {
+  width: 100%;
   display: inline-block;
   vertical-align: top;
 }
