@@ -1,9 +1,10 @@
 import tinify from 'tinify'
+let reg = new RegExp('windows', 'gi')
 
 export const pathLink = (link, flag) => {
+  // 输入path或者link 根据flag截取对应的图片名称
   let nameArrLeng
   let tName = ''
-  let reg = new RegExp('windows', 'gi')
   if (reg.test(process.env.OS)) {
     // windows OS
     link = link.replace(/\\/g, '\\')
@@ -30,4 +31,17 @@ export const validityApi = () => {
       resolve()
     })
   })
+}
+
+export const downloadPath = () => {
+  // 输出下载目录
+  var onlineCompressTarget = ''
+  if (reg.test(process.env.OS)) {
+    // windows OS
+    onlineCompressTarget = `C:\\Users\\Administrator\\Downloads\\`
+  } else {
+    // mac OS
+    onlineCompressTarget = `/Users/${process.env.LOGNAME}/Downloads/`
+  }
+  return onlineCompressTarget
 }

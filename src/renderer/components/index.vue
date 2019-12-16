@@ -13,7 +13,7 @@
         <i :class="{'after-icon': activeNavInd === ind}"></i>
       </li>
       <div class="charts-loading" v-if="!count">
-        <img src="static/img/load/loading1.gif" alt="">
+        <img src="static/img/load/loading2.gif" alt="">
       </div>
       <div class="charts-box">
         <!-- <span class="charts-title">Usage of 500 pictures：{{ count }}</span> -->
@@ -90,7 +90,8 @@
             text: 'Usage of 500 pictures',
             textStyle: {
               color: '#cdd0d5',
-              fontSize: 16
+              fontSize: 16,
+              fontWeight: 400
             },
             x: 'center',
             y: 'bottom'

@@ -1,18 +1,24 @@
 <template>
   <!-- Online -->
   <div class="online-search-box">
-    <p><span class="online-search-title">Please enter online image URL:</span></p><br/>
+    <p class="online-search-title-box">
+      <span class="online-search-title">Please enter online image URL:</span>
+      <span class="online-search-title add" @click="addNewInput">Add+</span>
+    </p><br/>
     <!-- first -->
-    <div class="online-box">
-      <div class="online-search-box2" v-for="(item, ind) in onlineInputs" :key="ind">
-        <input class="online-search-text" type="text" placeholder="url.." v-model="onlineImgs[ind]" @keyup.enter="compressDownload(ind)">
-        <button 
-          type="button"
-          class="online-file-button online-download-btn">
-          <div class="download-text-box" @click="compressDownload(ind)">Download</div>
-        </button>
+    <div class="online-box-wrapper">
+      <div class="online-box">
+        <div class="online-search-box2" v-for="(item, ind) in onlineInputs" :key="ind">
+          <input class="online-search-text" type="text" placeholder="url.." v-model="onlineImgs[ind]" @keyup.enter="compressDownload(ind)">
+          <button 
+            type="button"
+            class="online-file-button online-download-btn">
+            <div class="download-text-box" @click="compressDownload(ind)">Download</div>
+          </button>
+        </div>
       </div>
     </div>
+    
   </div>
 </template>
 <script>
@@ -21,13 +27,10 @@ export default {
   data () {
     return {
       onlineImgs: [
-        'https://tinypng.com/images/panda-happy.png',
-        'https://tinypng.com/images/example-orig.png',
-        'http://dmimg.5054399.com/allimg/pkm/pk/22.jpg',
-        'http://file02.16sucai.com/d/file/2014/0829/372edfeb74c3119b666237bd4af92be5.jpg',
-        'http://file02.16sucai.com/d/file/2015/0408/779334da99e40adb587d0ba715eca102.jpg'
+        'https://tinypng.com/images/panda-happy.png'
       ],
-      onlineInputs: [1, 2, 3, 4, 5],
+      input: 0,
+      onlineInputs: [0],
       onlineInputActive: -1
     }
   },
@@ -35,9 +38,17 @@ export default {
     this.listenOnlineEvent()
   },
   methods: {
+    addNewInput () {
+      // 增加一个新的输入框来下载
+      this.onlineImgs.push('')
+      this.input += 1
+      this.onlineInputs.push(this.input)
+    },
     compressDownload (ind) {
       if (!this.onlineImgs[ind]) return false
       this.onlineInputActive = ind
+      console.log(ind, this.onlineInputs[ind])
+      console.log(12, this.onlineImgs)
       this.$electron.ipcRenderer.send('onlineImgCompress', this.onlineImgs[ind])
     },
     listenOnlineEvent () {
