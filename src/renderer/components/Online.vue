@@ -13,7 +13,7 @@
           <button 
             type="button"
             class="online-file-button online-download-btn">
-            <div class="download-text-box" @click="compressDownload(ind)">Download</div>
+            <div class="download-text-box" @click="compressDownload(ind)">Save</div>
           </button>
         </div>
       </div>
@@ -58,7 +58,18 @@ export default {
     listenOnlineEvent () {
       this.$electron.ipcRenderer.on('compressedOnlineImg', (event, downloadPath) => {
         if (downloadPath) {
-          this.$store.dispatch('openPath', downloadPath)
+          if (!('Notification' in window)) {
+            console.log('This browser does not support desktop notification')
+            return false
+          }
+          let onLineNotification = new Notification('Compression succeeded', {
+            body: '🎉🎉🎉congratulations! Click on me to show the results.',
+            icon: '../../../build/icons/logo.png'
+          })
+
+          onLineNotification.onclick = () => {
+            this.$store.dispatch('openPath', downloadPath)
+          }
         }
       })
     }

@@ -4,7 +4,13 @@
     <div class="set-title">Set your Api keys here</div>
     <div class="api-keys-list">
       <div class="api-key" v-for="(apiKey, ind) in keysList" :key="ind">
-        <input type="text" class="settings-key" placeholder="Tinypng Api key..." :value="apiKey">
+        <input 
+          type="text" 
+          class="settings-key" 
+          placeholder="Tinypng Api key..." 
+          :value="apiKey"
+          @input="updateCurrentApiKey"
+          >
         <div class="switch-box is-success">
           <input
             :id="'apiKey' + ind"
@@ -54,6 +60,11 @@ export default {
       localStorage.setItem('keyInd', ind)
       this.$store.dispatch('getCompressedCount', this.keysList[ind])
       localStorage.setItem('activeKey', this.keysList[ind])
+    },
+    updateCurrentApiKey (e) {
+      // 监听当前对input apikey的操作
+      // this.keysList[ind] =
+      console.log(1, e)
     }
   }
 }

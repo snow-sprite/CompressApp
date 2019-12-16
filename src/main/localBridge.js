@@ -67,7 +67,7 @@ function readFPath (fPath, eventReply) {
       let generatePath
       if (windowsReg.test(process.env.OS)) {
         // windows OS
-        generatePath = `${targetPath}\\\\${minName.split('.')[0]}.min.${minName.split('.')[1]}`
+        generatePath = `${targetPath}\\${minName.split('.')[0]}.min.${minName.split('.')[1]}`
       } else {
         // mac OS
         generatePath = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
@@ -112,6 +112,7 @@ function readFPath (fPath, eventReply) {
                   errSave
                 ) {
                   if (errSave) throw errSave
+                  eventReply.sender.send('AllDone')
                   // eventReply.sender.send('dragEventReply', true)
                   // TODO 打完压缩包后删除目标文件夹
                   // rebuildTarget(targetPath, event, true);
@@ -156,6 +157,7 @@ function compresePic (event) {
 function rebuildTarget (target, event, del) {
   // 这两行是初始化列表
   renderArr = []
+  FINISHEDFILENUM = 0
   // 删除已有文件夹 如果不存在则先生成
   fs.readdir(target, '', (err, files) => {
     if (err) throw err

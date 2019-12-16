@@ -115,6 +115,20 @@ export default {
           this.appPicsList = data
         }
       })
+      // 所有任务已完成，发出通知
+      this.$electron.ipcRenderer.on('AllDone', (event) => {
+        if (!('Notification' in window)) {
+          console.log('This browser does not support desktop notification')
+          return false
+        }
+        let localNotification = new Notification('Compression succeeded', {
+          body: '🎉🎉🎉congratulations!',
+          icon: '../../../build/icons/logo.png'
+        })
+        localNotification.onclick = () => {
+          console.log('通知被点击')
+        }
+      })
     },
     openPath (path) { // 根据path打开对话框
       this.$store.dispatch('openPath', path)
