@@ -17,7 +17,9 @@ ipcMain.on('onlineImgCompress', function (event, url, globalKey) {
 // 压缩在线图片
 function compressOnlineImg (eventReply, url) {
   let compressedOnlineImgPath = downloadPath()
-  let minName = pathLink(url, true)
+  let minName = pathLink(url)
+  console.log(2, path.join(compressedOnlineImgPath, `${minName}`))
+
   tinify.fromUrl(url)
     .toFile(path.join(compressedOnlineImgPath, `${minName}`), () => {
       eventReply.sender.send('compressedOnlineImg', compressedOnlineImgPath)

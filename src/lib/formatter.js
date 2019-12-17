@@ -1,23 +1,15 @@
 import tinify from 'tinify'
-let reg = new RegExp('windows', 'gi')
+import os from 'os'
 
-export const pathLink = (link, flag) => {
-  // 输入path或者link 根据flag截取对应的图片名称
+export const pathLink = (link) => {
+  // 输入path 根据flag截取对应的图片名称
   let nameArrLeng
   let tName = ''
-  if (reg.test(process.env.OS)) {
-    // windows OS
-    link = link.replace(/\\/g, '\\')
-    nameArrLeng = link.split('\\').length
-    tName = link.split('\\')[nameArrLeng - 1]
-  } else {
-    // mac OS
-    nameArrLeng = link.split('/').length
-    tName = link.split('/')[nameArrLeng - 1]
-  }
-  // flag: { true } 生成xx.min.xxx格式图片 否则输出原名程
-  tName = flag ? `${tName.split('.')[0]}.min.${tName.split('.')[1]}` : tName
-  console.log('wowowowow', tName)
+  nameArrLeng = link.split('/').length
+  tName = link.split('/')[nameArrLeng - 1]
+
+  // 生成xx.min.xxx格式图片
+  tName = `${tName.split('.')[0]}.min.${tName.split('.')[1]}`
   return tName
 }
 
@@ -37,7 +29,7 @@ export const validityApi = () => {
 export const downloadPath = () => {
   // 输出下载目录
   var onlineCompressTarget = ''
-  if (reg.test(process.env.OS)) {
+  if (os.type() === 'Windows_NT') {
     // windows OS
     onlineCompressTarget = `C:\\Users\\Administrator\\Downloads\\`
   } else {

@@ -4,7 +4,7 @@
     <label for="file">
       <div 
         class="upload-area"
-        @dragover.prevent
+        @dragstart="dragEnterArea"
         @drop="fileUpload"
       >
         <div class="top-line">
@@ -87,6 +87,11 @@ export default {
     this.listenFileList()
   },
   methods: {
+    dragEnterArea (e) {
+      e.preventDefault()
+      // TODO not work.
+      // this.$electron.ipcRenderer.send('onDragStart')
+    },
     fileUpload (e) { // 拖拽文件上传
       e.preventDefault()
       e.stopPropagation()

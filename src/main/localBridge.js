@@ -3,11 +3,9 @@ import {
 } from 'electron'
 import zipper from 'zip-local'
 import tinify from 'tinify'
-import {
-  pathLink
-} from '../lib/formatter'
 import fs from 'fs'
 import path from 'path'
+import os from 'os'
 
 // 源文件夹
 var sourcePath = ''
@@ -23,8 +21,14 @@ let renderArr = []
 
 // 验证文件是不是以'.'开头的系统文件等
 let nameReg = new RegExp(/^\./)
-// 验证是否是windows平台
-let windowsReg = new RegExp('windows', 'gi')
+
+// TODO 拖拽过程事件 bad
+// ipcMain.on('onDragStart', (event) => {
+//   event.sender.startDrag({
+//     file: '/Users/ningzhou/Downloads',
+//     icon: '../../build/icons/logo.png'
+//   })
+// })
 
 // 与render进程通信
 ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
@@ -49,7 +53,17 @@ function readFPath (fPath, eventReply) {
         }]
        */
       let minName
-      minName = pathLink(fPath, false)
+      let nameArrLeng
+      if (os.type() === 'Windows_NT') {
+        // windows OS
+        fPath = fPath.replace(/\\/g, '\\')
+        nameArrLeng = fPath.split('\\').length
+        minName = fPath.split('\\')[nameArrLeng - 1]
+      } else {
+        // mac OS
+        nameArrLeng = fPath.split('/').length
+        minName = fPath.split('/')[nameArrLeng - 1]
+      }
       // 这里的作用是排除以'.'开头的系统文件等
       if (!nameReg.test(minName)) {
         renderArr.push({
@@ -65,14 +79,15 @@ function readFPath (fPath, eventReply) {
 
       // 重新生成的新名字及其路径
       let generatePath
-      if (windowsReg.test(process.env.OS)) {
+      if (os.type() === 'Windows_NT') {
         // windows OS
         generatePath = `${targetPath}\\${minName.split('.')[0]}.min.${minName.split('.')[1]}`
+        console.log(111, generatePath)
       } else {
         // mac OS
         generatePath = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
+        console.log(222, generatePath)
       }
-      console.log(222, generatePath)
       // tinypng api
       tinify
         .fromFile(path.resolve(fPath))
@@ -122,7 +137,6 @@ function readFPath (fPath, eventReply) {
           }
         )
     } else if (stat.isDirectory()) {
-      FINISHEDFILENUM -= 1
       // read dir...
       fs.readdir(fPath, function (errDir, files) {
         if (errDir) throw errDir
@@ -157,6 +171,7 @@ function compresePic (event) {
 function rebuildTarget (target, event, del) {
   // 这两行是初始化列表
   renderArr = []
+  FILENUM = 0
   FINISHEDFILENUM = 0
   // 删除已有文件夹 如果不存在则先生成
   fs.readdir(target, '', (err, files) => {
