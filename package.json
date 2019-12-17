@@ -2,8 +2,8 @@
   "name": "minify_your_images",
   "version": "0.0.1",
   "author": "969518392@qq.com",
-  "description": "An electron-vue project",
-  "license": null,
+  "description": "Compress your images",
+  "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -19,7 +19,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "minify_your_images",
+    "productName": "minify your images",
     "appId": "com.example.yourapp",
     "directories": {
       "output": "build"
