@@ -27,13 +27,18 @@ function createWindow () {
     useContentSize: true,
     maximizable: false,
     // transparent: true,
-    resizable: false
+    resizable: false,
+    show: false
   })
 
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
     mainWindow = null
+  })
+
+  mainWindow.on('ready-to-show', () => {
+    mainWindow.show()
   })
 }
 

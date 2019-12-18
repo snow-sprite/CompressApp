@@ -1,9 +1,29 @@
 {
-  "name": "minify_your_images",
+  "name": "compress_your_images",
   "version": "0.0.1",
-  "author": "969518392@qq.com",
+  "author": {
+    "name": "@zhiozhou<Cid>",
+    "email": "959418392@qq.com",
+    "url": "https://github.com/snow-sprite"
+  },
   "description": "Compress your images",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snow-sprite/CompressApp",
+    "directory": "packages/CompressApp"
+  },
+  "bugs": {
+    "email": "959418392@qq.com"
+  },
+  "keywords": [
+    "minify",
+    "compress",
+    "minify-img",
+    "minify-your-img",
+    "compress-images",
+    "comress your images"
+  ],
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -19,8 +39,8 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "minify your images",
-    "appId": "com.example.yourapp",
+    "productName": "Compress your images",
+    "appId": "com.compress.zhiozhou",
     "directories": {
       "output": "build"
     },
@@ -43,13 +63,16 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/icon.icns",
+      "artifactName": "${productName}_setup_${version}.${ext}"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.ico",
+      "artifactName": "${productName}_setup_${version}.${ext}"
     },
     "linux": {
-      "icon": "build/icons"
+      "icon": "build/icons",
+      "artifactName": "${productName}_setup_${version}.${ext}"
     }
   },
   "dependencies": {

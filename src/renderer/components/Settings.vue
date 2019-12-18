@@ -32,10 +32,10 @@ export default {
     return {
       keysList: [
         'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN',
+        '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
         '',
         '',
-        '',
-        '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK'
+        ''
       ],
       activeKeyInd: Number(localStorage.getItem('keyInd')) || 0, // 激活的key
       activeKey: localStorage.getItem('activeKey') || '' // 激活的key

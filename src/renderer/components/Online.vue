@@ -22,6 +22,7 @@
   </div>
 </template>
 <script>
+import os from 'os'
 import { mapState } from 'vuex'
 export default {
   name: 'Online',
@@ -58,6 +59,10 @@ export default {
     listenOnlineEvent () {
       this.$electron.ipcRenderer.on('compressedOnlineImg', (event, downloadPath) => {
         if (downloadPath) {
+          if (os.type() === 'Windows_NT') {
+            this.$store.dispatch('openPath', downloadPath)
+            return
+          }
           if (!('Notification' in window)) {
             console.log('This browser does not support desktop notification')
             return false

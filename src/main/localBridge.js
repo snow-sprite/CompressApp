@@ -98,7 +98,6 @@ function readFPath (fPath, eventReply) {
             // 得到压缩后文件的size和path，推到原有数组里
             if (!nameReg.test(minName)) {
               fs.lstat(generatePath, function (errDoneFile, doneFileStat) {
-                console.log('count', FILENUM, FINISHEDFILENUM)
                 if (errDoneFile) throw errDoneFile
                 if (FINISHEDFILENUM >= 0) {
                   for (let item of renderArr) {
