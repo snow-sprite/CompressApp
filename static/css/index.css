@@ -164,6 +164,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
+  box-sizing: border-box;
+  padding-right: 20px;
 }
 .online-search-box2:last-of-type {
   margin-bottom: 0;

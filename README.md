@@ -1,4 +1,4 @@
-# minify_your_images
+# compress_your_images
 
 > An electron-vue project
 
@@ -14,11 +14,13 @@ npm run dev
 # build electron application for production
 npm run build
 
-
-# lint all JS/Vue component files in `src/`
-npm run lint
+# rebuild electron application for production
+npm run build:clean && npm run build
 
 ```
+
+#### demo (download the app then run)
+> CompressApp/build/mac/Compress your images.app
 
 ---
 

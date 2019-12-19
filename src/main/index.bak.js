@@ -1,8 +1,6 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, Tray, dialog } from 'electron'
-import path from 'path'
-import pkg from '../../package.json'
+import { app, BrowserWindow } from 'electron'
 import './localBridge'
 import './onlineBridge'
 /**
@@ -37,38 +35,10 @@ function createWindow () {
 
   mainWindow.on('closed', () => {
     mainWindow = null
-    taryIcon.destroy()
   })
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-  })
-
-  // 自定义windows任务栏
-  const taryIcon = new Tray(path.join(__static, './tray/tray-icon.png'))
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: 'reload',
-      role: 'reload'
-    }, {
-      label: 'about',
-      type: 'normal',
-      toolTip: 'aboout',
-      click: () => {
-        dialog.showMessageBox({
-          type: 'info',
-          title: 'about',
-          message: 'zhiozhou@Cid<959418392@qq.com>',
-          detail: `version: ${pkg.version}`
-        })
-      }
-    }, {
-      label: 'quit',
-      role: 'quit'
-    }
-  ])
-  taryIcon.on('click', () => {
-    taryIcon.popUpContextMenu(contextMenu)
   })
 }
 
