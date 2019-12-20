@@ -7,9 +7,9 @@
 
 ![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/local.png)
 
-![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/online.png)
+![online](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/online.png)
 
-![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/settings.png)
+![settings](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/settings.png)
 
 
 #### Build Setup
