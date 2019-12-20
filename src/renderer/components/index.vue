@@ -38,7 +38,7 @@
   import Settings from '@/components/Settings'
   import { mapState } from 'vuex'
   export default {
-    name: 'minify_your_images',
+    name: 'CompressYourImages',
     data () {
       return {
         activeNavInd: 0, // 激活的nav

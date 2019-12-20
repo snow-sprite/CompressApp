@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'minify_your_images'
+    name: 'CompressYourImages'
   }
 </script>
 <style>
