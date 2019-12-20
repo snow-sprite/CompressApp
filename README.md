@@ -1,6 +1,6 @@
-# compress_your_images
+# Compress your images
 
-> An electron-vue project
+> A compressed picture desktop program based on electron-vue
 
 #### Build Setup
 
@@ -19,7 +19,7 @@ npm run build:clean && npm run build
 
 ```
 
-#### demo (download the app then run)
+#### demo (download the app then run build)
 > CompressApp/build/mac/Compress your images.app
 
 ---
