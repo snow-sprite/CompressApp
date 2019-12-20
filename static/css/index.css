@@ -146,6 +146,8 @@
 .online-search-title-box {
   display: flex;
   justify-content: space-between;
+  /* box-sizing: border-box;
+  padding-right: 18px; */
 }
 .online-search-title {
   font-size: 18px;
@@ -253,7 +255,7 @@
   background: url(../img/local.svg) no-repeat center center;
   background-size: 24px 24px;
 }
-.tab-local:hover .icon-local {
+.tab-settings:hover .icon-local {
   background: url(../img/local-active.svg) no-repeat center center;
   background-size: 24px 24px;
 }
@@ -262,7 +264,7 @@
   background-size: 24px 24px;
 }
 
-.tab-online:hover .icon-online {
+.tab-settings:hover .icon-online {
   background: url(../img/online-active.svg) no-repeat center center;
   background-size: 24px 24px;
 }

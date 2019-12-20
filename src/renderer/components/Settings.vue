@@ -9,7 +9,8 @@
           class="settings-key" 
           placeholder="Tinypng Api key..." 
           :value="apiKey"
-          @input="updateCurrentApiKey"
+          @input="updateCurrentApiKey(ind)"
+          ref="inputs"
           >
         <div class="switch-box is-success">
           <input
@@ -51,6 +52,9 @@ export default {
     }
     localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
     this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
+    if (!this.activeKeyInd) {
+      localStorage.setItem('activeKey', JSON.stringify(this.keysList[0]))
+    }
   },
   methods: {
     setActiveKey (ind) {
@@ -59,12 +63,17 @@ export default {
       this.activeKey = this.keysList[ind]
       localStorage.setItem('keyInd', ind)
       this.$store.dispatch('getCompressedCount', this.keysList[ind])
-      localStorage.setItem('activeKey', this.keysList[ind])
+      localStorage.setItem('activeKey', JSON.stringify(this.keysList[ind]))
     },
-    updateCurrentApiKey (e) {
+    updateCurrentApiKey (ind) {
       // 监听当前对input apikey的操作
-      // this.keysList[ind] =
-      console.log(1, e)
+      if (ind === this.activeKeyInd) {
+        this.activeKey = this.$refs.inputs[ind].value
+        localStorage.setItem('activeKey', this.activeKey)
+        this.$store.commit('setGlobalKey', this.activeKey)
+      }
+      this.keysList[ind] = this.$refs.inputs[ind].value
+      localStorage.setItem('tinyKeys', JSON.stringify(this.keysList))
     }
   }
 }

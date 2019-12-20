@@ -1,5 +1,7 @@
 import tinify from 'tinify'
-import { validityApi } from '../../../lib/formatter'
+import {
+  validityApi
+} from '../../../lib/formatter'
 
 const state = {
   count: 0
@@ -18,6 +20,7 @@ const actions = {
       .then(() => {
         commit('CALCULATE_COUNT', tinify.compressionCount)
       })
+      .catch(() => {})
   }
 }
 

@@ -16,7 +16,7 @@
         </div>
         <div class="collmn-line left-line"></div>
         <p class="upload-area-img"></p>
-        <span class="upload-area-text">请拖拽或点击上传</span>
+        <span class="upload-area-text">Please drag or click to upload</span>
         <input 
           id="file" 
           type="file" 

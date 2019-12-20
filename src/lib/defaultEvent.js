@@ -31,7 +31,7 @@ export const defaultRefreshEvent = {
   },
   methods: {
     disableRefreshEvent () {
-      // 1. bad
+      // windows默认禁用f5刷新， 这里主要是禁止ctrl+R刷新
       document.addEventListener('keydown', function (event) {
         event = event || window.event
         let code = event.keyCode || event.which
@@ -42,22 +42,6 @@ export const defaultRefreshEvent = {
           return false
         }
       })
-
-      // 2. bad
-      // document.onkeydown = function (e) {
-      //   var ev = window.event || e
-      //   var code = ev.keyCode || ev.which
-      //   if (code === 116) { // 禁止页面F5刷新
-      //     if (ev.preventDefault) {
-      //       ev.preventDefault()
-      //     } else {
-      //       ev.keyCode = 0
-      //       ev.returnValue = false
-      //     }
-      //   } else if (event.ctrlKey && code === 82) { // 禁用 ctrl+R 刷新
-      //     return false
-      //   }
-      // }
     }
   }
 }

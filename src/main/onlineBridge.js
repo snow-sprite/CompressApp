@@ -1,17 +1,33 @@
 import {
-  ipcMain
+  ipcMain,
+  dialog
 } from 'electron'
 import tinify from 'tinify'
 import {
   pathLink, // 在线图片地址
-  downloadPath // 默认下载路径为 「下载」 目录
+  downloadPath, // 默认下载路径为 「下载」 目录
+  validityApi
 } from '../lib/formatter'
 // import fs from 'fs'
 import path from 'path'
 
 ipcMain.on('onlineImgCompress', function (event, url, globalKey) {
   tinify.key = globalKey
-  compressOnlineImg(event, url)
+  validityApi()
+    .then(() => {
+      compressOnlineImg(event, url)
+    })
+    .catch(err => {
+      dialog.showMessageBox({
+        type: 'warning',
+        title: 'Warning Box',
+        message: `${err.status}`,
+        detail: `${err.message}`,
+        buttons: ['cancel', 'ok'],
+        defaultId: 1,
+        cancelId: 0
+      })
+    })
 })
 
 // 压缩在线图片

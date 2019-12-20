@@ -22,7 +22,7 @@
       <p class="statement">
         <span>Compress and generate</span>
       </p>
-      <i class="copyright">&copy;zhiozhou&lt;Cid&gt;</i>
+      <i class="copyright">&copy;zhiozhou@Cid</i>
     </ul>
     <div class="content">
       <Local v-show="activeNavInd === 0"/>
@@ -67,6 +67,7 @@
       this.getCompressedCount()
       // 设置apicount值
       this.listenCount()
+      console.log('key', this.globalKey)
     },
     watch: {
       count (newV, oldV) {
@@ -128,17 +129,17 @@
           }],
           color: [new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
             offset: 0,
-            color: 'rgb(251, 118, 63)'
+            color: 'rgb(255, 255, 255)'
           }, {
             offset: 1,
-            color: 'rgb(204, 186, 172)'
+            color: 'rgb(251, 118, 123)'
           }]),
           new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
             offset: 0,
-            color: 'rgb(0, 250, 150)'
+            color: 'rgb(155, 155, 255)'
           }, {
             offset: 1,
-            color: 'rgb(136,206,250)'
+            color: 'rgb(129, 227, 238)'
           }])]
         }
         pieCharts.setOption(options)

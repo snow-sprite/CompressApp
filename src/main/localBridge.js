@@ -1,11 +1,13 @@
 import {
-  ipcMain
+  ipcMain,
+  dialog
 } from 'electron'
 import zipper from 'zip-local'
 import tinify from 'tinify'
 import fs from 'fs'
 import path from 'path'
 import os from 'os'
+import { validityApi } from '../lib/formatter'
 
 // 源文件夹
 var sourcePath = ''
@@ -33,9 +35,23 @@ let nameReg = new RegExp(/^\./)
 // 与render进程通信
 ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
   tinify.key = globalKey
-  sourcePath = fPath
-  targetPath = path.resolve(`${fPath}-compresed`)
-  compresePic(event)
+  validityApi()
+    .then(() => {
+      sourcePath = fPath
+      targetPath = path.resolve(`${fPath}-compresed`)
+      compresePic(event)
+    })
+    .catch(err => {
+      dialog.showMessageBox({
+        type: 'warning',
+        title: 'Warning Box',
+        message: `${err.status}`,
+        detail: `${err.message}`,
+        buttons: ['cancel', 'ok'],
+        defaultId: 1,
+        cancelId: 0
+      })
+    })
 })
 // 读取文件夹
 function readFPath (fPath, eventReply) {

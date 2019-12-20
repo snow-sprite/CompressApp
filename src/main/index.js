@@ -1,10 +1,10 @@
 'use strict'
 
-import { app, BrowserWindow, Menu, Tray, dialog } from 'electron'
-import path from 'path'
-import pkg from '../../package.json'
+import { app, BrowserWindow } from 'electron'
 import './localBridge'
 import './onlineBridge'
+import util from './lib'
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -37,42 +37,18 @@ function createWindow () {
 
   mainWindow.on('closed', () => {
     mainWindow = null
-    taryIcon.destroy()
+    // taryIcon.destroy()
   })
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
   })
-
-  // 自定义windows任务栏
-  const taryIcon = new Tray(path.join(__static, './tray/tray-icon.png'))
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: 'reload',
-      role: 'reload'
-    }, {
-      label: 'about',
-      type: 'normal',
-      toolTip: 'aboout',
-      click: () => {
-        dialog.showMessageBox({
-          type: 'info',
-          title: 'about',
-          message: 'zhiozhou@Cid<959418392@qq.com>',
-          detail: `version: ${pkg.version}`
-        })
-      }
-    }, {
-      label: 'quit',
-      role: 'quit'
-    }
-  ])
-  taryIcon.on('click', () => {
-    taryIcon.popUpContextMenu(contextMenu)
-  })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+  util.createTray()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
