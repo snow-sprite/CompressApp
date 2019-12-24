@@ -118,6 +118,7 @@ export default {
         if (data) {
           this.$store.dispatch('getCompressedCount', this.globalKey)
           this.appPicsList = data
+          console.log(123, this.appPicsList)
         }
       })
       // 所有任务已完成，发出通知

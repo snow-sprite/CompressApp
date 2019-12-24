@@ -27,6 +27,7 @@ function createTray () {
         version: ${pkg.version}\n
         ${pkg.author.name}<${pkg.author.email}>`
       })
+      process.exit()
     }
   }, {
     label: 'Bugs Report',

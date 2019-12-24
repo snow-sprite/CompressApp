@@ -344,6 +344,9 @@
   width: 100%;
   display: inline-block;
   vertical-align: top;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .thumb-right {

@@ -27,6 +27,7 @@ ipcMain.on('onlineImgCompress', function (event, url, globalKey) {
         defaultId: 1,
         cancelId: 0
       })
+      process.exit()
     })
 })
 

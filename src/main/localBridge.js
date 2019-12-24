@@ -6,13 +6,14 @@ import zipper from 'zip-local'
 import tinify from 'tinify'
 import fs from 'fs'
 import path from 'path'
-import os from 'os'
 import { validityApi } from '../lib/formatter'
+import walkDir from '../lib/walkDir'
 
 // 源文件夹
 var sourcePath = ''
 // 目标文件夹
 var targetPath = ''
+
 // 文件数量
 var FILENUM = 0
 // 已压缩文件数
@@ -23,22 +24,14 @@ let renderArr = []
 
 // 验证文件是不是以'.'开头的系统文件等
 let nameReg = new RegExp(/^\./)
-
-// TODO 拖拽过程事件 bad
-// ipcMain.on('onDragStart', (event) => {
-//   event.sender.startDrag({
-//     file: '/Users/ningzhou/Downloads',
-//     icon: '../../build/icons/logo.png'
-//   })
-// })
-
 // 与render进程通信
 ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
   tinify.key = globalKey
+  // 验证tinyapi的有效性
   validityApi()
     .then(() => {
       sourcePath = fPath
-      targetPath = path.resolve(`${fPath}-compresed`)
+      targetPath = path.resolve(`${fPath}_compresed`)
       compresePic(event)
     })
     .catch(err => {
@@ -51,75 +44,64 @@ ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
         defaultId: 1,
         cancelId: 0
       })
+      process.exit()
     })
 })
 // 读取文件夹
 function readFPath (fPath, eventReply) {
+  // 同步生成目标目录
+  walkDir(fPath, sourcePath, targetPath)
   fs.lstat(fPath, function (errs, stat) {
     if (errs) throw errs
     if (stat.isFile()) {
       //  compressing...
-      /* 重构数据结构
-       * @return[{
-         name: '',
-         size: '',
-         path: '',
-         compressedSize: '',
-         compressedPath: ''
-        }]
+      /*
+       * 重构数据结构
        */
-      let minName
+      let realName
       let nameArrLeng
-      if (os.type() === 'Windows_NT') {
-        // windows OS
-        fPath = fPath.replace(/\\/g, '\\')
-        nameArrLeng = fPath.split('\\').length
-        minName = fPath.split('\\')[nameArrLeng - 1]
-      } else {
-        // mac OS
-        nameArrLeng = fPath.split('/').length
-        minName = fPath.split('/')[nameArrLeng - 1]
-      }
+      nameArrLeng = fPath.split(path.sep).length
+      // 这里得到的是name值
+      realName = fPath.split(path.sep)[nameArrLeng - 1]
+      // 这里的是压缩后的名字 例如：avatar.min.png
+      let minName = `${realName.split('.')[0]}.min.${realName.split('.')[1]}`
+      let filePath = path.dirname(fPath)
+      let fileTmpPath = filePath.slice(sourcePath.length)
+      // 压缩后的文件的路径
+      let compressedTargetPath = `${targetPath}${fileTmpPath}`
+      console.log(1, compressedTargetPath)
       // 这里的作用是排除以'.'开头的系统文件等
-      if (!nameReg.test(minName)) {
+      if (!nameReg.test(realName)) {
         renderArr.push({
-          name: minName,
+          name: realName,
+          minName,
           size: stat.size,
           path: `${fPath}`,
           compressedSize: null,
-          compressedPath: null
+          compressedPath: compressedTargetPath
         })
         FILENUM = renderArr.length
       }
       eventReply.sender.send('filesList', renderArr)
 
-      // 重新生成的新名字及其路径
-      let generatePath
-      if (os.type() === 'Windows_NT') {
-        // windows OS
-        generatePath = `${targetPath}\\${minName.split('.')[0]}.min.${minName.split('.')[1]}`
-        console.log(111, generatePath)
-      } else {
-        // mac OS
-        generatePath = `${targetPath}/${minName.split('.')[0]}.min.${minName.split('.')[1]}`
-        console.log(222, generatePath)
-      }
+      // 重新生成的新名字
+      let generatePathName
+      generatePathName = `${compressedTargetPath}${path.sep}${minName}`
       // tinypng api
       tinify
         .fromFile(path.resolve(fPath))
         .toFile(
-          generatePath,
+          generatePathName,
           () => {
             FINISHEDFILENUM += 1
             // 得到压缩后文件的size和path，推到原有数组里
-            if (!nameReg.test(minName)) {
-              fs.lstat(generatePath, function (errDoneFile, doneFileStat) {
+            if (!nameReg.test(realName)) {
+              fs.lstat(generatePathName, function (errDoneFile, doneFileStat) {
                 if (errDoneFile) throw errDoneFile
                 if (FINISHEDFILENUM >= 0) {
                   for (let item of renderArr) {
-                    if (item.name === minName) {
+                    if (item.name === realName) {
                       item.compressedSize = doneFileStat.size
-                      item.compressedPath = targetPath
                     }
                   }
                   eventReply.sender.send('finishedItem', renderArr)
@@ -127,9 +109,9 @@ function readFPath (fPath, eventReply) {
                 }
               })
             }
-            // TODO sync压缩
+            // TODO sync生成压缩包
             if (FILENUM === FINISHEDFILENUM) {
-              let targetPathArr = targetPath.split('/')
+              let targetPathArr = targetPath.split(path.sep)
               let targetFileName = targetPathArr[targetPathArr.length - 1]
               let newTargetPath = targetPath.replace(
                 targetPathArr[targetPathArr.length - 1],
@@ -183,7 +165,7 @@ function compresePic (event) {
 }
 
 // 重构目标文件
-function rebuildTarget (target, event, del) {
+function rebuildTarget (target, event, isDel) {
   // 这两行是初始化列表
   renderArr = []
   FILENUM = 0
@@ -200,7 +182,7 @@ function rebuildTarget (target, event, del) {
     }
     fs.rmdir(target, errs => {
       if (errs) throw errs
-      if (!del) {
+      if (!isDel) {
         fs.mkdir(target, err => {
           if (err) throw err
           readFPath(sourcePath, event)
