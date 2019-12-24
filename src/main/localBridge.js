@@ -44,7 +44,7 @@ ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
         defaultId: 1,
         cancelId: 0
       })
-      process.exit()
+      // process.exit()
     })
 })
 // 读取文件夹
