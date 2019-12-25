@@ -67,7 +67,6 @@
       this.getCompressedCount()
       // 设置apicount值
       this.listenCount()
-      console.log('key', this.globalKey)
     },
     watch: {
       count (newV, oldV) {

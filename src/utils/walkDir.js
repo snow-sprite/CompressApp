@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
-
-function walkDir (sPath, sourcePath, targetPath) {
+// 遍历源目标，生成对应的目标文件夹
+export const walkDir = (sPath, sourcePath, targetPath) => {
   // 遍历文件夹
   if (fs.statSync(sPath).isDirectory()) {
     let files = fs.readdirSync(sPath)
@@ -33,5 +33,3 @@ function generateDir (targetDir) {
     })
   }
 }
-
-export default walkDir

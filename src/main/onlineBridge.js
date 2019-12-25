@@ -7,7 +7,8 @@ import {
   pathLink, // 在线图片地址
   downloadPath, // 默认下载路径为 「下载」 目录
   validityApi
-} from '../lib/formatter'
+}
+  from '../utils/formatter'
 // import fs from 'fs'
 import path from 'path'
 

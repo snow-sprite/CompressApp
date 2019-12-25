@@ -6,8 +6,9 @@ import zipper from 'zip-local'
 import tinify from 'tinify'
 import fs from 'fs'
 import path from 'path'
-import { validityApi } from '../lib/formatter'
-import walkDir from '../lib/walkDir'
+import { validityApi } from '../utils/formatter'
+import { walkDir } from '../utils/walkDir'
+import { reBuildDir } from '../utils/rmDir'
 
 // 源文件夹
 var sourcePath = ''
@@ -69,7 +70,6 @@ function readFPath (fPath, eventReply) {
       let fileTmpPath = filePath.slice(sourcePath.length)
       // 压缩后的文件的路径
       let compressedTargetPath = `${targetPath}${fileTmpPath}`
-      console.log(1, compressedTargetPath)
       // 这里的作用是排除以'.'开头的系统文件等
       if (!nameReg.test(realName)) {
         renderArr.push({
@@ -155,9 +155,8 @@ function compresePic (event) {
         fs.mkdir(targetPath, () => {
           rebuildTarget(targetPath, event)
         })
-      } else {
-        rebuildTarget(targetPath, event)
       }
+      rebuildTarget(targetPath, event)
     })
   } catch (error) {
     throw error
@@ -170,24 +169,6 @@ function rebuildTarget (target, event, isDel) {
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
-  // 删除已有文件夹 如果不存在则先生成
-  fs.readdir(target, '', (err, files) => {
-    if (err) throw err
-    if (files.length > 0) {
-      files.map(file => {
-        fs.unlinkSync(`${target}/${file}`, err => {
-          if (err) throw err
-        })
-      })
-    }
-    fs.rmdir(target, errs => {
-      if (errs) throw errs
-      if (!isDel) {
-        fs.mkdir(target, err => {
-          if (err) throw err
-          readFPath(sourcePath, event)
-        })
-      }
-    })
-  })
+  reBuildDir(target)
+  readFPath(sourcePath, event)
 }

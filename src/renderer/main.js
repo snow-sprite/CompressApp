@@ -13,10 +13,10 @@ import '../../static/css/index.css'
 import {
   defaultDragEvent,
   defaultRefreshEvent
-} from '../lib/defaultEvent'
+} from '../utils/defaultEvent'
 
 // filters
-import filters from '../lib/filters'
+import filters from '../utils/filters'
 Object.keys(filters).forEach(fil => {
   Vue.filter(fil, filters[fil])
 })

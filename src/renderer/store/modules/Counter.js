@@ -1,7 +1,7 @@
 import tinify from 'tinify'
 import {
   validityApi
-} from '../../../lib/formatter'
+} from '../../../utils/formatter'
 
 const state = {
   count: 0
