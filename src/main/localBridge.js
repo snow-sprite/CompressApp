@@ -9,7 +9,8 @@ import path from 'path'
 import { validityApi } from '../utils/formatter'
 import { walkDir } from '../utils/walkDir'
 import { reBuildDir } from '../utils/rmDir'
-
+// images white list
+import imagesType from '../utils/imagesType'
 // 源文件夹
 var sourcePath = ''
 // 目标文件夹
@@ -23,30 +24,27 @@ var FINISHEDFILENUM = 0
 // 要渲染的被压缩图片列表
 let renderArr = []
 
-// 验证文件是不是以'.'开头的系统文件等
-let nameReg = new RegExp(/^\./)
 // 与render进程通信
 ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
   tinify.key = globalKey
+  sourcePath = fPath
+  targetPath = path.resolve(`${fPath}_compresed`)
   // 验证tinyapi的有效性
-  validityApi()
-    .then(() => {
-      sourcePath = fPath
-      targetPath = path.resolve(`${fPath}_compresed`)
-      compresePic(event)
-    })
-    .catch(err => {
-      dialog.showMessageBox({
-        type: 'warning',
-        title: 'Warning Box',
-        message: `${err.status}`,
-        detail: `${err.message}`,
-        buttons: ['cancel', 'ok'],
-        defaultId: 1,
-        cancelId: 0
-      })
-      // process.exit()
-    })
+  // validityApi()
+  //   .then(() => {
+  compresePic(event)
+  // })
+  // .catch(err => {
+  //   dialog.showMessageBox({
+  //     type: 'warning',
+  //     title: 'Warning Box',
+  //     message: `${err.status}`,
+  //     detail: `${err.message}`,
+  //     buttons: ['cancel', 'ok'],
+  //     defaultId: 1,
+  //     cancelId: 0
+  //   })
+  // })
 })
 // 读取文件夹
 function readFPath (fPath, eventReply) {
@@ -59,19 +57,17 @@ function readFPath (fPath, eventReply) {
       /*
        * 重构数据结构
        */
-      let realName
-      let nameArrLeng
-      nameArrLeng = fPath.split(path.sep).length
       // 这里得到的是name值
-      realName = fPath.split(path.sep)[nameArrLeng - 1]
+      let realName = path.basename(fPath)
       // 这里的是压缩后的名字 例如：avatar.min.png
       let minName = `${realName.split('.')[0]}.min.${realName.split('.')[1]}`
       let filePath = path.dirname(fPath)
       let fileTmpPath = filePath.slice(sourcePath.length)
       // 压缩后的文件的路径
       let compressedTargetPath = `${targetPath}${fileTmpPath}`
-      // 这里的作用是排除以'.'开头的系统文件等
-      if (!nameReg.test(realName)) {
+      // 这里的作用是排除非指定后缀文件
+      let extname = path.extname(path.resolve(fPath)).slice(1)
+      if (imagesType.indexOf(extname) > -1) {
         renderArr.push({
           name: realName,
           minName,
@@ -83,19 +79,21 @@ function readFPath (fPath, eventReply) {
         FILENUM = renderArr.length
       }
       eventReply.sender.send('filesList', renderArr)
-
       // 重新生成的新名字
       let generatePathName
       generatePathName = `${compressedTargetPath}${path.sep}${minName}`
+      // TODO 不能压缩的文件copy到目标目录
       // tinypng api
       tinify
         .fromFile(path.resolve(fPath))
         .toFile(
           generatePathName,
           () => {
-            FINISHEDFILENUM += 1
+            if (imagesType.indexOf(extname) > -1) {
+              FINISHEDFILENUM += 1
+            }
             // 得到压缩后文件的size和path，推到原有数组里
-            if (!nameReg.test(realName)) {
+            if (imagesType.indexOf(extname) > -1) {
               fs.lstat(generatePathName, function (errDoneFile, doneFileStat) {
                 if (errDoneFile) throw errDoneFile
                 if (FINISHEDFILENUM >= 0) {
@@ -111,19 +109,14 @@ function readFPath (fPath, eventReply) {
             }
             // TODO sync生成压缩包
             if (FILENUM === FINISHEDFILENUM) {
-              let targetPathArr = targetPath.split(path.sep)
-              let targetFileName = targetPathArr[targetPathArr.length - 1]
-              let newTargetPath = targetPath.replace(
-                targetPathArr[targetPathArr.length - 1],
-                ''
-              )
-              zipper.zip(targetPath, function (errZip, zipped) {
+              let targetFileName = path.basename(targetPath)
+              let newTargetPath = `${path.dirname(targetPath)}${path.sep}`
+              zipper.zip(targetPath, (errZip, zipped) => {
                 if (errZip) throw errZip
                 zipped.compress()
-                zipped.save(`${newTargetPath}${targetFileName}.zip`, function (
-                  errSave
-                ) {
+                zipped.save(`${newTargetPath}${targetFileName}.zip`, errSave => {
                   if (errSave) throw errSave
+                  console.log('这应该是最后一次压缩了')
                   eventReply.sender.send('AllDone')
                   // eventReply.sender.send('dragEventReply', true)
                   // TODO 打完压缩包后删除目标文件夹
@@ -155,8 +148,9 @@ function compresePic (event) {
         fs.mkdir(targetPath, () => {
           rebuildTarget(targetPath, event)
         })
+      } else {
+        rebuildTarget(targetPath, event)
       }
-      rebuildTarget(targetPath, event)
     })
   } catch (error) {
     throw error
@@ -164,11 +158,26 @@ function compresePic (event) {
 }
 
 // 重构目标文件
-function rebuildTarget (target, event, isDel) {
+function rebuildTarget (target, event) {
   // 这两行是初始化列表
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
+
   reBuildDir(target)
-  readFPath(sourcePath, event)
+  validityApi()
+    .then(() => {
+      readFPath(sourcePath, event)
+    })
+    .catch(err => {
+      dialog.showMessageBox({
+        type: 'warning',
+        title: 'Warning Box',
+        message: `${err.status}`,
+        detail: `${err.message}`,
+        buttons: ['cancel', 'ok'],
+        defaultId: 1,
+        cancelId: 0
+      })
+    })
 }
