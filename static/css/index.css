@@ -177,6 +177,7 @@
   -moz-transform: translateY(-20px);
   -ms-transform: translateY(-20px);
   -o-transform: translateY(-20px);
+  overflow: hidden;
 }
 .online-search-title-box {
   display: -webkit-box;
@@ -211,16 +212,16 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-bottom: 30px;
-  -webkit-box-sizing: border-box;
+  /* -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding-right: 20px;
+  padding-right: 20px; */
 }
 .online-search-box2:last-of-type {
   margin-bottom: 0;
 }
 .online-box-wrapper {
   width: 600px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .online-box {
   width: 620px;
