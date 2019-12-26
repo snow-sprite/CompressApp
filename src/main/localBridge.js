@@ -6,11 +6,10 @@ import zipper from 'zip-local'
 import tinify from 'tinify'
 import fs from 'fs'
 import path from 'path'
-import { validityApi } from '../utils/formatter'
-import { walkDir } from '../utils/walkDir'
-import { reBuildDir } from '../utils/rmDir'
+import { walkDir } from './lib/walkDir'
+import { reBuildDir } from './lib/rmDir'
 // images white list
-import imagesType from '../utils/imagesType'
+import imagesType from './lib/imagesType'
 // 源文件夹
 var sourcePath = ''
 // 目标文件夹
@@ -25,27 +24,25 @@ var FINISHEDFILENUM = 0
 let renderArr = []
 
 // 与render进程通信
-ipcMain.on('uploadEventMessage', function (event, fPath, globalKey) {
+ipcMain.on('uploadEventMessage', (event, fPath, globalKey) => {
   tinify.key = globalKey
   sourcePath = fPath
   targetPath = path.resolve(`${fPath}_compresed`)
-  // 验证tinyapi的有效性
-  // validityApi()
-  //   .then(() => {
   compresePic(event)
-  // })
-  // .catch(err => {
-  //   dialog.showMessageBox({
-  //     type: 'warning',
-  //     title: 'Warning Box',
-  //     message: `${err.status}`,
-  //     detail: `${err.message}`,
-  //     buttons: ['cancel', 'ok'],
-  //     defaultId: 1,
-  //     cancelId: 0
-  //   })
-  // })
 })
+
+ipcMain.on('validateApiLocalError', (event, errObj) => {
+  dialog.showMessageBox({
+    type: 'warning',
+    title: 'Warning Box',
+    message: `${errObj.status}`,
+    detail: `${errObj.message}`,
+    buttons: ['cancel', 'ok'],
+    defaultId: 1,
+    cancelId: 0
+  })
+})
+
 // 读取文件夹
 function readFPath (fPath, eventReply) {
   // 同步生成目标目录
@@ -165,19 +162,5 @@ function rebuildTarget (target, event) {
   FINISHEDFILENUM = 0
 
   reBuildDir(target)
-  validityApi()
-    .then(() => {
-      readFPath(sourcePath, event)
-    })
-    .catch(err => {
-      dialog.showMessageBox({
-        type: 'warning',
-        title: 'Warning Box',
-        message: `${err.status}`,
-        detail: `${err.message}`,
-        buttons: ['cancel', 'ok'],
-        defaultId: 1,
-        cancelId: 0
-      })
-    })
+  readFPath(sourcePath, event)
 }

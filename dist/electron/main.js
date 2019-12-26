@@ -94,7 +94,7 @@ module.exports =
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("/* WEBPACK VAR INJECTION */(function(__dirname) {var resolve = __webpack_require__(/*! path */ \"path\").resolve\nvar bin = __webpack_require__(/*! ./package */ \"./node_modules/7zip/package.json\").bin\n\nmodule.exports = map_obj(bin, function(v){\n  return resolve(__dirname, v)\n})\n\nfunction map_obj(obj, fn){\n  return Object.keys(obj).reduce(function(m, k){\n    m[k] = fn(obj[k])\n    return m\n  }, {})\n}\n\n/* WEBPACK VAR INJECTION */}.call(this, \"node_modules/7zip\"))\n\n//# sourceURL=webpack:///./node_modules/7zip/index.js?");
+eval("/* WEBPACK VAR INJECTION */(function(__dirname) {var resolve = __webpack_require__(/*! path */ \"path\").resolve\nvar bin = __webpack_require__(/*! ./package */ \"./node_modules/7zip/package.json\").bin\n\nmodule.exports = map_obj(bin, function(v){\n  return resolve(__dirname, v)\n})\n\nfunction map_obj(obj, fn){\n  return Object.keys(obj).reduce(function(m, k){\n    m[k] = fn(obj[k])\n    return m\n  }, {})\n}\n\n/* WEBPACK VAR INJECTION */}.call(this, \"node_modules\\\\7zip\"))\n\n//# sourceURL=webpack:///./node_modules/7zip/index.js?");
 
 /***/ }),
 
@@ -105,7 +105,7 @@ eval("/* WEBPACK VAR INJECTION */(function(__dirname) {var resolve = __webpack_r
 /*! exports provided: _args, _development, _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _spec, _where, bin, bugs, description, homepage, keywords, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-eval("module.exports = JSON.parse(\"{\\\"_args\\\":[[\\\"7zip@0.0.6\\\",\\\"/Users/ningzhou/workgroup/test/CompressApp\\\"]],\\\"_development\\\":true,\\\"_from\\\":\\\"7zip@0.0.6\\\",\\\"_id\\\":\\\"7zip@0.0.6\\\",\\\"_inBundle\\\":false,\\\"_integrity\\\":\\\"sha1-nK+xca+CMpSQNTtIFvAzR6oVCjA=\\\",\\\"_location\\\":\\\"/7zip\\\",\\\"_phantomChildren\\\":{},\\\"_requested\\\":{\\\"type\\\":\\\"version\\\",\\\"registry\\\":true,\\\"raw\\\":\\\"7zip@0.0.6\\\",\\\"name\\\":\\\"7zip\\\",\\\"escapedName\\\":\\\"7zip\\\",\\\"rawSpec\\\":\\\"0.0.6\\\",\\\"saveSpec\\\":null,\\\"fetchSpec\\\":\\\"0.0.6\\\"},\\\"_requiredBy\\\":[\\\"/electron-devtools-installer\\\"],\\\"_resolved\\\":\\\"https://registry.npmjs.org/7zip/-/7zip-0.0.6.tgz\\\",\\\"_spec\\\":\\\"0.0.6\\\",\\\"_where\\\":\\\"/Users/ningzhou/workgroup/test/CompressApp\\\",\\\"bin\\\":{\\\"7z\\\":\\\"7zip-lite/7z.exe\\\"},\\\"bugs\\\":{\\\"url\\\":\\\"https://github.com/fritx/win-7zip/issues\\\"},\\\"description\\\":\\\"7zip Windows Package via Node.js\\\",\\\"homepage\\\":\\\"https://github.com/fritx/win-7zip#readme\\\",\\\"keywords\\\":[\\\"7z\\\",\\\"7zip\\\",\\\"7-zip\\\",\\\"windows\\\",\\\"install\\\"],\\\"license\\\":\\\"GNU LGPL\\\",\\\"main\\\":\\\"index.js\\\",\\\"name\\\":\\\"7zip\\\",\\\"repository\\\":{\\\"type\\\":\\\"git\\\",\\\"url\\\":\\\"git+ssh://git@github.com/fritx/win-7zip.git\\\"},\\\"scripts\\\":{\\\"test\\\":\\\"mocha\\\"},\\\"version\\\":\\\"0.0.6\\\"}\");\n\n//# sourceURL=webpack:///./node_modules/7zip/package.json?");
+eval("module.exports = JSON.parse(\"{\\\"_args\\\":[[\\\"7zip@0.0.6\\\",\\\"C:\\\\\\\\Users\\\\\\\\Administrator\\\\\\\\Desktop\\\\\\\\myOptimize\\\\\\\\CompressApp\\\"]],\\\"_development\\\":true,\\\"_from\\\":\\\"7zip@0.0.6\\\",\\\"_id\\\":\\\"7zip@0.0.6\\\",\\\"_inBundle\\\":false,\\\"_integrity\\\":\\\"sha1-nK+xca+CMpSQNTtIFvAzR6oVCjA=\\\",\\\"_location\\\":\\\"/7zip\\\",\\\"_phantomChildren\\\":{},\\\"_requested\\\":{\\\"type\\\":\\\"version\\\",\\\"registry\\\":true,\\\"raw\\\":\\\"7zip@0.0.6\\\",\\\"name\\\":\\\"7zip\\\",\\\"escapedName\\\":\\\"7zip\\\",\\\"rawSpec\\\":\\\"0.0.6\\\",\\\"saveSpec\\\":null,\\\"fetchSpec\\\":\\\"0.0.6\\\"},\\\"_requiredBy\\\":[\\\"/electron-devtools-installer\\\"],\\\"_resolved\\\":\\\"https://registry.npmjs.org/7zip/-/7zip-0.0.6.tgz\\\",\\\"_spec\\\":\\\"0.0.6\\\",\\\"_where\\\":\\\"C:\\\\\\\\Users\\\\\\\\Administrator\\\\\\\\Desktop\\\\\\\\myOptimize\\\\\\\\CompressApp\\\",\\\"bin\\\":{\\\"7z\\\":\\\"7zip-lite/7z.exe\\\"},\\\"bugs\\\":{\\\"url\\\":\\\"https://github.com/fritx/win-7zip/issues\\\"},\\\"description\\\":\\\"7zip Windows Package via Node.js\\\",\\\"homepage\\\":\\\"https://github.com/fritx/win-7zip#readme\\\",\\\"keywords\\\":[\\\"7z\\\",\\\"7zip\\\",\\\"7-zip\\\",\\\"windows\\\",\\\"install\\\"],\\\"license\\\":\\\"GNU LGPL\\\",\\\"main\\\":\\\"index.js\\\",\\\"name\\\":\\\"7zip\\\",\\\"repository\\\":{\\\"type\\\":\\\"git\\\",\\\"url\\\":\\\"git+ssh://git@github.com/fritx/win-7zip.git\\\"},\\\"scripts\\\":{\\\"test\\\":\\\"mocha\\\"},\\\"version\\\":\\\"0.0.6\\\"}\");\n\n//# sourceURL=webpack:///./node_modules/7zip/package.json?");
 
 /***/ }),
 
@@ -117,17 +117,6 @@ eval("module.exports = JSON.parse(\"{\\\"_args\\\":[[\\\"7zip@0.0.6\\\",\\\"/Use
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = { \"default\": __webpack_require__(/*! core-js/library/fn/get-iterator */ \"./node_modules/core-js/library/fn/get-iterator.js\"), __esModule: true };\n\n//# sourceURL=webpack:///./node_modules/babel-runtime/core-js/get-iterator.js?");
-
-/***/ }),
-
-/***/ "./node_modules/babel-runtime/core-js/promise.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/babel-runtime/core-js/promise.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = { \"default\": __webpack_require__(/*! core-js/library/fn/promise */ \"./node_modules/core-js/library/fn/promise.js\"), __esModule: true };\n\n//# sourceURL=webpack:///./node_modules/babel-runtime/core-js/promise.js?");
 
 /***/ }),
 
@@ -176,17 +165,6 @@ eval("__webpack_require__(/*! ../modules/web.dom.iterable */ \"./node_modules/co
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/fn/promise.js":
-/*!****************************************************!*\
-  !*** ./node_modules/core-js/library/fn/promise.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("__webpack_require__(/*! ../modules/es6.object.to-string */ \"./node_modules/core-js/library/modules/es6.object.to-string.js\");\n__webpack_require__(/*! ../modules/es6.string.iterator */ \"./node_modules/core-js/library/modules/es6.string.iterator.js\");\n__webpack_require__(/*! ../modules/web.dom.iterable */ \"./node_modules/core-js/library/modules/web.dom.iterable.js\");\n__webpack_require__(/*! ../modules/es6.promise */ \"./node_modules/core-js/library/modules/es6.promise.js\");\n__webpack_require__(/*! ../modules/es7.promise.finally */ \"./node_modules/core-js/library/modules/es7.promise.finally.js\");\n__webpack_require__(/*! ../modules/es7.promise.try */ \"./node_modules/core-js/library/modules/es7.promise.try.js\");\nmodule.exports = __webpack_require__(/*! ../modules/_core */ \"./node_modules/core-js/library/modules/_core.js\").Promise;\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/fn/promise.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_a-function.js":
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/library/modules/_a-function.js ***!
@@ -206,17 +184,6 @@ eval("module.exports = function (it) {\n  if (typeof it != 'function') throw Typ
 /***/ (function(module, exports) {
 
 eval("module.exports = function () { /* empty */ };\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_add-to-unscopables.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_an-instance.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_an-instance.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = function (it, Constructor, name, forbiddenField) {\n  if (!(it instanceof Constructor) || (forbiddenField !== undefined && forbiddenField in it)) {\n    throw TypeError(name + ': incorrect invocation!');\n  } return it;\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_an-instance.js?");
 
 /***/ }),
 
@@ -352,17 +319,6 @@ eval("module.exports = function (exec) {\n  try {\n    return !!exec();\n  } cat
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_for-of.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_for-of.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var ctx = __webpack_require__(/*! ./_ctx */ \"./node_modules/core-js/library/modules/_ctx.js\");\nvar call = __webpack_require__(/*! ./_iter-call */ \"./node_modules/core-js/library/modules/_iter-call.js\");\nvar isArrayIter = __webpack_require__(/*! ./_is-array-iter */ \"./node_modules/core-js/library/modules/_is-array-iter.js\");\nvar anObject = __webpack_require__(/*! ./_an-object */ \"./node_modules/core-js/library/modules/_an-object.js\");\nvar toLength = __webpack_require__(/*! ./_to-length */ \"./node_modules/core-js/library/modules/_to-length.js\");\nvar getIterFn = __webpack_require__(/*! ./core.get-iterator-method */ \"./node_modules/core-js/library/modules/core.get-iterator-method.js\");\nvar BREAK = {};\nvar RETURN = {};\nvar exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {\n  var iterFn = ITERATOR ? function () { return iterable; } : getIterFn(iterable);\n  var f = ctx(fn, that, entries ? 2 : 1);\n  var index = 0;\n  var length, step, iterator, result;\n  if (typeof iterFn != 'function') throw TypeError(iterable + ' is not iterable!');\n  // fast case for arrays with default iterator\n  if (isArrayIter(iterFn)) for (length = toLength(iterable.length); length > index; index++) {\n    result = entries ? f(anObject(step = iterable[index])[0], step[1]) : f(iterable[index]);\n    if (result === BREAK || result === RETURN) return result;\n  } else for (iterator = iterFn.call(iterable); !(step = iterator.next()).done;) {\n    result = call(iterator, f, step.value, entries);\n    if (result === BREAK || result === RETURN) return result;\n  }\n};\nexports.BREAK = BREAK;\nexports.RETURN = RETURN;\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_for-of.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_global.js":
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/library/modules/_global.js ***!
@@ -418,17 +374,6 @@ eval("module.exports = !__webpack_require__(/*! ./_descriptors */ \"./node_modul
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_invoke.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_invoke.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// fast apply, http://jsperf.lnkit.com/fast-apply/5\nmodule.exports = function (fn, args, that) {\n  var un = that === undefined;\n  switch (args.length) {\n    case 0: return un ? fn()\n                      : fn.call(that);\n    case 1: return un ? fn(args[0])\n                      : fn.call(that, args[0]);\n    case 2: return un ? fn(args[0], args[1])\n                      : fn.call(that, args[0], args[1]);\n    case 3: return un ? fn(args[0], args[1], args[2])\n                      : fn.call(that, args[0], args[1], args[2]);\n    case 4: return un ? fn(args[0], args[1], args[2], args[3])\n                      : fn.call(that, args[0], args[1], args[2], args[3]);\n  } return fn.apply(that, args);\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_invoke.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_iobject.js":
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/library/modules/_iobject.js ***!
@@ -440,17 +385,6 @@ eval("// fallback for non-array-like ES3 and non-enumerable old V8 strings\nvar 
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_is-array-iter.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_is-array-iter.js ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("// check on default Array iterator\nvar Iterators = __webpack_require__(/*! ./_iterators */ \"./node_modules/core-js/library/modules/_iterators.js\");\nvar ITERATOR = __webpack_require__(/*! ./_wks */ \"./node_modules/core-js/library/modules/_wks.js\")('iterator');\nvar ArrayProto = Array.prototype;\n\nmodule.exports = function (it) {\n  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_is-array-iter.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_is-object.js":
 /*!************************************************************!*\
   !*** ./node_modules/core-js/library/modules/_is-object.js ***!
@@ -459,17 +393,6 @@ eval("// check on default Array iterator\nvar Iterators = __webpack_require__(/*
 /***/ (function(module, exports) {
 
 eval("module.exports = function (it) {\n  return typeof it === 'object' ? it !== null : typeof it === 'function';\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_is-object.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_iter-call.js":
-/*!************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_iter-call.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("// call something on iterator step with safe closing on error\nvar anObject = __webpack_require__(/*! ./_an-object */ \"./node_modules/core-js/library/modules/_an-object.js\");\nmodule.exports = function (iterator, fn, value, entries) {\n  try {\n    return entries ? fn(anObject(value)[0], value[1]) : fn(value);\n  // 7.4.6 IteratorClose(iterator, completion)\n  } catch (e) {\n    var ret = iterator['return'];\n    if (ret !== undefined) anObject(ret.call(iterator));\n    throw e;\n  }\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_iter-call.js?");
 
 /***/ }),
 
@@ -494,17 +417,6 @@ eval("\nvar create = __webpack_require__(/*! ./_object-create */ \"./node_module
 
 "use strict";
 eval("\nvar LIBRARY = __webpack_require__(/*! ./_library */ \"./node_modules/core-js/library/modules/_library.js\");\nvar $export = __webpack_require__(/*! ./_export */ \"./node_modules/core-js/library/modules/_export.js\");\nvar redefine = __webpack_require__(/*! ./_redefine */ \"./node_modules/core-js/library/modules/_redefine.js\");\nvar hide = __webpack_require__(/*! ./_hide */ \"./node_modules/core-js/library/modules/_hide.js\");\nvar Iterators = __webpack_require__(/*! ./_iterators */ \"./node_modules/core-js/library/modules/_iterators.js\");\nvar $iterCreate = __webpack_require__(/*! ./_iter-create */ \"./node_modules/core-js/library/modules/_iter-create.js\");\nvar setToStringTag = __webpack_require__(/*! ./_set-to-string-tag */ \"./node_modules/core-js/library/modules/_set-to-string-tag.js\");\nvar getPrototypeOf = __webpack_require__(/*! ./_object-gpo */ \"./node_modules/core-js/library/modules/_object-gpo.js\");\nvar ITERATOR = __webpack_require__(/*! ./_wks */ \"./node_modules/core-js/library/modules/_wks.js\")('iterator');\nvar BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`\nvar FF_ITERATOR = '@@iterator';\nvar KEYS = 'keys';\nvar VALUES = 'values';\n\nvar returnThis = function () { return this; };\n\nmodule.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {\n  $iterCreate(Constructor, NAME, next);\n  var getMethod = function (kind) {\n    if (!BUGGY && kind in proto) return proto[kind];\n    switch (kind) {\n      case KEYS: return function keys() { return new Constructor(this, kind); };\n      case VALUES: return function values() { return new Constructor(this, kind); };\n    } return function entries() { return new Constructor(this, kind); };\n  };\n  var TAG = NAME + ' Iterator';\n  var DEF_VALUES = DEFAULT == VALUES;\n  var VALUES_BUG = false;\n  var proto = Base.prototype;\n  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];\n  var $default = $native || getMethod(DEFAULT);\n  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;\n  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;\n  var methods, key, IteratorPrototype;\n  // Fix native\n  if ($anyNative) {\n    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));\n    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {\n      // Set @@toStringTag to native iterators\n      setToStringTag(IteratorPrototype, TAG, true);\n      // fix for some old engines\n      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') hide(IteratorPrototype, ITERATOR, returnThis);\n    }\n  }\n  // fix Array#{values, @@iterator}.name in V8 / FF\n  if (DEF_VALUES && $native && $native.name !== VALUES) {\n    VALUES_BUG = true;\n    $default = function values() { return $native.call(this); };\n  }\n  // Define iterator\n  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {\n    hide(proto, ITERATOR, $default);\n  }\n  // Plug for library\n  Iterators[NAME] = $default;\n  Iterators[TAG] = returnThis;\n  if (DEFAULT) {\n    methods = {\n      values: DEF_VALUES ? $default : getMethod(VALUES),\n      keys: IS_SET ? $default : getMethod(KEYS),\n      entries: $entries\n    };\n    if (FORCED) for (key in methods) {\n      if (!(key in proto)) redefine(proto, key, methods[key]);\n    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);\n  }\n  return methods;\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_iter-define.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_iter-detect.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_iter-detect.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var ITERATOR = __webpack_require__(/*! ./_wks */ \"./node_modules/core-js/library/modules/_wks.js\")('iterator');\nvar SAFE_CLOSING = false;\n\ntry {\n  var riter = [7][ITERATOR]();\n  riter['return'] = function () { SAFE_CLOSING = true; };\n  // eslint-disable-next-line no-throw-literal\n  Array.from(riter, function () { throw 2; });\n} catch (e) { /* empty */ }\n\nmodule.exports = function (exec, skipClosing) {\n  if (!skipClosing && !SAFE_CLOSING) return false;\n  var safe = false;\n  try {\n    var arr = [7];\n    var iter = arr[ITERATOR]();\n    iter.next = function () { return { done: safe = true }; };\n    arr[ITERATOR] = function () { return iter; };\n    exec(arr);\n  } catch (e) { /* empty */ }\n  return safe;\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_iter-detect.js?");
 
 /***/ }),
 
@@ -538,29 +450,6 @@ eval("module.exports = {};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/
 /***/ (function(module, exports) {
 
 eval("module.exports = true;\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_library.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_microtask.js":
-/*!************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_microtask.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var global = __webpack_require__(/*! ./_global */ \"./node_modules/core-js/library/modules/_global.js\");\nvar macrotask = __webpack_require__(/*! ./_task */ \"./node_modules/core-js/library/modules/_task.js\").set;\nvar Observer = global.MutationObserver || global.WebKitMutationObserver;\nvar process = global.process;\nvar Promise = global.Promise;\nvar isNode = __webpack_require__(/*! ./_cof */ \"./node_modules/core-js/library/modules/_cof.js\")(process) == 'process';\n\nmodule.exports = function () {\n  var head, last, notify;\n\n  var flush = function () {\n    var parent, fn;\n    if (isNode && (parent = process.domain)) parent.exit();\n    while (head) {\n      fn = head.fn;\n      head = head.next;\n      try {\n        fn();\n      } catch (e) {\n        if (head) notify();\n        else last = undefined;\n        throw e;\n      }\n    } last = undefined;\n    if (parent) parent.enter();\n  };\n\n  // Node.js\n  if (isNode) {\n    notify = function () {\n      process.nextTick(flush);\n    };\n  // browsers with MutationObserver, except iOS Safari - https://github.com/zloirock/core-js/issues/339\n  } else if (Observer && !(global.navigator && global.navigator.standalone)) {\n    var toggle = true;\n    var node = document.createTextNode('');\n    new Observer(flush).observe(node, { characterData: true }); // eslint-disable-line no-new\n    notify = function () {\n      node.data = toggle = !toggle;\n    };\n  // environments with maybe non-completely correct, but existent Promise\n  } else if (Promise && Promise.resolve) {\n    // Promise.resolve without an argument throws an error in LG WebOS 2\n    var promise = Promise.resolve(undefined);\n    notify = function () {\n      promise.then(flush);\n    };\n  // for other environments - macrotask based on:\n  // - setImmediate\n  // - MessageChannel\n  // - window.postMessag\n  // - onreadystatechange\n  // - setTimeout\n  } else {\n    notify = function () {\n      // strange IE + webpack dev server bug - use .call(global)\n      macrotask.call(global, flush);\n    };\n  }\n\n  return function (fn) {\n    var task = { fn: fn, next: undefined };\n    if (last) last.next = task;\n    if (!head) {\n      head = task;\n      notify();\n    } last = task;\n  };\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_microtask.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_new-promise-capability.js":
-/*!*************************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_new-promise-capability.js ***!
-  \*************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n// 25.4.1.5 NewPromiseCapability(C)\nvar aFunction = __webpack_require__(/*! ./_a-function */ \"./node_modules/core-js/library/modules/_a-function.js\");\n\nfunction PromiseCapability(C) {\n  var resolve, reject;\n  this.promise = new C(function ($$resolve, $$reject) {\n    if (resolve !== undefined || reject !== undefined) throw TypeError('Bad Promise constructor');\n    resolve = $$resolve;\n    reject = $$reject;\n  });\n  this.resolve = aFunction(resolve);\n  this.reject = aFunction(reject);\n}\n\nmodule.exports.f = function (C) {\n  return new PromiseCapability(C);\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_new-promise-capability.js?");
 
 /***/ }),
 
@@ -630,28 +519,6 @@ eval("// 19.1.2.14 / 15.2.3.14 Object.keys(O)\nvar $keys = __webpack_require__(/
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_perform.js":
-/*!**********************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_perform.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("module.exports = function (exec) {\n  try {\n    return { e: false, v: exec() };\n  } catch (e) {\n    return { e: true, v: e };\n  }\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_perform.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_promise-resolve.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_promise-resolve.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var anObject = __webpack_require__(/*! ./_an-object */ \"./node_modules/core-js/library/modules/_an-object.js\");\nvar isObject = __webpack_require__(/*! ./_is-object */ \"./node_modules/core-js/library/modules/_is-object.js\");\nvar newPromiseCapability = __webpack_require__(/*! ./_new-promise-capability */ \"./node_modules/core-js/library/modules/_new-promise-capability.js\");\n\nmodule.exports = function (C, x) {\n  anObject(C);\n  if (isObject(x) && x.constructor === C) return x;\n  var promiseCapability = newPromiseCapability.f(C);\n  var resolve = promiseCapability.resolve;\n  resolve(x);\n  return promiseCapability.promise;\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_promise-resolve.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_property-desc.js":
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/library/modules/_property-desc.js ***!
@@ -663,17 +530,6 @@ eval("module.exports = function (bitmap, value) {\n  return {\n    enumerable: !
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_redefine-all.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_redefine-all.js ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var hide = __webpack_require__(/*! ./_hide */ \"./node_modules/core-js/library/modules/_hide.js\");\nmodule.exports = function (target, src, safe) {\n  for (var key in src) {\n    if (safe && target[key]) target[key] = src[key];\n    else hide(target, key, src[key]);\n  } return target;\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_redefine-all.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_redefine.js":
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/library/modules/_redefine.js ***!
@@ -682,18 +538,6 @@ eval("var hide = __webpack_require__(/*! ./_hide */ \"./node_modules/core-js/lib
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("module.exports = __webpack_require__(/*! ./_hide */ \"./node_modules/core-js/library/modules/_hide.js\");\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_redefine.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_set-species.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_set-species.js ***!
-  \**************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\nvar global = __webpack_require__(/*! ./_global */ \"./node_modules/core-js/library/modules/_global.js\");\nvar core = __webpack_require__(/*! ./_core */ \"./node_modules/core-js/library/modules/_core.js\");\nvar dP = __webpack_require__(/*! ./_object-dp */ \"./node_modules/core-js/library/modules/_object-dp.js\");\nvar DESCRIPTORS = __webpack_require__(/*! ./_descriptors */ \"./node_modules/core-js/library/modules/_descriptors.js\");\nvar SPECIES = __webpack_require__(/*! ./_wks */ \"./node_modules/core-js/library/modules/_wks.js\")('species');\n\nmodule.exports = function (KEY) {\n  var C = typeof core[KEY] == 'function' ? core[KEY] : global[KEY];\n  if (DESCRIPTORS && C && !C[SPECIES]) dP.f(C, SPECIES, {\n    configurable: true,\n    get: function () { return this; }\n  });\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_set-species.js?");
 
 /***/ }),
 
@@ -730,17 +574,6 @@ eval("var core = __webpack_require__(/*! ./_core */ \"./node_modules/core-js/lib
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_species-constructor.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_species-constructor.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("// 7.3.20 SpeciesConstructor(O, defaultConstructor)\nvar anObject = __webpack_require__(/*! ./_an-object */ \"./node_modules/core-js/library/modules/_an-object.js\");\nvar aFunction = __webpack_require__(/*! ./_a-function */ \"./node_modules/core-js/library/modules/_a-function.js\");\nvar SPECIES = __webpack_require__(/*! ./_wks */ \"./node_modules/core-js/library/modules/_wks.js\")('species');\nmodule.exports = function (O, D) {\n  var C = anObject(O).constructor;\n  var S;\n  return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_species-constructor.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_string-at.js":
 /*!************************************************************!*\
   !*** ./node_modules/core-js/library/modules/_string-at.js ***!
@@ -749,17 +582,6 @@ eval("// 7.3.20 SpeciesConstructor(O, defaultConstructor)\nvar anObject = __webp
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("var toInteger = __webpack_require__(/*! ./_to-integer */ \"./node_modules/core-js/library/modules/_to-integer.js\");\nvar defined = __webpack_require__(/*! ./_defined */ \"./node_modules/core-js/library/modules/_defined.js\");\n// true  -> String#at\n// false -> String#codePointAt\nmodule.exports = function (TO_STRING) {\n  return function (that, pos) {\n    var s = String(defined(that));\n    var i = toInteger(pos);\n    var l = s.length;\n    var a, b;\n    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;\n    a = s.charCodeAt(i);\n    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff\n      ? TO_STRING ? s.charAt(i) : a\n      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;\n  };\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_string-at.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/_task.js":
-/*!*******************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_task.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var ctx = __webpack_require__(/*! ./_ctx */ \"./node_modules/core-js/library/modules/_ctx.js\");\nvar invoke = __webpack_require__(/*! ./_invoke */ \"./node_modules/core-js/library/modules/_invoke.js\");\nvar html = __webpack_require__(/*! ./_html */ \"./node_modules/core-js/library/modules/_html.js\");\nvar cel = __webpack_require__(/*! ./_dom-create */ \"./node_modules/core-js/library/modules/_dom-create.js\");\nvar global = __webpack_require__(/*! ./_global */ \"./node_modules/core-js/library/modules/_global.js\");\nvar process = global.process;\nvar setTask = global.setImmediate;\nvar clearTask = global.clearImmediate;\nvar MessageChannel = global.MessageChannel;\nvar Dispatch = global.Dispatch;\nvar counter = 0;\nvar queue = {};\nvar ONREADYSTATECHANGE = 'onreadystatechange';\nvar defer, channel, port;\nvar run = function () {\n  var id = +this;\n  // eslint-disable-next-line no-prototype-builtins\n  if (queue.hasOwnProperty(id)) {\n    var fn = queue[id];\n    delete queue[id];\n    fn();\n  }\n};\nvar listener = function (event) {\n  run.call(event.data);\n};\n// Node.js 0.9+ & IE10+ has setImmediate, otherwise:\nif (!setTask || !clearTask) {\n  setTask = function setImmediate(fn) {\n    var args = [];\n    var i = 1;\n    while (arguments.length > i) args.push(arguments[i++]);\n    queue[++counter] = function () {\n      // eslint-disable-next-line no-new-func\n      invoke(typeof fn == 'function' ? fn : Function(fn), args);\n    };\n    defer(counter);\n    return counter;\n  };\n  clearTask = function clearImmediate(id) {\n    delete queue[id];\n  };\n  // Node.js 0.8-\n  if (__webpack_require__(/*! ./_cof */ \"./node_modules/core-js/library/modules/_cof.js\")(process) == 'process') {\n    defer = function (id) {\n      process.nextTick(ctx(run, id, 1));\n    };\n  // Sphere (JS game engine) Dispatch API\n  } else if (Dispatch && Dispatch.now) {\n    defer = function (id) {\n      Dispatch.now(ctx(run, id, 1));\n    };\n  // Browsers with MessageChannel, includes WebWorkers\n  } else if (MessageChannel) {\n    channel = new MessageChannel();\n    port = channel.port2;\n    channel.port1.onmessage = listener;\n    defer = ctx(port.postMessage, port, 1);\n  // Browsers with postMessage, skip WebWorkers\n  // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'\n  } else if (global.addEventListener && typeof postMessage == 'function' && !global.importScripts) {\n    defer = function (id) {\n      global.postMessage(id + '', '*');\n    };\n    global.addEventListener('message', listener, false);\n  // IE8-\n  } else if (ONREADYSTATECHANGE in cel('script')) {\n    defer = function (id) {\n      html.appendChild(cel('script'))[ONREADYSTATECHANGE] = function () {\n        html.removeChild(this);\n        run.call(id);\n      };\n    };\n  // Rest old browsers\n  } else {\n    defer = function (id) {\n      setTimeout(ctx(run, id, 1), 0);\n    };\n  }\n}\nmodule.exports = {\n  set: setTask,\n  clear: clearTask\n};\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_task.js?");
 
 /***/ }),
 
@@ -840,17 +662,6 @@ eval("var id = 0;\nvar px = Math.random();\nmodule.exports = function (key) {\n 
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/_user-agent.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_user-agent.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("var global = __webpack_require__(/*! ./_global */ \"./node_modules/core-js/library/modules/_global.js\");\nvar navigator = global.navigator;\n\nmodule.exports = navigator && navigator.userAgent || '';\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/_user-agent.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/_wks.js":
 /*!******************************************************!*\
   !*** ./node_modules/core-js/library/modules/_wks.js ***!
@@ -896,29 +707,6 @@ eval("\nvar addToUnscopables = __webpack_require__(/*! ./_add-to-unscopables */ 
 
 /***/ }),
 
-/***/ "./node_modules/core-js/library/modules/es6.object.to-string.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es6.object.to-string.js ***!
-  \**********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/es6.object.to-string.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es6.promise.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es6.promise.js ***!
-  \*************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\nvar LIBRARY = __webpack_require__(/*! ./_library */ \"./node_modules/core-js/library/modules/_library.js\");\nvar global = __webpack_require__(/*! ./_global */ \"./node_modules/core-js/library/modules/_global.js\");\nvar ctx = __webpack_require__(/*! ./_ctx */ \"./node_modules/core-js/library/modules/_ctx.js\");\nvar classof = __webpack_require__(/*! ./_classof */ \"./node_modules/core-js/library/modules/_classof.js\");\nvar $export = __webpack_require__(/*! ./_export */ \"./node_modules/core-js/library/modules/_export.js\");\nvar isObject = __webpack_require__(/*! ./_is-object */ \"./node_modules/core-js/library/modules/_is-object.js\");\nvar aFunction = __webpack_require__(/*! ./_a-function */ \"./node_modules/core-js/library/modules/_a-function.js\");\nvar anInstance = __webpack_require__(/*! ./_an-instance */ \"./node_modules/core-js/library/modules/_an-instance.js\");\nvar forOf = __webpack_require__(/*! ./_for-of */ \"./node_modules/core-js/library/modules/_for-of.js\");\nvar speciesConstructor = __webpack_require__(/*! ./_species-constructor */ \"./node_modules/core-js/library/modules/_species-constructor.js\");\nvar task = __webpack_require__(/*! ./_task */ \"./node_modules/core-js/library/modules/_task.js\").set;\nvar microtask = __webpack_require__(/*! ./_microtask */ \"./node_modules/core-js/library/modules/_microtask.js\")();\nvar newPromiseCapabilityModule = __webpack_require__(/*! ./_new-promise-capability */ \"./node_modules/core-js/library/modules/_new-promise-capability.js\");\nvar perform = __webpack_require__(/*! ./_perform */ \"./node_modules/core-js/library/modules/_perform.js\");\nvar userAgent = __webpack_require__(/*! ./_user-agent */ \"./node_modules/core-js/library/modules/_user-agent.js\");\nvar promiseResolve = __webpack_require__(/*! ./_promise-resolve */ \"./node_modules/core-js/library/modules/_promise-resolve.js\");\nvar PROMISE = 'Promise';\nvar TypeError = global.TypeError;\nvar process = global.process;\nvar versions = process && process.versions;\nvar v8 = versions && versions.v8 || '';\nvar $Promise = global[PROMISE];\nvar isNode = classof(process) == 'process';\nvar empty = function () { /* empty */ };\nvar Internal, newGenericPromiseCapability, OwnPromiseCapability, Wrapper;\nvar newPromiseCapability = newGenericPromiseCapability = newPromiseCapabilityModule.f;\n\nvar USE_NATIVE = !!function () {\n  try {\n    // correct subclassing with @@species support\n    var promise = $Promise.resolve(1);\n    var FakePromise = (promise.constructor = {})[__webpack_require__(/*! ./_wks */ \"./node_modules/core-js/library/modules/_wks.js\")('species')] = function (exec) {\n      exec(empty, empty);\n    };\n    // unhandled rejections tracking support, NodeJS Promise without it fails @@species test\n    return (isNode || typeof PromiseRejectionEvent == 'function')\n      && promise.then(empty) instanceof FakePromise\n      // v8 6.6 (Node 10 and Chrome 66) have a bug with resolving custom thenables\n      // https://bugs.chromium.org/p/chromium/issues/detail?id=830565\n      // we can't detect it synchronously, so just check versions\n      && v8.indexOf('6.6') !== 0\n      && userAgent.indexOf('Chrome/66') === -1;\n  } catch (e) { /* empty */ }\n}();\n\n// helpers\nvar isThenable = function (it) {\n  var then;\n  return isObject(it) && typeof (then = it.then) == 'function' ? then : false;\n};\nvar notify = function (promise, isReject) {\n  if (promise._n) return;\n  promise._n = true;\n  var chain = promise._c;\n  microtask(function () {\n    var value = promise._v;\n    var ok = promise._s == 1;\n    var i = 0;\n    var run = function (reaction) {\n      var handler = ok ? reaction.ok : reaction.fail;\n      var resolve = reaction.resolve;\n      var reject = reaction.reject;\n      var domain = reaction.domain;\n      var result, then, exited;\n      try {\n        if (handler) {\n          if (!ok) {\n            if (promise._h == 2) onHandleUnhandled(promise);\n            promise._h = 1;\n          }\n          if (handler === true) result = value;\n          else {\n            if (domain) domain.enter();\n            result = handler(value); // may throw\n            if (domain) {\n              domain.exit();\n              exited = true;\n            }\n          }\n          if (result === reaction.promise) {\n            reject(TypeError('Promise-chain cycle'));\n          } else if (then = isThenable(result)) {\n            then.call(result, resolve, reject);\n          } else resolve(result);\n        } else reject(value);\n      } catch (e) {\n        if (domain && !exited) domain.exit();\n        reject(e);\n      }\n    };\n    while (chain.length > i) run(chain[i++]); // variable length - can't use forEach\n    promise._c = [];\n    promise._n = false;\n    if (isReject && !promise._h) onUnhandled(promise);\n  });\n};\nvar onUnhandled = function (promise) {\n  task.call(global, function () {\n    var value = promise._v;\n    var unhandled = isUnhandled(promise);\n    var result, handler, console;\n    if (unhandled) {\n      result = perform(function () {\n        if (isNode) {\n          process.emit('unhandledRejection', value, promise);\n        } else if (handler = global.onunhandledrejection) {\n          handler({ promise: promise, reason: value });\n        } else if ((console = global.console) && console.error) {\n          console.error('Unhandled promise rejection', value);\n        }\n      });\n      // Browsers should not trigger `rejectionHandled` event if it was handled here, NodeJS - should\n      promise._h = isNode || isUnhandled(promise) ? 2 : 1;\n    } promise._a = undefined;\n    if (unhandled && result.e) throw result.v;\n  });\n};\nvar isUnhandled = function (promise) {\n  return promise._h !== 1 && (promise._a || promise._c).length === 0;\n};\nvar onHandleUnhandled = function (promise) {\n  task.call(global, function () {\n    var handler;\n    if (isNode) {\n      process.emit('rejectionHandled', promise);\n    } else if (handler = global.onrejectionhandled) {\n      handler({ promise: promise, reason: promise._v });\n    }\n  });\n};\nvar $reject = function (value) {\n  var promise = this;\n  if (promise._d) return;\n  promise._d = true;\n  promise = promise._w || promise; // unwrap\n  promise._v = value;\n  promise._s = 2;\n  if (!promise._a) promise._a = promise._c.slice();\n  notify(promise, true);\n};\nvar $resolve = function (value) {\n  var promise = this;\n  var then;\n  if (promise._d) return;\n  promise._d = true;\n  promise = promise._w || promise; // unwrap\n  try {\n    if (promise === value) throw TypeError(\"Promise can't be resolved itself\");\n    if (then = isThenable(value)) {\n      microtask(function () {\n        var wrapper = { _w: promise, _d: false }; // wrap\n        try {\n          then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));\n        } catch (e) {\n          $reject.call(wrapper, e);\n        }\n      });\n    } else {\n      promise._v = value;\n      promise._s = 1;\n      notify(promise, false);\n    }\n  } catch (e) {\n    $reject.call({ _w: promise, _d: false }, e); // wrap\n  }\n};\n\n// constructor polyfill\nif (!USE_NATIVE) {\n  // 25.4.3.1 Promise(executor)\n  $Promise = function Promise(executor) {\n    anInstance(this, $Promise, PROMISE, '_h');\n    aFunction(executor);\n    Internal.call(this);\n    try {\n      executor(ctx($resolve, this, 1), ctx($reject, this, 1));\n    } catch (err) {\n      $reject.call(this, err);\n    }\n  };\n  // eslint-disable-next-line no-unused-vars\n  Internal = function Promise(executor) {\n    this._c = [];             // <- awaiting reactions\n    this._a = undefined;      // <- checked in isUnhandled reactions\n    this._s = 0;              // <- state\n    this._d = false;          // <- done\n    this._v = undefined;      // <- value\n    this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled\n    this._n = false;          // <- notify\n  };\n  Internal.prototype = __webpack_require__(/*! ./_redefine-all */ \"./node_modules/core-js/library/modules/_redefine-all.js\")($Promise.prototype, {\n    // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)\n    then: function then(onFulfilled, onRejected) {\n      var reaction = newPromiseCapability(speciesConstructor(this, $Promise));\n      reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;\n      reaction.fail = typeof onRejected == 'function' && onRejected;\n      reaction.domain = isNode ? process.domain : undefined;\n      this._c.push(reaction);\n      if (this._a) this._a.push(reaction);\n      if (this._s) notify(this, false);\n      return reaction.promise;\n    },\n    // 25.4.5.1 Promise.prototype.catch(onRejected)\n    'catch': function (onRejected) {\n      return this.then(undefined, onRejected);\n    }\n  });\n  OwnPromiseCapability = function () {\n    var promise = new Internal();\n    this.promise = promise;\n    this.resolve = ctx($resolve, promise, 1);\n    this.reject = ctx($reject, promise, 1);\n  };\n  newPromiseCapabilityModule.f = newPromiseCapability = function (C) {\n    return C === $Promise || C === Wrapper\n      ? new OwnPromiseCapability(C)\n      : newGenericPromiseCapability(C);\n  };\n}\n\n$export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });\n__webpack_require__(/*! ./_set-to-string-tag */ \"./node_modules/core-js/library/modules/_set-to-string-tag.js\")($Promise, PROMISE);\n__webpack_require__(/*! ./_set-species */ \"./node_modules/core-js/library/modules/_set-species.js\")(PROMISE);\nWrapper = __webpack_require__(/*! ./_core */ \"./node_modules/core-js/library/modules/_core.js\")[PROMISE];\n\n// statics\n$export($export.S + $export.F * !USE_NATIVE, PROMISE, {\n  // 25.4.4.5 Promise.reject(r)\n  reject: function reject(r) {\n    var capability = newPromiseCapability(this);\n    var $$reject = capability.reject;\n    $$reject(r);\n    return capability.promise;\n  }\n});\n$export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {\n  // 25.4.4.6 Promise.resolve(x)\n  resolve: function resolve(x) {\n    return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);\n  }\n});\n$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(/*! ./_iter-detect */ \"./node_modules/core-js/library/modules/_iter-detect.js\")(function (iter) {\n  $Promise.all(iter)['catch'](empty);\n})), PROMISE, {\n  // 25.4.4.1 Promise.all(iterable)\n  all: function all(iterable) {\n    var C = this;\n    var capability = newPromiseCapability(C);\n    var resolve = capability.resolve;\n    var reject = capability.reject;\n    var result = perform(function () {\n      var values = [];\n      var index = 0;\n      var remaining = 1;\n      forOf(iterable, false, function (promise) {\n        var $index = index++;\n        var alreadyCalled = false;\n        values.push(undefined);\n        remaining++;\n        C.resolve(promise).then(function (value) {\n          if (alreadyCalled) return;\n          alreadyCalled = true;\n          values[$index] = value;\n          --remaining || resolve(values);\n        }, reject);\n      });\n      --remaining || resolve(values);\n    });\n    if (result.e) reject(result.v);\n    return capability.promise;\n  },\n  // 25.4.4.4 Promise.race(iterable)\n  race: function race(iterable) {\n    var C = this;\n    var capability = newPromiseCapability(C);\n    var reject = capability.reject;\n    var result = perform(function () {\n      forOf(iterable, false, function (promise) {\n        C.resolve(promise).then(capability.resolve, reject);\n      });\n    });\n    if (result.e) reject(result.v);\n    return capability.promise;\n  }\n});\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/es6.promise.js?");
-
-/***/ }),
-
 /***/ "./node_modules/core-js/library/modules/es6.string.iterator.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/library/modules/es6.string.iterator.js ***!
@@ -928,30 +716,6 @@ eval("\nvar LIBRARY = __webpack_require__(/*! ./_library */ \"./node_modules/cor
 
 "use strict";
 eval("\nvar $at = __webpack_require__(/*! ./_string-at */ \"./node_modules/core-js/library/modules/_string-at.js\")(true);\n\n// 21.1.3.27 String.prototype[@@iterator]()\n__webpack_require__(/*! ./_iter-define */ \"./node_modules/core-js/library/modules/_iter-define.js\")(String, 'String', function (iterated) {\n  this._t = String(iterated); // target\n  this._i = 0;                // next index\n// 21.1.5.2.1 %StringIteratorPrototype%.next()\n}, function () {\n  var O = this._t;\n  var index = this._i;\n  var point;\n  if (index >= O.length) return { value: undefined, done: true };\n  point = $at(O, index);\n  this._i += point.length;\n  return { value: point, done: false };\n});\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/es6.string.iterator.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es7.promise.finally.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es7.promise.finally.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("// https://github.com/tc39/proposal-promise-finally\n\nvar $export = __webpack_require__(/*! ./_export */ \"./node_modules/core-js/library/modules/_export.js\");\nvar core = __webpack_require__(/*! ./_core */ \"./node_modules/core-js/library/modules/_core.js\");\nvar global = __webpack_require__(/*! ./_global */ \"./node_modules/core-js/library/modules/_global.js\");\nvar speciesConstructor = __webpack_require__(/*! ./_species-constructor */ \"./node_modules/core-js/library/modules/_species-constructor.js\");\nvar promiseResolve = __webpack_require__(/*! ./_promise-resolve */ \"./node_modules/core-js/library/modules/_promise-resolve.js\");\n\n$export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {\n  var C = speciesConstructor(this, core.Promise || global.Promise);\n  var isFunction = typeof onFinally == 'function';\n  return this.then(\n    isFunction ? function (x) {\n      return promiseResolve(C, onFinally()).then(function () { return x; });\n    } : onFinally,\n    isFunction ? function (e) {\n      return promiseResolve(C, onFinally()).then(function () { throw e; });\n    } : onFinally\n  );\n} });\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/es7.promise.finally.js?");
-
-/***/ }),
-
-/***/ "./node_modules/core-js/library/modules/es7.promise.try.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/es7.promise.try.js ***!
-  \*****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n// https://github.com/tc39/proposal-promise-try\nvar $export = __webpack_require__(/*! ./_export */ \"./node_modules/core-js/library/modules/_export.js\");\nvar newPromiseCapability = __webpack_require__(/*! ./_new-promise-capability */ \"./node_modules/core-js/library/modules/_new-promise-capability.js\");\nvar perform = __webpack_require__(/*! ./_perform */ \"./node_modules/core-js/library/modules/_perform.js\");\n\n$export($export.S, 'Promise', { 'try': function (callbackfn) {\n  var promiseCapability = newPromiseCapability.f(this);\n  var result = perform(callbackfn);\n  (result.e ? promiseCapability.reject : promiseCapability.resolve)(result.v);\n  return promiseCapability.promise;\n} });\n\n\n//# sourceURL=webpack:///./node_modules/core-js/library/modules/es7.promise.try.js?");
 
 /***/ }),
 
@@ -1944,6 +1708,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var elec
 
 /***/ }),
 
+/***/ "./src/main/lib/formatter.js":
+/*!***********************************!*\
+  !*** ./src/main/lib/formatter.js ***!
+  \***********************************/
+/*! exports provided: pathLink, downloadPath */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pathLink\", function() { return pathLink; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"downloadPath\", function() { return downloadPath; });\n/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! os */ \"os\");\n/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(os__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar pathLink = function pathLink(link) {\n  var nameArrLeng = void 0;\n  var tName = '';\n  nameArrLeng = link.split('/').length;\n  tName = link.split('/')[nameArrLeng - 1];\n\n  tName = tName.split('.')[0] + '.min.' + tName.split('.')[1];\n  return tName;\n};\n\nvar downloadPath = function downloadPath() {\n  var onlineCompressTarget = '';\n  if (os__WEBPACK_IMPORTED_MODULE_0___default.a.type() === 'Windows_NT') {\n    onlineCompressTarget = 'C:\\\\Users\\\\Administrator\\\\Downloads\\\\';\n  } else {\n    onlineCompressTarget = '/Users/' + process.env.LOGNAME + '/Downloads/';\n  }\n  return onlineCompressTarget;\n};\n\n//# sourceURL=webpack:///./src/main/lib/formatter.js?");
+
+/***/ }),
+
+/***/ "./src/main/lib/imagesType.js":
+/*!************************************!*\
+  !*** ./src/main/lib/imagesType.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n\nvar imagesWhiteList = ['PNG', 'png', 'JPG', 'jpg', 'JPEG', 'jpeg'];\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (imagesWhiteList);\n\n//# sourceURL=webpack:///./src/main/lib/imagesType.js?");
+
+/***/ }),
+
 /***/ "./src/main/lib/index.js":
 /*!*******************************!*\
   !*** ./src/main/lib/index.js ***!
@@ -1956,6 +1744,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _tra
 
 /***/ }),
 
+/***/ "./src/main/lib/rmDir.js":
+/*!*******************************!*\
+  !*** ./src/main/lib/rmDir.js ***!
+  \*******************************/
+/*! exports provided: reBuildDir */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"reBuildDir\", function() { return reBuildDir; });\nvar fs = __webpack_require__(/*! fs */ \"fs\");\nvar path = __webpack_require__(/*! path */ \"path\");\n\nvar reBuildDir = function reBuildDir(sPath) {\n  if (fs.existsSync(sPath)) {\n    var sPathFiles = fs.readdirSync(sPath);\n    sPathFiles.forEach(function (file) {\n      var fileWithPath = path.join(sPath, file);\n      var fileWithPathStat = fs.statSync(fileWithPath);\n      if (fileWithPathStat.isDirectory()) {\n        reBuildDir(fileWithPath);\n      } else if (fileWithPathStat.isFile()) {\n        fs.unlinkSync(fileWithPath);\n      }\n    });\n    fs.rmdirSync(sPath);\n  }\n};\n\n//# sourceURL=webpack:///./src/main/lib/rmDir.js?");
+
+/***/ }),
+
 /***/ "./src/main/lib/tray.js":
 /*!******************************!*\
   !*** ./src/main/lib/tray.js ***!
@@ -1964,7 +1764,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _tra
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../package.json */ \"./package.json\", 1);\n\n\n\n\nfunction createTray() {\n  var BugsIssues = 'https://github.com/snow-sprite/CompressApp/issues';\n\n  var taryIcon = new electron__WEBPACK_IMPORTED_MODULE_0__[\"Tray\"](path__WEBPACK_IMPORTED_MODULE_1___default.a.join(\"/Users/ningzhou/workgroup/test/CompressApp/static\", './tray/18x18.png'));\n  var contextMenu = electron__WEBPACK_IMPORTED_MODULE_0__[\"Menu\"].buildFromTemplate([{\n    label: 'Reload',\n    role: 'reload'\n  }, {\n    label: 'About',\n    type: 'normal',\n    toolTip: 'about',\n    click: function click() {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"dialog\"].showMessageBox({\n        type: 'info',\n        title: 'About',\n        message: '\\n        ' + _package_json__WEBPACK_IMPORTED_MODULE_2__.description + '\\n\\n        version: ' + _package_json__WEBPACK_IMPORTED_MODULE_2__.version + '\\n\\n        ' + _package_json__WEBPACK_IMPORTED_MODULE_2__.author.name + '<' + _package_json__WEBPACK_IMPORTED_MODULE_2__.author.email + '>'\n      });\n    }\n  }, {\n    label: 'Bugs Report',\n    type: 'normal',\n    click: function click() {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"shell\"].openExternal(BugsIssues);\n    }\n  }, {\n    label: 'Quit',\n    role: 'quit'\n  }]);\n  taryIcon.on('click', function () {\n    taryIcon.popUpContextMenu(contextMenu);\n  });\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (createTray);\n\n//# sourceURL=webpack:///./src/main/lib/tray.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../package.json */ \"./package.json\");\nvar _package_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../package.json */ \"./package.json\", 1);\n\n\n\n\nfunction createTray() {\n  var BugsIssues = 'https://github.com/snow-sprite/CompressApp/issues';\n\n  var taryIcon = new electron__WEBPACK_IMPORTED_MODULE_0__[\"Tray\"](path__WEBPACK_IMPORTED_MODULE_1___default.a.join(\"C:\\\\Users\\\\Administrator\\\\Desktop\\\\myOptimize\\\\CompressApp\\\\static\", './tray/18x18.png'));\n  var contextMenu = electron__WEBPACK_IMPORTED_MODULE_0__[\"Menu\"].buildFromTemplate([{\n    label: 'Reload',\n    role: 'reload'\n  }, {\n    label: 'About',\n    type: 'normal',\n    toolTip: 'about',\n    click: function click() {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"dialog\"].showMessageBox({\n        type: 'info',\n        title: 'About',\n        message: '\\n        ' + _package_json__WEBPACK_IMPORTED_MODULE_2__.description + '\\n\\n        version: ' + _package_json__WEBPACK_IMPORTED_MODULE_2__.version + '\\n\\n        ' + _package_json__WEBPACK_IMPORTED_MODULE_2__.author.name + '<' + _package_json__WEBPACK_IMPORTED_MODULE_2__.author.email + '>'\n      });\n    }\n  }, {\n    label: 'Bugs Report',\n    type: 'normal',\n    click: function click() {\n      electron__WEBPACK_IMPORTED_MODULE_0__[\"shell\"].openExternal(BugsIssues);\n    }\n  }, {\n    label: 'Quit',\n    role: 'quit'\n  }]);\n  taryIcon.on('click', function () {\n    taryIcon.popUpContextMenu(contextMenu);\n  });\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (createTray);\n\n//# sourceURL=webpack:///./src/main/lib/tray.js?");
+
+/***/ }),
+
+/***/ "./src/main/lib/walkDir.js":
+/*!*********************************!*\
+  !*** ./src/main/lib/walkDir.js ***!
+  \*********************************/
+/*! exports provided: walkDir */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"walkDir\", function() { return walkDir; });\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ \"./node_modules/babel-runtime/core-js/get-iterator.js\");\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nvar walkDir = function walkDir(sPath, sourcePath, targetPath) {\n  if (fs__WEBPACK_IMPORTED_MODULE_1___default.a.statSync(sPath).isDirectory()) {\n    var files = fs__WEBPACK_IMPORTED_MODULE_1___default.a.readdirSync(sPath);\n    var _iteratorNormalCompletion = true;\n    var _didIteratorError = false;\n    var _iteratorError = undefined;\n\n    try {\n      for (var _iterator = babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(files), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {\n        var file = _step.value;\n\n        var fileTemp = path__WEBPACK_IMPORTED_MODULE_2___default.a.join(sPath, file);\n        var fileStat = fs__WEBPACK_IMPORTED_MODULE_1___default.a.statSync(fileTemp);\n        if (fileStat.isDirectory()) {\n          walkDir(fileTemp, sourcePath, targetPath);\n        } else if (fileStat.isFile()) {\n          var sourceDirPath = path__WEBPACK_IMPORTED_MODULE_2___default.a.dirname(fileTemp);\n          var sourceTempPath = sourcePath.length;\n          var dest = sourceDirPath.slice(sourceTempPath);\n          var targetDirPath = path__WEBPACK_IMPORTED_MODULE_2___default.a.join(targetPath, dest);\n          generateDir(targetDirPath);\n        }\n      }\n    } catch (err) {\n      _didIteratorError = true;\n      _iteratorError = err;\n    } finally {\n      try {\n        if (!_iteratorNormalCompletion && _iterator.return) {\n          _iterator.return();\n        }\n      } finally {\n        if (_didIteratorError) {\n          throw _iteratorError;\n        }\n      }\n    }\n  }\n};\n\nfunction generateDir(targetDir) {\n  if (!fs__WEBPACK_IMPORTED_MODULE_1___default.a.existsSync(targetDir)) {\n    fs__WEBPACK_IMPORTED_MODULE_1___default.a.mkdir(targetDir, function (err) {\n      if (err && err.code === 'EEXIST') {\n        return false;\n      }\n    });\n  }\n}\n\n//# sourceURL=webpack:///./src/main/lib/walkDir.js?");
 
 /***/ }),
 
@@ -1976,7 +1788,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var elec
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ \"./node_modules/babel-runtime/core-js/get-iterator.js\");\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var zip_local__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! zip-local */ \"./node_modules/zip-local/main.js\");\n/* harmony import */ var zip_local__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(zip_local__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tinify */ \"tinify\");\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tinify__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _utils_formatter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/formatter */ \"./src/utils/formatter.js\");\n/* harmony import */ var _utils_walkDir__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/walkDir */ \"./src/utils/walkDir.js\");\n/* harmony import */ var _utils_rmDir__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../utils/rmDir */ \"./src/utils/rmDir.js\");\n/* harmony import */ var _utils_imagesType__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../utils/imagesType */ \"./src/utils/imagesType.js\");\n\n\n\n\n\n\n\n\n\n\n\n\nvar sourcePath = '';\n\nvar targetPath = '';\n\nvar FILENUM = 0;\n\nvar FINISHEDFILENUM = 0;\n\nvar renderArr = [];\n\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"ipcMain\"].on('uploadEventMessage', function (event, fPath, globalKey) {\n  tinify__WEBPACK_IMPORTED_MODULE_3___default.a.key = globalKey;\n  sourcePath = fPath;\n  targetPath = path__WEBPACK_IMPORTED_MODULE_5___default.a.resolve(fPath + '_compresed');\n\n  compresePic(event);\n});\n\nfunction readFPath(fPath, eventReply) {\n  Object(_utils_walkDir__WEBPACK_IMPORTED_MODULE_7__[\"walkDir\"])(fPath, sourcePath, targetPath);\n  fs__WEBPACK_IMPORTED_MODULE_4___default.a.lstat(fPath, function (errs, stat) {\n    if (errs) throw errs;\n    if (stat.isFile()) {\n      var realName = path__WEBPACK_IMPORTED_MODULE_5___default.a.basename(fPath);\n\n      var minName = realName.split('.')[0] + '.min.' + realName.split('.')[1];\n      var filePath = path__WEBPACK_IMPORTED_MODULE_5___default.a.dirname(fPath);\n      var fileTmpPath = filePath.slice(sourcePath.length);\n\n      var compressedTargetPath = '' + targetPath + fileTmpPath;\n\n      var extname = path__WEBPACK_IMPORTED_MODULE_5___default.a.extname(path__WEBPACK_IMPORTED_MODULE_5___default.a.resolve(fPath)).slice(1);\n      if (_utils_imagesType__WEBPACK_IMPORTED_MODULE_9__[\"default\"].indexOf(extname) > -1) {\n        renderArr.push({\n          name: realName,\n          minName: minName,\n          size: stat.size,\n          path: '' + fPath,\n          compressedSize: null,\n          compressedPath: compressedTargetPath\n        });\n        FILENUM = renderArr.length;\n      }\n      eventReply.sender.send('filesList', renderArr);\n\n      var generatePathName = void 0;\n      generatePathName = '' + compressedTargetPath + path__WEBPACK_IMPORTED_MODULE_5___default.a.sep + minName;\n\n      tinify__WEBPACK_IMPORTED_MODULE_3___default.a.fromFile(path__WEBPACK_IMPORTED_MODULE_5___default.a.resolve(fPath)).toFile(generatePathName, function () {\n        if (_utils_imagesType__WEBPACK_IMPORTED_MODULE_9__[\"default\"].indexOf(extname) > -1) {\n          FINISHEDFILENUM += 1;\n        }\n\n        if (_utils_imagesType__WEBPACK_IMPORTED_MODULE_9__[\"default\"].indexOf(extname) > -1) {\n          fs__WEBPACK_IMPORTED_MODULE_4___default.a.lstat(generatePathName, function (errDoneFile, doneFileStat) {\n            if (errDoneFile) throw errDoneFile;\n            if (FINISHEDFILENUM >= 0) {\n              var _iteratorNormalCompletion = true;\n              var _didIteratorError = false;\n              var _iteratorError = undefined;\n\n              try {\n                for (var _iterator = babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(renderArr), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {\n                  var item = _step.value;\n\n                  if (item.name === realName) {\n                    item.compressedSize = doneFileStat.size;\n                  }\n                }\n              } catch (err) {\n                _didIteratorError = true;\n                _iteratorError = err;\n              } finally {\n                try {\n                  if (!_iteratorNormalCompletion && _iterator.return) {\n                    _iterator.return();\n                  }\n                } finally {\n                  if (_didIteratorError) {\n                    throw _iteratorError;\n                  }\n                }\n              }\n\n              eventReply.sender.send('finishedItem', renderArr);\n              eventReply.sender.send('rebuildCount', tinify__WEBPACK_IMPORTED_MODULE_3___default.a.compressionCount);\n            }\n          });\n        }\n\n        if (FILENUM === FINISHEDFILENUM) {\n          var targetFileName = path__WEBPACK_IMPORTED_MODULE_5___default.a.basename(targetPath);\n          var newTargetPath = '' + path__WEBPACK_IMPORTED_MODULE_5___default.a.dirname(targetPath) + path__WEBPACK_IMPORTED_MODULE_5___default.a.sep;\n          zip_local__WEBPACK_IMPORTED_MODULE_2___default.a.zip(targetPath, function (errZip, zipped) {\n            if (errZip) throw errZip;\n            zipped.compress();\n            zipped.save('' + newTargetPath + targetFileName + '.zip', function (errSave) {\n              if (errSave) throw errSave;\n              console.log('这应该是最后一次压缩了');\n              eventReply.sender.send('AllDone');\n            });\n          });\n        }\n      });\n    } else if (stat.isDirectory()) {\n      fs__WEBPACK_IMPORTED_MODULE_4___default.a.readdir(fPath, function (errDir, files) {\n        if (errDir) throw errDir;\n        var _iteratorNormalCompletion2 = true;\n        var _didIteratorError2 = false;\n        var _iteratorError2 = undefined;\n\n        try {\n          for (var _iterator2 = babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(files), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {\n            var file = _step2.value;\n\n            readFPath(path__WEBPACK_IMPORTED_MODULE_5___default.a.join(fPath, file), eventReply);\n          }\n        } catch (err) {\n          _didIteratorError2 = true;\n          _iteratorError2 = err;\n        } finally {\n          try {\n            if (!_iteratorNormalCompletion2 && _iterator2.return) {\n              _iterator2.return();\n            }\n          } finally {\n            if (_didIteratorError2) {\n              throw _iteratorError2;\n            }\n          }\n        }\n      });\n    }\n  });\n}\n\nfunction compresePic(event) {\n  try {\n    fs__WEBPACK_IMPORTED_MODULE_4___default.a.access(targetPath, fs__WEBPACK_IMPORTED_MODULE_4___default.a.constants.F_OK, function (err) {\n      if (err) {\n        fs__WEBPACK_IMPORTED_MODULE_4___default.a.mkdir(targetPath, function () {\n          rebuildTarget(targetPath, event);\n        });\n      } else {\n        rebuildTarget(targetPath, event);\n      }\n    });\n  } catch (error) {\n    throw error;\n  }\n}\n\nfunction rebuildTarget(target, event) {\n  renderArr = [];\n  FILENUM = 0;\n  FINISHEDFILENUM = 0;\n\n  Object(_utils_rmDir__WEBPACK_IMPORTED_MODULE_8__[\"reBuildDir\"])(target);\n  Object(_utils_formatter__WEBPACK_IMPORTED_MODULE_6__[\"validityApi\"])().then(function () {\n    readFPath(sourcePath, event);\n  }).catch(function (err) {\n    electron__WEBPACK_IMPORTED_MODULE_1__[\"dialog\"].showMessageBox({\n      type: 'warning',\n      title: 'Warning Box',\n      message: '' + err.status,\n      detail: '' + err.message,\n      buttons: ['cancel', 'ok'],\n      defaultId: 1,\n      cancelId: 0\n    });\n  });\n}\n\n//# sourceURL=webpack:///./src/main/localBridge.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ \"./node_modules/babel-runtime/core-js/get-iterator.js\");\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var zip_local__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! zip-local */ \"./node_modules/zip-local/main.js\");\n/* harmony import */ var zip_local__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(zip_local__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tinify */ \"tinify\");\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tinify__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _lib_walkDir__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lib/walkDir */ \"./src/main/lib/walkDir.js\");\n/* harmony import */ var _lib_rmDir__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lib/rmDir */ \"./src/main/lib/rmDir.js\");\n/* harmony import */ var _lib_imagesType__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lib/imagesType */ \"./src/main/lib/imagesType.js\");\n\n\n\n\n\n\n\n\n\n\n\nvar sourcePath = '';\n\nvar targetPath = '';\n\nvar FILENUM = 0;\n\nvar FINISHEDFILENUM = 0;\n\nvar renderArr = [];\n\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"ipcMain\"].on('uploadEventMessage', function (event, fPath, globalKey) {\n  tinify__WEBPACK_IMPORTED_MODULE_3___default.a.key = globalKey;\n  sourcePath = fPath;\n  targetPath = path__WEBPACK_IMPORTED_MODULE_5___default.a.resolve(fPath + '_compresed');\n  compresePic(event);\n});\n\nelectron__WEBPACK_IMPORTED_MODULE_1__[\"ipcMain\"].on('validateApiLocalError', function (event, errObj) {\n  electron__WEBPACK_IMPORTED_MODULE_1__[\"dialog\"].showMessageBox({\n    type: 'warning',\n    title: 'Warning Box',\n    message: '' + errObj.status,\n    detail: '' + errObj.message,\n    buttons: ['cancel', 'ok'],\n    defaultId: 1,\n    cancelId: 0\n  });\n});\n\nfunction readFPath(fPath, eventReply) {\n  Object(_lib_walkDir__WEBPACK_IMPORTED_MODULE_6__[\"walkDir\"])(fPath, sourcePath, targetPath);\n  fs__WEBPACK_IMPORTED_MODULE_4___default.a.lstat(fPath, function (errs, stat) {\n    if (errs) throw errs;\n    if (stat.isFile()) {\n      var realName = path__WEBPACK_IMPORTED_MODULE_5___default.a.basename(fPath);\n\n      var minName = realName.split('.')[0] + '.min.' + realName.split('.')[1];\n      var filePath = path__WEBPACK_IMPORTED_MODULE_5___default.a.dirname(fPath);\n      var fileTmpPath = filePath.slice(sourcePath.length);\n\n      var compressedTargetPath = '' + targetPath + fileTmpPath;\n\n      var extname = path__WEBPACK_IMPORTED_MODULE_5___default.a.extname(path__WEBPACK_IMPORTED_MODULE_5___default.a.resolve(fPath)).slice(1);\n      if (_lib_imagesType__WEBPACK_IMPORTED_MODULE_8__[\"default\"].indexOf(extname) > -1) {\n        renderArr.push({\n          name: realName,\n          minName: minName,\n          size: stat.size,\n          path: '' + fPath,\n          compressedSize: null,\n          compressedPath: compressedTargetPath\n        });\n        FILENUM = renderArr.length;\n      }\n      eventReply.sender.send('filesList', renderArr);\n\n      var generatePathName = void 0;\n      generatePathName = '' + compressedTargetPath + path__WEBPACK_IMPORTED_MODULE_5___default.a.sep + minName;\n\n      tinify__WEBPACK_IMPORTED_MODULE_3___default.a.fromFile(path__WEBPACK_IMPORTED_MODULE_5___default.a.resolve(fPath)).toFile(generatePathName, function () {\n        if (_lib_imagesType__WEBPACK_IMPORTED_MODULE_8__[\"default\"].indexOf(extname) > -1) {\n          FINISHEDFILENUM += 1;\n        }\n\n        if (_lib_imagesType__WEBPACK_IMPORTED_MODULE_8__[\"default\"].indexOf(extname) > -1) {\n          fs__WEBPACK_IMPORTED_MODULE_4___default.a.lstat(generatePathName, function (errDoneFile, doneFileStat) {\n            if (errDoneFile) throw errDoneFile;\n            if (FINISHEDFILENUM >= 0) {\n              var _iteratorNormalCompletion = true;\n              var _didIteratorError = false;\n              var _iteratorError = undefined;\n\n              try {\n                for (var _iterator = babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(renderArr), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {\n                  var item = _step.value;\n\n                  if (item.name === realName) {\n                    item.compressedSize = doneFileStat.size;\n                  }\n                }\n              } catch (err) {\n                _didIteratorError = true;\n                _iteratorError = err;\n              } finally {\n                try {\n                  if (!_iteratorNormalCompletion && _iterator.return) {\n                    _iterator.return();\n                  }\n                } finally {\n                  if (_didIteratorError) {\n                    throw _iteratorError;\n                  }\n                }\n              }\n\n              eventReply.sender.send('finishedItem', renderArr);\n              eventReply.sender.send('rebuildCount', tinify__WEBPACK_IMPORTED_MODULE_3___default.a.compressionCount);\n            }\n          });\n        }\n\n        if (FILENUM === FINISHEDFILENUM) {\n          var targetFileName = path__WEBPACK_IMPORTED_MODULE_5___default.a.basename(targetPath);\n          var newTargetPath = '' + path__WEBPACK_IMPORTED_MODULE_5___default.a.dirname(targetPath) + path__WEBPACK_IMPORTED_MODULE_5___default.a.sep;\n          zip_local__WEBPACK_IMPORTED_MODULE_2___default.a.zip(targetPath, function (errZip, zipped) {\n            if (errZip) throw errZip;\n            zipped.compress();\n            zipped.save('' + newTargetPath + targetFileName + '.zip', function (errSave) {\n              if (errSave) throw errSave;\n              console.log('这应该是最后一次压缩了');\n              eventReply.sender.send('AllDone');\n            });\n          });\n        }\n      });\n    } else if (stat.isDirectory()) {\n      fs__WEBPACK_IMPORTED_MODULE_4___default.a.readdir(fPath, function (errDir, files) {\n        if (errDir) throw errDir;\n        var _iteratorNormalCompletion2 = true;\n        var _didIteratorError2 = false;\n        var _iteratorError2 = undefined;\n\n        try {\n          for (var _iterator2 = babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(files), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {\n            var file = _step2.value;\n\n            readFPath(path__WEBPACK_IMPORTED_MODULE_5___default.a.join(fPath, file), eventReply);\n          }\n        } catch (err) {\n          _didIteratorError2 = true;\n          _iteratorError2 = err;\n        } finally {\n          try {\n            if (!_iteratorNormalCompletion2 && _iterator2.return) {\n              _iterator2.return();\n            }\n          } finally {\n            if (_didIteratorError2) {\n              throw _iteratorError2;\n            }\n          }\n        }\n      });\n    }\n  });\n}\n\nfunction compresePic(event) {\n  try {\n    fs__WEBPACK_IMPORTED_MODULE_4___default.a.access(targetPath, fs__WEBPACK_IMPORTED_MODULE_4___default.a.constants.F_OK, function (err) {\n      if (err) {\n        fs__WEBPACK_IMPORTED_MODULE_4___default.a.mkdir(targetPath, function () {\n          rebuildTarget(targetPath, event);\n        });\n      } else {\n        rebuildTarget(targetPath, event);\n      }\n    });\n  } catch (error) {\n    throw error;\n  }\n}\n\nfunction rebuildTarget(target, event) {\n  renderArr = [];\n  FILENUM = 0;\n  FINISHEDFILENUM = 0;\n\n  Object(_lib_rmDir__WEBPACK_IMPORTED_MODULE_7__[\"reBuildDir\"])(target);\n  readFPath(sourcePath, event);\n}\n\n//# sourceURL=webpack:///./src/main/localBridge.js?");
 
 /***/ }),
 
@@ -1988,55 +1800,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var babe
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tinify */ \"tinify\");\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tinify__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _utils_formatter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/formatter */ \"./src/utils/formatter.js\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].on('onlineImgCompress', function (event, url, globalKey) {\n  tinify__WEBPACK_IMPORTED_MODULE_1___default.a.key = globalKey;\n  Object(_utils_formatter__WEBPACK_IMPORTED_MODULE_2__[\"validityApi\"])().then(function () {\n    compressOnlineImg(event, url);\n  }).catch(function (err) {\n    electron__WEBPACK_IMPORTED_MODULE_0__[\"dialog\"].showMessageBox({\n      type: 'warning',\n      title: 'Warning Box',\n      message: '' + err.status,\n      detail: '' + err.message,\n      buttons: ['cancel', 'ok'],\n      defaultId: 1,\n      cancelId: 0\n    });\n  });\n});\n\nfunction compressOnlineImg(eventReply, url) {\n  var compressedOnlineImgPath = Object(_utils_formatter__WEBPACK_IMPORTED_MODULE_2__[\"downloadPath\"])();\n  var minName = Object(_utils_formatter__WEBPACK_IMPORTED_MODULE_2__[\"pathLink\"])(url);\n\n  tinify__WEBPACK_IMPORTED_MODULE_1___default.a.fromUrl(url).toFile(path__WEBPACK_IMPORTED_MODULE_3___default.a.join(compressedOnlineImgPath, '' + minName), function () {\n    eventReply.sender.send('compressedOnlineImg', compressedOnlineImgPath);\n\n    eventReply.sender.send('rebuildCount', tinify__WEBPACK_IMPORTED_MODULE_1___default.a.compressionCount);\n  });\n}\n\n//# sourceURL=webpack:///./src/main/onlineBridge.js?");
-
-/***/ }),
-
-/***/ "./src/utils/formatter.js":
-/*!********************************!*\
-  !*** ./src/utils/formatter.js ***!
-  \********************************/
-/*! exports provided: pathLink, validityApi, downloadPath */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pathLink\", function() { return pathLink; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"validityApi\", function() { return validityApi; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"downloadPath\", function() { return downloadPath; });\n/* harmony import */ var babel_runtime_core_js_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! babel-runtime/core-js/promise */ \"./node_modules/babel-runtime/core-js/promise.js\");\n/* harmony import */ var babel_runtime_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(babel_runtime_core_js_promise__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tinify */ \"tinify\");\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tinify__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! os */ \"os\");\n/* harmony import */ var os__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(os__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nvar pathLink = function pathLink(link) {\n  var nameArrLeng = void 0;\n  var tName = '';\n  nameArrLeng = link.split('/').length;\n  tName = link.split('/')[nameArrLeng - 1];\n\n  tName = tName.split('.')[0] + '.min.' + tName.split('.')[1];\n  return tName;\n};\n\nvar validityApi = function validityApi() {\n  return new babel_runtime_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default.a(function (resolve, reject) {\n    tinify__WEBPACK_IMPORTED_MODULE_1___default.a.validate(function (err) {\n      if (err) {\n        reject(err);\n        return;\n      }\n      resolve();\n    });\n  });\n};\n\nvar downloadPath = function downloadPath() {\n  var onlineCompressTarget = '';\n  if (os__WEBPACK_IMPORTED_MODULE_2___default.a.type() === 'Windows_NT') {\n    onlineCompressTarget = 'C:\\\\Users\\\\Administrator\\\\Downloads\\\\';\n  } else {\n    onlineCompressTarget = '/Users/' + process.env.LOGNAME + '/Downloads/';\n  }\n  return onlineCompressTarget;\n};\n\n//# sourceURL=webpack:///./src/utils/formatter.js?");
-
-/***/ }),
-
-/***/ "./src/utils/imagesType.js":
-/*!*********************************!*\
-  !*** ./src/utils/imagesType.js ***!
-  \*********************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n\nvar imagesWhiteList = ['PNG', 'png', 'JPG', 'jpg', 'JPEG', 'jpeg'];\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (imagesWhiteList);\n\n//# sourceURL=webpack:///./src/utils/imagesType.js?");
-
-/***/ }),
-
-/***/ "./src/utils/rmDir.js":
-/*!****************************!*\
-  !*** ./src/utils/rmDir.js ***!
-  \****************************/
-/*! exports provided: reBuildDir */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"reBuildDir\", function() { return reBuildDir; });\nvar fs = __webpack_require__(/*! fs */ \"fs\");\nvar path = __webpack_require__(/*! path */ \"path\");\n\nvar reBuildDir = function reBuildDir(sPath) {\n  if (fs.existsSync(sPath)) {\n    var sPathFiles = fs.readdirSync(sPath);\n    sPathFiles.forEach(function (file) {\n      var fileWithPath = path.join(sPath, file);\n      var fileWithPathStat = fs.statSync(fileWithPath);\n      if (fileWithPathStat.isDirectory()) {\n        reBuildDir(fileWithPath);\n      } else if (fileWithPathStat.isFile()) {\n        fs.unlinkSync(fileWithPath);\n      }\n    });\n    fs.rmdirSync(sPath);\n  }\n};\n\n//# sourceURL=webpack:///./src/utils/rmDir.js?");
-
-/***/ }),
-
-/***/ "./src/utils/walkDir.js":
-/*!******************************!*\
-  !*** ./src/utils/walkDir.js ***!
-  \******************************/
-/*! exports provided: walkDir */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"walkDir\", function() { return walkDir; });\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! babel-runtime/core-js/get-iterator */ \"./node_modules/babel-runtime/core-js/get-iterator.js\");\n/* harmony import */ var babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fs */ \"fs\");\n/* harmony import */ var fs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(fs__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\n\nvar walkDir = function walkDir(sPath, sourcePath, targetPath) {\n  if (fs__WEBPACK_IMPORTED_MODULE_1___default.a.statSync(sPath).isDirectory()) {\n    var files = fs__WEBPACK_IMPORTED_MODULE_1___default.a.readdirSync(sPath);\n    var _iteratorNormalCompletion = true;\n    var _didIteratorError = false;\n    var _iteratorError = undefined;\n\n    try {\n      for (var _iterator = babel_runtime_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(files), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {\n        var file = _step.value;\n\n        var fileTemp = path__WEBPACK_IMPORTED_MODULE_2___default.a.join(sPath, file);\n        var fileStat = fs__WEBPACK_IMPORTED_MODULE_1___default.a.statSync(fileTemp);\n        if (fileStat.isDirectory()) {\n          walkDir(fileTemp, sourcePath, targetPath);\n        } else if (fileStat.isFile()) {\n          var sourceDirPath = path__WEBPACK_IMPORTED_MODULE_2___default.a.dirname(fileTemp);\n          var sourceTempPath = sourcePath.length;\n          var dest = sourceDirPath.slice(sourceTempPath);\n          var targetDirPath = path__WEBPACK_IMPORTED_MODULE_2___default.a.join(targetPath, dest);\n          generateDir(targetDirPath);\n        }\n      }\n    } catch (err) {\n      _didIteratorError = true;\n      _iteratorError = err;\n    } finally {\n      try {\n        if (!_iteratorNormalCompletion && _iterator.return) {\n          _iterator.return();\n        }\n      } finally {\n        if (_didIteratorError) {\n          throw _iteratorError;\n        }\n      }\n    }\n  }\n};\n\nfunction generateDir(targetDir) {\n  if (!fs__WEBPACK_IMPORTED_MODULE_1___default.a.existsSync(targetDir)) {\n    fs__WEBPACK_IMPORTED_MODULE_1___default.a.mkdir(targetDir, function (err) {\n      if (err && err.code === 'EEXIST') {\n        return false;\n      }\n    });\n  }\n}\n\n//# sourceURL=webpack:///./src/utils/walkDir.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ \"electron\");\n/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tinify */ \"tinify\");\n/* harmony import */ var tinify__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tinify__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _lib_formatter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lib/formatter */ \"./src/main/lib/formatter.js\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! path */ \"path\");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_3__);\n\n\n\n\n\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].on('onlineImgCompress', function (event, url, globalKey) {\n  tinify__WEBPACK_IMPORTED_MODULE_1___default.a.key = globalKey;\n  compressOnlineImg(event, url);\n});\n\nelectron__WEBPACK_IMPORTED_MODULE_0__[\"ipcMain\"].on('validateApiOnlineError', function (event, errObj) {\n  electron__WEBPACK_IMPORTED_MODULE_0__[\"dialog\"].showMessageBox({\n    type: 'warning',\n    title: 'Warning Box',\n    message: '' + errObj.status,\n    detail: '' + errObj.message,\n    buttons: ['cancel', 'ok'],\n    defaultId: 1,\n    cancelId: 0\n  });\n});\n\nfunction compressOnlineImg(eventReply, url) {\n  var compressedOnlineImgPath = Object(_lib_formatter__WEBPACK_IMPORTED_MODULE_2__[\"downloadPath\"])();\n  var minName = Object(_lib_formatter__WEBPACK_IMPORTED_MODULE_2__[\"pathLink\"])(url);\n\n  tinify__WEBPACK_IMPORTED_MODULE_1___default.a.fromUrl(url).toFile(path__WEBPACK_IMPORTED_MODULE_3___default.a.join(compressedOnlineImgPath, '' + minName), function () {\n    eventReply.sender.send('compressedOnlineImg', compressedOnlineImgPath);\n\n    eventReply.sender.send('rebuildCount', tinify__WEBPACK_IMPORTED_MODULE_1___default.a.compressionCount);\n  });\n}\n\n//# sourceURL=webpack:///./src/main/onlineBridge.js?");
 
 /***/ }),
 
@@ -2047,7 +1811,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("__webpack_require__(/*! /Users/ningzhou/workgroup/test/CompressApp/src/main/index.dev.js */\"./src/main/index.dev.js\");\nmodule.exports = __webpack_require__(/*! /Users/ningzhou/workgroup/test/CompressApp/src/main/index.js */\"./src/main/index.js\");\n\n\n//# sourceURL=webpack:///multi_./src/main/index.dev.js_./src/main/index.js?");
+eval("__webpack_require__(/*! C:\\Users\\Administrator\\Desktop\\myOptimize\\CompressApp\\src\\main\\index.dev.js */\"./src/main/index.dev.js\");\nmodule.exports = __webpack_require__(/*! C:\\Users\\Administrator\\Desktop\\myOptimize\\CompressApp\\src\\main\\index.js */\"./src/main/index.js\");\n\n\n//# sourceURL=webpack:///multi_./src/main/index.dev.js_./src/main/index.js?");
 
 /***/ }),
 

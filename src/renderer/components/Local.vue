@@ -69,6 +69,7 @@
 </template>
 
 <script>
+import { validityApi } from '../lib/validate'
 import { mapState } from 'vuex'
 export default {
   name: 'Local',
@@ -79,7 +80,7 @@ export default {
   },
   computed: {
     ...mapState({
-      globalKey: state => state.settings.globalKey
+      globalKey: state => state.Settings.globalKey
     })
   },
   components: {},
@@ -101,10 +102,20 @@ export default {
       } else {
         fileDataPath = e.target.files
       }
-      for (let f of fileDataPath) {
-        let filePath = f.path
-        this.$electron.ipcRenderer.send('uploadEventMessage', filePath, this.globalKey)
-      }
+      this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verify TinyAPI..')
+      this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
+      validityApi()
+        .then(() => {
+          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          for (let f of fileDataPath) {
+            let filePath = f.path
+            this.$electron.ipcRenderer.send('uploadEventMessage', filePath, this.globalKey)
+          }
+        })
+        .catch(err => {
+          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          this.$electron.ipcRenderer.send('validateApiLocalError', err)
+        })
     },
     listenFileList () { // 监听ipcMain事件
       // 获取要压缩的图片列表

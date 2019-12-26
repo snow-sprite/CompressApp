@@ -23,6 +23,7 @@
 </template>
 <script>
 import os from 'os'
+import { validityApi } from '../lib/validate'
 import { mapState } from 'vuex'
 export default {
   name: 'Online',
@@ -38,7 +39,7 @@ export default {
   },
   computed: {
     ...mapState({
-      globalKey: state => state.settings.globalKey
+      globalKey: state => state.Settings.globalKey
     })
   },
   mounted () {
@@ -54,11 +55,26 @@ export default {
     compressDownload (ind) {
       if (!this.onlineImgs[ind]) return false
       this.onlineInputActive = ind
-      this.$electron.ipcRenderer.send('onlineImgCompress', this.onlineImgs[ind], this.globalKey)
+      // 设置全局loading状态
+      this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verify TinyAPI..')
+      this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
+      validityApi()
+        .then(() => {
+          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          // 验证tinyapi通过则开始压缩
+          this.$electron.ipcRenderer.send('onlineImgCompress', this.onlineImgs[ind], this.globalKey)
+        })
+        .catch(err => {
+          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          // 验证不通过，弹出警告框
+          this.$electron.ipcRenderer.send('validateApiOnlineError', err)
+        })
     },
     listenOnlineEvent () {
+      // 压缩完成 发出通知
       this.$electron.ipcRenderer.on('compressedOnlineImg', (event, downloadPath) => {
         if (downloadPath) {
+          // windows用户需要授权 这里不发通知 直接弹出下载目录
           if (os.type() === 'Windows_NT') {
             this.$store.dispatch('openPath', downloadPath)
             return
