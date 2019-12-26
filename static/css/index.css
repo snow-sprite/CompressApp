@@ -196,6 +196,8 @@
   padding: 4px 10px;
   background: #808080;
   cursor: pointer;
+  border: 0;
+  outline: none;
 }
 .add:hover {
   background: #ddd;

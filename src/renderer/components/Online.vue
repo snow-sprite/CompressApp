@@ -3,7 +3,7 @@
   <div class="online-search-box">
     <p class="online-search-title-box">
       <span class="online-search-title">Please enter online image URL:</span>
-      <span class="online-search-title add" @click="addNewInput">Add+</span>
+      <button class="online-search-title add" @click="addNewInput">Add+</button>
     </p><br/>
     <!-- first -->
     <div class="online-box-wrapper">
