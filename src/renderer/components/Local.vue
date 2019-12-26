@@ -107,9 +107,18 @@ export default {
       validityApi()
         .then(() => {
           this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
-          for (let f of fileDataPath) {
-            let filePath = f.path
-            this.$electron.ipcRenderer.send('uploadEventMessage', filePath, this.globalKey)
+          if (fileDataPath.length === 1) {
+            // 单张图和单个文件夹的长度都是1
+            if (/^image/gi.test(fileDataPath[0].type)) {
+              // 这里做个区分 单张图执行以下
+              this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey)
+            } else if (!/^image/gi.test(fileDataPath[0].type) && fileDataPath[0].type === '') {
+              // 文件夹执行以下
+              for (let f of fileDataPath) {
+                let filePath = f.path
+                this.$electron.ipcRenderer.send('uploadFinderMessage', filePath, this.globalKey)
+              }
+            }
           }
         })
         .catch(err => {
@@ -124,7 +133,7 @@ export default {
           this.appPicsList = data
         }
       })
-      // 获取已经压缩完成的列表
+      // 获取已经压缩完成的列表 重新计数，重绘图表
       this.$electron.ipcRenderer.on('finishedItem', (event, data) => {
         if (data) {
           this.$store.dispatch('getCompressedCount', this.globalKey)

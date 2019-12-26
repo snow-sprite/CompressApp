@@ -1,7 +1,11 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
+// Local
 import './localBridge'
+import './localSingleBridge'
+
+// Online
 import './onlineBridge'
 import util from './lib'
 

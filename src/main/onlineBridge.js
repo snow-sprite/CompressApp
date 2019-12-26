@@ -37,6 +37,6 @@ function compressOnlineImg (eventReply, url) {
     .toFile(path.join(compressedOnlineImgPath, `${minName}`), () => {
       eventReply.sender.send('compressedOnlineImg', compressedOnlineImgPath)
       // 将当前apikey的编译量传送给页面
-      eventReply.sender.send('rebuildCount', tinify.compressionCount)
+      // eventReply.sender.send('rebuildCount', tinify.compressionCount)
     })
 }

@@ -23,8 +23,8 @@ var FINISHEDFILENUM = 0
 // 要渲染的被压缩图片列表
 let renderArr = []
 
-// 与render进程通信
-ipcMain.on('uploadEventMessage', (event, fPath, globalKey) => {
+// 与render进程通信{finder类型}
+ipcMain.on('uploadFinderMessage', (event, fPath, globalKey) => {
   tinify.key = globalKey
   sourcePath = fPath
   targetPath = path.resolve(`${fPath}_compresed`)
@@ -100,7 +100,7 @@ function readFPath (fPath, eventReply) {
                     }
                   }
                   eventReply.sender.send('finishedItem', renderArr)
-                  eventReply.sender.send('rebuildCount', tinify.compressionCount)
+                  // eventReply.sender.send('rebuildCount', tinify.compressionCount)
                 }
               })
             }
