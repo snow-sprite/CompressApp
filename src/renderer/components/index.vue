@@ -13,7 +13,7 @@
         <i :class="{'after-icon': activeNavInd === ind}"></i>
       </li>
       <div class="charts-loading" v-show="!count">
-        <img src="static/img/load/loading2.gif" alt="">
+        <img src="static/img/load/loading.gif" alt="">
       </div>
       <div class="charts-box" v-show="count">
         <!-- <span class="charts-title">Usage of 500 pictures：{{ count }}</span> -->
@@ -31,7 +31,7 @@
     </div>
     <div class="global-loading-box" v-show="isShowGlobalLoading">
       <div class="global-loading-wrapper">
-        <div class="loader">
+        <div class="loader" v-show="!isShowGlobalErrorBox">
           <div class="face">
             <div class="circle"></div>
           </div>
@@ -39,6 +39,7 @@
             <div class="circle"></div>
           </div>
         </div>
+        <div class="global-loading-wrong" v-show="isShowGlobalErrorBox"></div>
         <div class="loading-text">{{ globalLoadingText }}</div>
       </div>
     </div>
@@ -69,7 +70,8 @@
         count: state => state.Counter.count,
         globalKey: state => state.Settings.globalKey,
         isShowGlobalLoading: state => state.GlobalSettings.isShowGlobalLoading,
-        globalLoadingText: state => state.GlobalSettings.globalLoadingText
+        globalLoadingText: state => state.GlobalSettings.globalLoadingText,
+        isShowGlobalErrorBox: state => state.GlobalSettings.isShowGlobalErrorBox
       })
     },
     components: {
@@ -178,6 +180,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 auto;
     margin-bottom: 5px;
 }
 

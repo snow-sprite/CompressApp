@@ -102,11 +102,14 @@ export default {
       } else {
         fileDataPath = e.target.files
       }
-      this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verify TinyAPI..')
+      this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verify TinyPng API key..')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
         .then(() => {
-          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verified :）')
+          setTimeout(_ => {
+            this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          }, 1000)
           if (fileDataPath.length === 1) {
             // 单张图和单个文件夹的长度都是1
             if (/^image/gi.test(fileDataPath[0].type)) {
@@ -122,8 +125,15 @@ export default {
           }
         })
         .catch(err => {
-          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
-          this.$electron.ipcRenderer.send('validateApiLocalError', err)
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT',
+            `verification failed with code:${err.status} :（`
+          )
+          this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+          setTimeout(_ => {
+            this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
+            this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          }, 2000)
+          // this.$electron.ipcRenderer.send('validateApiLocalError', err)
         })
     },
     listenFileList () { // 监听ipcMain事件

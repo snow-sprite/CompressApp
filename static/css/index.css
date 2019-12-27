@@ -19,13 +19,21 @@
 }
 .global-loading-wrapper {
   margin: 0 auto;
-  width: 200px;
+  width: 400px;
   height: 130px;
   position: relative;
   top: calc(50% - 65px);
 }
+.global-loading-wrong {
+  width: 100px;
+  height: 100px;
+  background: url(../img/load/error.png) no-repeat;
+  background-size: contain;
+  margin: 0 auto;
+}
 .loading-text {
   color: #fff;
+  text-align: center;
 }
 .tabs {
   width: 230px;

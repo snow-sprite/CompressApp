@@ -60,14 +60,24 @@ export default {
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
         .then(() => {
-          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verified :）')
+          setTimeout(_ => {
+            this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          }, 1000)
           // 验证tinyapi通过则开始压缩
           this.$electron.ipcRenderer.send('onlineImgCompress', this.onlineImgs[ind], this.globalKey)
         })
         .catch(err => {
-          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT',
+            `verification failed with code:${err.status} :（`
+          )
+          this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+          setTimeout(_ => {
+            this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
+            this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          }, 2000)
           // 验证不通过，弹出警告框
-          this.$electron.ipcRenderer.send('validateApiOnlineError', err)
+          // this.$electron.ipcRenderer.send('validateApiOnlineError', err)
         })
     },
     listenOnlineEvent () {
