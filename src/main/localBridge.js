@@ -133,29 +133,21 @@ function readFPath (fPath, eventReply, isNeedWalk) {
     } else if (stat.isDirectory()) {
       // read dir...
       // 前面传过来的，根据需要选择是否要遍历文件夹
-      if (isNeedWalk) {
-        fs.readdir(fPath, function (errDir, files) {
-          if (errDir) throw errDir
-          for (let file of files) {
+      fs.readdir(fPath, function (errDir, files) {
+        if (errDir) throw errDir
+        for (let file of files) {
+          if (isNeedWalk) {
             readFPath(path.join(fPath, file), eventReply, isNeedWalk)
-          }
-        })
-      } else {
-        // TODO 先暂时这么搞，后续可能会拆分出一个单独文件
-        fs.readdir(fPath, (errDir, files) => {
-          if (errDir) throw errDir
-          for (let file of files) {
+          } else {
+            // 多图片形式
             let fileStats = fs.lstatSync(path.join(fPath, file))
             if (fileStats.isFile()) {
               // 这里的作用是排除非指定后缀文件
-              let extname = path.extname(path.join(fPath, file)).slice(1)
-              if (imagesType.indexOf(extname) > -1) {
-                readFPath(path.join(fPath, file), eventReply, isNeedWalk)
-              }
+              readFPath(path.join(fPath, file), eventReply, isNeedWalk)
             }
           }
-        })
-      }
+        }
+      })
     }
   })
 }
