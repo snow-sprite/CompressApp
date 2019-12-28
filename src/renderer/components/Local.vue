@@ -102,31 +102,54 @@ export default {
       } else {
         fileDataPath = e.target.files
       }
-      this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verify TinyPng API key..')
+      this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证TinyAPI有效性中..')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
         .then(() => {
-          this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verified :）')
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证通过:)')
           setTimeout(_ => {
             this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
-          }, 1000)
+            this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
+          }, 2000)
           if (fileDataPath.length === 1) {
-            // 单张图和单个文件夹的长度都是1
+            // 单张图 || 单个文件夹
             if (/^image/gi.test(fileDataPath[0].type)) {
               // 这里做个区分 单张图执行以下
               this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey)
             } else if (!/^image/gi.test(fileDataPath[0].type) && fileDataPath[0].type === '') {
-              // 文件夹执行以下
+              // 单个文件夹执行以下
               for (let f of fileDataPath) {
                 let filePath = f.path
-                this.$electron.ipcRenderer.send('uploadFinderMessage', filePath, this.globalKey)
+                let isNeedWalk = true
+                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
+              }
+            }
+          } else if (fileDataPath.length > 1) {
+            // 多文件 || 多文件夹
+            let fileObj = {}
+            for (let f of fileDataPath) {
+              fileObj[f.type] = 1
+            }
+            if (Object.keys(fileObj).length > 1) {
+              this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
+              this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+            } else {
+              if (Object.keys(fileObj)[0] === '') {
+                // TODO 后期可以做的跟多图片上传一样
+                this.$store.commit('SET_GLOBAL_LOAING_TEXT', '仅支持单文件夹哦:(')
+                this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+              } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
+                // 多图片
+                let filePath = fileDataPath[0].path
+                let isNeedWalk = false
+                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
               }
             }
           }
         })
         .catch(err => {
           this.$store.commit('SET_GLOBAL_LOAING_TEXT',
-            `verification failed with code:${err.status} :（`
+            `verification failed with code:${err.status} :(`
           )
           this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
           setTimeout(_ => {
@@ -140,7 +163,11 @@ export default {
       // 获取要压缩的图片列表
       this.$electron.ipcRenderer.on('filesList', (e, data) => {
         if (data) {
-          this.appPicsList = data
+          // 这里在本地缓存中存一份 渲染列表
+          sessionStorage.setItem('singleImgList', JSON.stringify(data))
+
+          let realRenderList = JSON.parse(sessionStorage.getItem('singleImgList'))
+          this.appPicsList = realRenderList
         }
       })
       // 获取已经压缩完成的列表 重新计数，重绘图表

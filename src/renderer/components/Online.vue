@@ -56,11 +56,11 @@ export default {
       if (!this.onlineImgs[ind]) return false
       this.onlineInputActive = ind
       // 设置全局loading状态
-      this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verify TinyAPI..')
+      this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证TinyAPI有效性中..')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
         .then(() => {
-          this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Verified :）')
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证通过:)')
           setTimeout(_ => {
             this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
           }, 1000)
@@ -69,7 +69,7 @@ export default {
         })
         .catch(err => {
           this.$store.commit('SET_GLOBAL_LOAING_TEXT',
-            `verification failed with code:${err.status} :（`
+            `verification failed with code:${err.status} :(`
           )
           this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
           setTimeout(_ => {

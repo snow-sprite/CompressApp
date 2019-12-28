@@ -23,14 +23,22 @@ var FINISHEDFILENUM = 0
 // 要渲染的被压缩图片列表
 let renderArr = []
 
-// 与render进程通信{finder类型}
-ipcMain.on('uploadFinderMessage', (event, fPath, globalKey) => {
+// 与render进程通信{多文件类型}
+// isNeedWalk：是否需要遍历文件夹
+ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isNeedWalk) => {
   tinify.key = globalKey
-  sourcePath = fPath
-  targetPath = path.resolve(`${fPath}_compresed`)
-  compresePic(event)
+  if (isNeedWalk) {
+    sourcePath = fPath
+    targetPath = path.resolve(`${fPath}_compressed`)
+  } else {
+    sourcePath = path.dirname(fPath)
+    targetPath = `${path.dirname(fPath)}_images_compressed`
+  }
+  // TODO 多文件类型 后来的文件名会覆盖原来的文件名
+  compresePic(event, isNeedWalk)
 })
 
+// 错误捕获
 ipcMain.on('validateApiLocalError', (event, errObj) => {
   dialog.showMessageBox({
     type: 'warning',
@@ -44,9 +52,9 @@ ipcMain.on('validateApiLocalError', (event, errObj) => {
 })
 
 // 读取文件夹
-function readFPath (fPath, eventReply) {
+function readFPath (fPath, eventReply, isNeedWalk) {
   // 同步生成目标目录
-  walkDir(fPath, sourcePath, targetPath)
+  if (isNeedWalk) walkDir(fPath, sourcePath, targetPath)
   fs.lstat(fPath, function (errs, stat) {
     if (errs) throw errs
     if (stat.isFile()) {
@@ -86,9 +94,8 @@ function readFPath (fPath, eventReply) {
         .toFile(
           generatePathName,
           () => {
-            if (imagesType.indexOf(extname) > -1) {
-              FINISHEDFILENUM += 1
-            }
+            if (imagesType.indexOf(extname) > -1) FINISHEDFILENUM += 1
+
             // 得到压缩后文件的size和path，推到原有数组里
             if (imagesType.indexOf(extname) > -1) {
               fs.lstat(generatePathName, function (errDoneFile, doneFileStat) {
@@ -125,28 +132,46 @@ function readFPath (fPath, eventReply) {
         )
     } else if (stat.isDirectory()) {
       // read dir...
-      fs.readdir(fPath, function (errDir, files) {
-        if (errDir) throw errDir
-        for (let file of files) {
-          readFPath(path.join(fPath, file), eventReply)
-        }
-      })
+      // 前面传过来的，根据需要选择是否要遍历文件夹
+      if (isNeedWalk) {
+        fs.readdir(fPath, function (errDir, files) {
+          if (errDir) throw errDir
+          for (let file of files) {
+            readFPath(path.join(fPath, file), eventReply, isNeedWalk)
+          }
+        })
+      } else {
+        // TODO 先暂时这么搞，后续可能会拆分出一个单独文件
+        fs.readdir(fPath, (errDir, files) => {
+          if (errDir) throw errDir
+          for (let file of files) {
+            let fileStats = fs.lstatSync(path.join(fPath, file))
+            if (fileStats.isFile()) {
+              // 这里的作用是排除非指定后缀文件
+              let extname = path.extname(path.join(fPath, file)).slice(1)
+              if (imagesType.indexOf(extname) > -1) {
+                readFPath(path.join(fPath, file), eventReply, isNeedWalk)
+              }
+            }
+          }
+        })
+      }
     }
   })
 }
 
 // 重构目标目录
-function compresePic (event) {
+function compresePic (event, isNeedWalk) {
   // comprese image..
   try {
     fs.access(targetPath, fs.constants.F_OK, err => {
       // if there's not a target dir, make it first.
       if (err) {
         fs.mkdir(targetPath, () => {
-          rebuildTarget(targetPath, event)
+          rebuildTarget(targetPath, event, isNeedWalk)
         })
       } else {
-        rebuildTarget(targetPath, event)
+        rebuildTarget(targetPath, event, isNeedWalk)
       }
     })
   } catch (error) {
@@ -155,12 +180,11 @@ function compresePic (event) {
 }
 
 // 重构目标文件
-function rebuildTarget (target, event) {
+function rebuildTarget (target, event, isNeedWalk) {
   // 这两行是初始化列表
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
-
-  reBuildDir(target)
-  readFPath(sourcePath, event)
+  if (isNeedWalk) reBuildDir(target)
+  readFPath(sourcePath, event, isNeedWalk)
 }

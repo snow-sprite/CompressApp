@@ -15,7 +15,8 @@ var targetPath = ''
 
 // 要渲染的被压缩图片列表
 let renderArr = []
-
+let caleInd = 1
+let currentInd
 // 与render进程通信{单图类型}
 ipcMain.on('uploadSingleImgMessage', (event, fPath, globalKey) => {
   tinify.key = globalKey
@@ -33,7 +34,7 @@ function reBuildSingleImg (event, sourcePath, targetPath) {
 
   // 页面渲染列表
   let fStat = fs.statSync(sourcePath)
-  renderArr.push({
+  renderArr.unshift({
     name: realName,
     minName,
     size: fStat.size,
@@ -47,9 +48,9 @@ function reBuildSingleImg (event, sourcePath, targetPath) {
   tinify.fromFile(sourcePath).toFile(targetPathWithStat, _ => {
     fs.lstat(targetPathWithStat, function (errDoneFile, doneFileStat) {
       if (errDoneFile) throw errDoneFile
-      for (let item of renderArr) {
-        item.compressedSize = doneFileStat.size
-      }
+      currentInd = renderArr.length - caleInd
+      renderArr[currentInd].compressedSize = doneFileStat.size
+      caleInd += 1
       event.sender.send('finishedItem', renderArr)
     })
     // 重新计数，重绘图表
