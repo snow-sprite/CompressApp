@@ -56,7 +56,7 @@ export default {
       if (!this.onlineImgs[ind]) return false
       this.onlineInputActive = ind
       // 设置全局loading状态
-      this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证TinyAPI有效性中..')
+      // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证TinyAPI有效性中..')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
         .then(() => {
