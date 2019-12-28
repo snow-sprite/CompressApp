@@ -135,14 +135,16 @@ export default {
               this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
             } else {
               if (Object.keys(fileObj)[0] === '') {
-                // TODO 后期可以做的跟多图片上传一样
-                this.$store.commit('SET_GLOBAL_LOAING_TEXT', '仅支持单文件夹哦:(')
+                this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单文件夹哦:(')
                 this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
               } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
-                // 多图片
-                let filePath = fileDataPath[0].path
-                let isNeedWalk = false
-                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
+                this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单图片哦:(')
+                this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+                // for (let f of fileDataPath) {
+                //   let filePath = f.path
+                //   let isNeedWalk = false
+                //   this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
+                // }
               }
             }
           }
