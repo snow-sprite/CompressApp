@@ -1,7 +1,10 @@
 <template>
   <!-- Settings -->
   <div class="settings-content">
-    <div class="set-title">Set your Api keys here</div>
+      <div class="set-title">
+        <span>Set your Api keys here</span>
+        <div class="set-apikey-text" @click="openExternal">去获取Apikey</div>
+      </div>
     <div class="api-keys-list">
       <div class="api-key" v-for="(apiKey, ind) in keysList" :key="ind">
         <input 
@@ -27,10 +30,13 @@
   </div>
 </template>
 <script>
+import { shell } from 'electron'
+
 export default {
   name: 'Settings',
   data () {
     return {
+      tinypngApiLink: 'https://tinypng.com/developers',
       keysList: [
         'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN',
         '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
@@ -74,6 +80,10 @@ export default {
       }
       this.keysList[ind] = this.$refs.inputs[ind].value
       localStorage.setItem('tinyKeys', JSON.stringify(this.keysList))
+    },
+    openExternal () {
+      // 打开外部链接
+      shell.openExternal(this.tinypngApiLink)
     }
   }
 }

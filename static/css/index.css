@@ -583,6 +583,16 @@
   font-size: 24px;
   width: 500px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.set-apikey-text {
+  cursor: pointer;
+  font-size: 14px;
+  padding-top: 13px;
+}
+.set-apikey-text:hover {
+  color: rgb(51, 153, 255);
 }
 .switch-box {
   display: block;
