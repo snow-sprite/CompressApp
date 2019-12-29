@@ -45,10 +45,14 @@
           <!-- <img class="dir" src="static/img/wenjianjia.svg" alt="">
           <span class="ellp" :title="item.path">{{ item.path }}</span> -->
           <div 
-            class="progress"
-            :class="{'compressing': !item.compressedSize, 'success': item.compressedSize}"
+            class="progress error"
+            :class="{
+              'compressing': !item.compressedSize,
+              'success': item.compressedSize
+            }"
           >
-            <div class="bar" style="width: 100%;"></div>
+            <div class="bar" style="width: 100%;" v-if="item.isSupport"></div>
+            <div class="bar" style="width: 100%;" v-else>This file type is not supported</div>
             <!-- <span class="compressing">Compressing</span>
             <span class="finished">Finished</span> -->
           </div>
@@ -140,28 +144,29 @@ export default {
             // this.$electron.ipcRenderer.send('validateApiLocalError', err)
           })
       } else if (fileDataPath.length > 1) {
+        // d
         // 多文件 || 多文件夹
-        let fileObj = {}
-        for (let f of fileDataPath) {
-          fileObj[f.type] = 1
-        }
-        if (Object.keys(fileObj).length > 1) {
-          this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
-          this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-        } else {
-          if (Object.keys(fileObj)[0] === '') {
-            this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单文件夹哦:(')
-            this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-          } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
-            this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单图片哦:(')
-            this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-            // for (let f of fileDataPath) {
-            //   let filePath = f.path
-            //   let isNeedWalk = false
-            //   this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
-            // }
-          }
-        }
+        // let fileObj = {}
+        // for (let f of fileDataPath) {
+        //   fileObj[f.type] = 1
+        // }
+        // if (Object.keys(fileObj).length > 1) {
+        //   this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
+        //   this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+        // } else {
+        //   if (Object.keys(fileObj)[0] === '') {
+        //     this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单文件夹哦:(')
+        //     this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+        //   } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
+        //     this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单图片哦:(')
+        //     this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+        //     // for (let f of fileDataPath) {
+        //     //   let filePath = f.path
+        //     //   let isNeedWalk = false
+        //     //   this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
+        //     // }
+        //   }
+        // }
       }
     },
     listenFileList () { // 监听ipcMain事件
@@ -261,6 +266,23 @@ export default {
     filter: alpha(opacity=90);
     line-height: 1em;
     color: #fff;
+  }
+  div.progress.error div.bar, div.progress.limited div.bar {
+    width: 100%;
+    background-color: #f94c00;
+    -webkit-animation: none;
+    -moz-animation: none;
+    -o-animation: none;
+    -ms-animation: none;
+    animation: none;
+    background-image: none;
+    text-shadow: none;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    line-height: 20px;
+    font-size: 14px;
   }
   div.progress.success div.bar {
     background: #94e623;
