@@ -45,10 +45,11 @@
           <!-- <img class="dir" src="static/img/wenjianjia.svg" alt="">
           <span class="ellp" :title="item.path">{{ item.path }}</span> -->
           <div 
-            class="progress error"
+            class="progress"
             :class="{
-              'compressing': !item.compressedSize,
-              'success': item.compressedSize
+              'compressing':item.isSupport && !item.compressedSize,
+              'success': item.isSupport && item.compressedSize,
+              'error': !item.isSupport
             }"
           >
             <div class="bar" style="width: 100%;" v-if="item.isSupport"></div>
@@ -79,6 +80,7 @@ export default {
   name: 'Local',
   data () {
     return {
+      isSingle: true, // 是否是单个文件或单个文件夹
       appPicsList: [] // 渲染待压缩图片列表
     }
   },
@@ -108,66 +110,71 @@ export default {
       }
       this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
-      if (fileDataPath.length === 1) {
-        validityApi()
-          .then(() => {
-            this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Start Compressing..')
+      validityApi()
+        .then(() => {
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Start Compressing..')
+          this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
+          setTimeout(_ => {
+            this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
             this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
-            setTimeout(_ => {
-              this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
-              this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
-              this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
-            }, 2000)
+            this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          }, 2000)
+          if (fileDataPath.length === 1) {
             // 单张图 || 单个文件夹
             if (/^image/gi.test(fileDataPath[0].type)) {
-              // 这里做个区分 单张图执行以下
-              this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey)
+            // 这里做个区分 单张图执行以下
+              this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey, this.isSingle)
             } else if (!/^image/gi.test(fileDataPath[0].type) && fileDataPath[0].type === '') {
-              // 单个文件夹执行以下
+            // 单个文件夹执行以下
               for (let f of fileDataPath) {
                 let filePath = f.path
-                let isNeedWalk = true
-                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
+                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle)
               }
             }
-          })
-          .catch(err => {
-            this.$store.commit('SET_GLOBAL_LOAING_TEXT',
-              `verification failed with code:${err.status}`
-            )
-            this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-            setTimeout(_ => {
-              this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
-              this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
-              this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
-            }, 2000)
-            // this.$electron.ipcRenderer.send('validateApiLocalError', err)
-          })
-      } else if (fileDataPath.length > 1) {
-        // d
-        // 多文件 || 多文件夹
-        // let fileObj = {}
-        // for (let f of fileDataPath) {
-        //   fileObj[f.type] = 1
-        // }
-        // if (Object.keys(fileObj).length > 1) {
-        //   this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
-        //   this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-        // } else {
-        //   if (Object.keys(fileObj)[0] === '') {
-        //     this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单文件夹哦:(')
-        //     this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-        //   } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
-        //     this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单图片哦:(')
-        //     this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-        //     // for (let f of fileDataPath) {
-        //     //   let filePath = f.path
-        //     //   let isNeedWalk = false
-        //     //   this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, isNeedWalk)
-        //     // }
-        //   }
-        // }
-      }
+          } else if (fileDataPath.length > 1) {
+            // 多文件 || 多文件夹
+            this.isSingle = false
+            let fileObj = {}
+            for (let f of fileDataPath) {
+              fileObj[f.type] = 1
+            }
+            let type
+            if (Object.keys(fileObj).length > 1) {
+              // 多文件夹 + 多图片 + (其他类型文件)
+              // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
+              // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+              type = 'dirs_images'
+            } else {
+              if (Object.keys(fileObj)[0] === '') {
+                // 多文件夹
+                // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单文件夹哦:(')
+                // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+                type = 'dirs'
+              } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
+                // 多图片（多文件）
+                // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单图片哦:(')
+                // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+                type = 'imgs'
+              }
+            }
+            for (let f of fileDataPath) {
+              let filePath = f.path
+              this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle, type)
+            }
+          }
+        })
+        .catch(err => {
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT',
+            `verification failed with code:${err.status}`
+          )
+          this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+          setTimeout(_ => {
+            this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
+            this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
+            this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+          }, 2000)
+          // this.$electron.ipcRenderer.send('validateApiLocalError', err)
+        })
     },
     listenFileList () { // 监听ipcMain事件
       // 获取要压缩的图片列表

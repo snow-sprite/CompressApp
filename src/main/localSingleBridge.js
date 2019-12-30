@@ -7,6 +7,7 @@ import {
 import tinify from 'tinify'
 import fs from 'fs'
 import path from 'path'
+import imagesType from './lib/imagesType'
 
 // 源文件夹
 var sourcePath = ''
@@ -34,14 +35,26 @@ function reBuildSingleImg (event, sourcePath, targetPath) {
 
   // 页面渲染列表
   let fStat = fs.statSync(sourcePath)
-  renderArr.unshift({
-    name: realName,
-    minName,
-    size: fStat.size,
-    path: `${sourcePath}`,
-    compressedSize: null,
-    compressedPath: targetPath
-  })
+  // 这里的作用是根据后缀名称渲染不同结果
+  let extname = path.extname(sourcePath).slice(1)
+  if (imagesType.indexOf(extname) > -1) {
+    renderArr.unshift({
+      isSupport: true,
+      name: realName,
+      minName,
+      size: fStat.size,
+      path: `${sourcePath}`,
+      compressedSize: null,
+      compressedPath: targetPath
+    })
+  } else {
+    renderArr.unshift({
+      isSupport: false,
+      name: realName,
+      minName,
+      size: fStat.size
+    })
+  }
   event.sender.send('filesList', renderArr)
 
   // 压缩
