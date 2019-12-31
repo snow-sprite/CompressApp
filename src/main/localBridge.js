@@ -96,7 +96,11 @@ function readFPath (fPath, eventReply, isSingle, type) {
         .fromFile(path.resolve(fPath))
         .toFile(
           generatePathName,
-          () => {
+          (errTiny) => {
+            if (errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
+              eventReply.sender.send('limitCountErrorEvent')
+              return
+            }
             FINISHEDFILENUM += 1
             // 得到压缩后文件的size和path，推到原有数组里
             if (imagesType.indexOf(extname) > -1) {

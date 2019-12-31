@@ -208,6 +208,16 @@ export default {
           console.log('通知被点击')
         }
       })
+      // 压缩数量超过限制500张，提醒
+      this.$electron.ipcRenderer.on('limitCountErrorEvent', event => {
+        this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您当前使用的ApiKey已达到限制！')
+        this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+        setTimeout(_ => {
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
+          this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
+          this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+        }, 2000)
+      })
     },
     openPath (path) { // 根据path打开对话框
       this.$store.dispatch('openPath', path)

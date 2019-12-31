@@ -34,7 +34,11 @@ function compressOnlineImg (eventReply, url) {
   let minName = pathLink(url)
 
   tinify.fromUrl(url)
-    .toFile(path.join(compressedOnlineImgPath, `${minName}`), () => {
+    .toFile(path.join(compressedOnlineImgPath, `${minName}`), errTiny => {
+      if (errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
+        eventReply.sender.send('limitCountErrorEvent')
+        return
+      }
       eventReply.sender.send('compressedOnlineImg', compressedOnlineImgPath)
       // 将当前apikey的编译量传送给页面
       // eventReply.sender.send('rebuildCount', tinify.compressionCount)
