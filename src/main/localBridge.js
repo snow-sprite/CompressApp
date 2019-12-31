@@ -170,14 +170,7 @@ function rebuildTarget (target, sPath, event, isSingle, type) {
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
-  // 如果是全图片 则不需要删除文件夹
-  reBuildDir(target)
-  if (type === 'imgs') {
-    // 图片的话需要在rebuild之后重新生成个文件夹
-    fs.mkdir(target, () => {
-      readFPath(sPath, event, isSingle, type)
-    })
-  } else {
-    readFPath(sPath, event, isSingle, type)
-  }
+  // 如果是全图片 则不清空压缩文件夹
+  if (type !== 'imgs') reBuildDir(target)
+  readFPath(sPath, event, isSingle, type)
 }
