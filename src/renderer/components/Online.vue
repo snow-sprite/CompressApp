@@ -8,8 +8,8 @@
     <!-- first -->
     <div class="online-box-wrapper">
       <div class="online-box">
-        <div class="online-search-box2" v-for="(item, ind) in onlineInputs" :key="ind">
-          <input class="online-search-text" type="text" placeholder="url.." v-model="onlineImgs[ind]" @keyup.enter="compressDownload(ind)">
+        <div class="online-search-box2" v-for="(item, ind) in onlineImgs" :key="ind">
+          <input class="online-search-text" type="text" placeholder="image url.." :ref='"imgs" + ind' v-model="onlineImgs[ind]" @keyup.enter="compressDownload(ind)">
           <button 
             type="button"
             class="online-file-button online-download-btn">
@@ -30,7 +30,8 @@ export default {
   data () {
     return {
       onlineImgs: [
-        'https://tinypng.com/images/panda-happy.png'
+        // 'https://tinypng.com/images/panda-happy.png',
+        ''
       ],
       input: 0,
       onlineInputs: [0],
@@ -49,23 +50,28 @@ export default {
     addNewInput () {
       // 增加一个新的输入框来下载
       this.onlineImgs.push('')
-      this.input += 1
-      this.onlineInputs.push(this.input)
     },
     compressDownload (ind) {
       if (!this.onlineImgs[ind]) return false
       this.onlineInputActive = ind
       // 设置全局loading状态
-      this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证TinyAPI有效性中..')
+      this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
         .then(() => {
-          this.$store.commit('SET_GLOBAL_LOAING_TEXT', '验证通过:)')
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Start Compressing..')
           setTimeout(_ => {
             this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
           }, 1000)
           // 验证tinyapi通过则开始压缩
           this.$electron.ipcRenderer.send('onlineImgCompress', this.onlineImgs[ind], this.globalKey)
+          // setTimeout(_ => {
+          //   // this.$refs[`imgs${ind}`].value = ''
+          //   this.$nextTick(() => {
+          //     this.onlineImgs[ind] = ''
+          //     document.querySelectorAll('input')[ind].value = ''
+          //   })
+          // }, 1500)
         })
         .catch(err => {
           this.$store.commit('SET_GLOBAL_LOAING_TEXT',

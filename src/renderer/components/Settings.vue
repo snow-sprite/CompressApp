@@ -22,7 +22,7 @@
             class="switch-box-input"
             type="radio"
             :checked="activeKeyInd === ind"
-            @click="setActiveKey(ind)">
+            @change="setActiveKey(ind)">
           <label :for="'apiKey' + ind" class="switch-box-slider"></label>
         </div>
       </div>
@@ -39,7 +39,8 @@ export default {
       tinypngApiLink: 'https://tinypng.com/developers',
       keysList: [
         'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN',
-        '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
+        // '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
+        '',
         '',
         '',
         ''
@@ -50,17 +51,28 @@ export default {
   },
   mounted () {
     // 保存keysList到本地
-    localStorage.setItem('tinyKeys', JSON.stringify([]))
-    let localTinyKeys = localStorage.getItem('tinyKeys')
-    let localTinyKeysParsed = JSON.parse(localTinyKeys)
-    for (let k of this.keysList) {
-      localTinyKeysParsed.push(k)
+    // localStorage.setItem('tinyKeys', JSON.stringify([]))
+    // let localTinyKeys = localStorage.getItem('tinyKeys')
+    // let localTinyKeysParsed = JSON.parse(localTinyKeys)
+    // for (let k of this.keysList) {
+    //   localTinyKeysParsed.push(k)
+    // }
+    if (!localStorage.getItem('tinyKeys')) {
+      localStorage.setItem('tinyKeys', JSON.stringify([]))
+      let localTinyKeys = localStorage.getItem('tinyKeys')
+      let localTinyKeysParsed = JSON.parse(localTinyKeys)
+      for (let k of this.keysList) {
+        localTinyKeysParsed.push(k)
+      }
+      localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
+    } else {
+      this.keysList = JSON.parse(localStorage.getItem('tinyKeys'))
+      // console.log(33334, JSON.parse(this.keysList))
     }
-    localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
-    this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
-    if (!this.activeKeyInd) {
-      localStorage.setItem('activeKey', JSON.stringify(this.keysList[0]))
-    }
+    // this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
+    // if (!this.activeKeyInd) {
+    //   localStorage.setItem('activeKey', JSON.stringify(this.keysList[0]))
+    // }
   },
   methods: {
     setActiveKey (ind) {
@@ -75,7 +87,7 @@ export default {
       // 监听当前对input apikey的操作
       if (ind === this.activeKeyInd) {
         this.activeKey = this.$refs.inputs[ind].value
-        localStorage.setItem('activeKey', this.activeKey)
+        localStorage.setItem('activeKey', JSON.stringify(this.activeKey))
         this.$store.commit('setGlobalKey', this.activeKey)
       }
       this.keysList[ind] = this.$refs.inputs[ind].value
