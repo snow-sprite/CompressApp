@@ -210,7 +210,7 @@ export default {
       })
       // 压缩数量超过限制500张，提醒
       this.$electron.ipcRenderer.on('limitCountErrorEvent', event => {
-        this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您当前使用的ApiKey已达到限制！')
+        this.$store.commit('SET_GLOBAL_LOAING_TEXT', '当前Key已达到上限500！')
         this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
         setTimeout(_ => {
           this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
