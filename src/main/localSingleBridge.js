@@ -59,7 +59,7 @@ function reBuildSingleImg (event, sourcePath, targetPath) {
 
   // 压缩
   tinify.fromFile(sourcePath).toFile(targetPathWithStat, errTiny => {
-    if (errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
+    if (errTiny && errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
       event.sender.send('limitCountErrorEvent')
       return
     }

@@ -35,7 +35,7 @@ function compressOnlineImg (eventReply, url) {
 
   tinify.fromUrl(url)
     .toFile(path.join(compressedOnlineImgPath, `${minName}`), errTiny => {
-      if (errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
+      if (errTiny && errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
         eventReply.sender.send('limitCountErrorEvent')
         return
       }

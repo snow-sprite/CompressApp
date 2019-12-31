@@ -2,6 +2,12 @@
 
 > A compressed picture desktop program based on electron-vue
 
+#### 支持（在该文件夹当前目录生成）
+
+- [x] 单文件夹（与源文件夹目录层级一致）
+- [x] 单图片 （直接生成对应.min图片）
+- [x] 多图片 （所有图片全部生成到目标子目录下）
+- [x] 文件夹及图片 （与原目录一致）
 
 #### sample graph
 
@@ -10,7 +16,6 @@
 ![online](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/online.png)
 
 ![settings](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/settings.png)
-
 
 #### Build Setup
 
@@ -33,5 +38,3 @@ npm run build:clean && npm run build
 > CompressApp/build/mac/Compress your images.app
 
 ---
-
-This project was generated with [electron-vue](https://github.com/SimulatedGREG/electron-vue)@[45a3e22](https://github.com/SimulatedGREG/electron-vue/tree/45a3e224e7bb8fc71909021ccfdcfec0f461f634) using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://simulatedgreg.gitbooks.io/electron-vue/content/index.html).

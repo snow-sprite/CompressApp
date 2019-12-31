@@ -96,8 +96,8 @@ function readFPath (fPath, eventReply, isSingle, type) {
         .fromFile(path.resolve(fPath))
         .toFile(
           generatePathName,
-          (errTiny) => {
-            if (errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
+          (errTiny, b) => {
+            if (errTiny && errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
               eventReply.sender.send('limitCountErrorEvent')
               return
             }

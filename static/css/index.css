@@ -175,7 +175,7 @@
 
 .online-search-box {
   width: 600px;
-  height: 200px;
+  /* height: 200px; */
   margin: 0 auto;
   margin-top: 8%;
   -webkit-box-sizing: border-box;
@@ -213,6 +213,7 @@
   color: rgb(51, 153, 255);
 }
 .online-search-box2 {
+  width: 600px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
