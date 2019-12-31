@@ -89,14 +89,6 @@
       count (newV, oldV) {
         // 设置图表
         if (newV) {
-          this.$store.dispatch('getCompressedCount', this.globalKey)
-          this.setPieCharts()
-        }
-      },
-      globalKey (newV, oldV) {
-        // 设置图表
-        if (newV) {
-          this.$store.dispatch('getCompressedCount', newV)
           this.setPieCharts()
         }
       }

@@ -30,7 +30,7 @@ export default {
   data () {
     return {
       onlineImgs: [
-        // 'https://tinypng.com/images/panda-happy.png',
+        'https://tinypng.com/images/panda-happy.png',
         ''
       ],
       input: 0,

@@ -30,7 +30,7 @@ ipcMain.on('uploadSingleImgMessage', (event, fPath, globalKey) => {
 function reBuildSingleImg (event, sourcePath, targetPath) {
   // 重命名目标文件
   let realName = path.basename(sourcePath)
-  let minName = `${realName.split('.')[0]}.min.${realName.split('.')[1]}`
+  let minName = `${path.basename(realName, path.extname(realName))}.min${path.extname(realName)}`
   let targetPathWithStat = `${targetPath}${path.sep}${minName}`
 
   // 页面渲染列表

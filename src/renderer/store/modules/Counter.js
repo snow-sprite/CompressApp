@@ -15,6 +15,8 @@ const mutations = {
 
 const actions = {
   getCompressedCount ({ commit }, apiKey) {
+    // 设置0显示小仓鼠
+    commit('CALCULATE_COUNT', 0)
     tinify.key = apiKey
     validityApi()
       .then(() => {

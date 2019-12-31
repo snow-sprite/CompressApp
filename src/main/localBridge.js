@@ -22,7 +22,6 @@ var FINISHEDFILENUM = 0
 
 // 要渲染的被压缩图片列表
 let renderArr = []
-
 // 与render进程通信{多文件类型}
 ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle, type) => {
   tinify.key = globalKey
@@ -58,10 +57,10 @@ function readFPath (fPath, eventReply, isSingle, type) {
       /*
        * 重构数据结构
        */
-      // 这里得到的是name值
+      // 这里得到的是name值 例如:avatar.png
       let realName = path.basename(fPath)
       // 这里的是压缩后的名字 例如：avatar.min.png
-      let minName = `${realName.split('.')[0]}.min.${realName.split('.')[1]}`
+      let minName = `${path.basename(realName, path.extname(realName))}.min${path.extname(realName)}`
       let filePath = path.dirname(fPath)
       let fileTmpPath = filePath.slice(sourcePath.length)
       // 压缩后的文件的路径
@@ -126,7 +125,7 @@ function readFPath (fPath, eventReply, isSingle, type) {
                 zipped.compress()
                 zipped.save(`${newTargetPath}${targetFileName}.zip`, errSave => {
                   if (errSave) throw errSave
-                  console.log('这应该是最后一次压缩了')
+                  console.log('这是最后一次压缩了')
                   eventReply.sender.send('AllDone')
                   // TODO 打完压缩包后删除目标文件夹
                   // rebuildTarget(targetPath, event, true);

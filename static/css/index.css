@@ -27,7 +27,7 @@
 .global-loading-wrong {
   width: 100px;
   height: 100px;
-  background: url(../img/load/error.png) no-repeat;
+  background: url(../img/load/error.min.png) no-repeat;
   background-size: contain;
   margin: 0 auto;
 }

@@ -22,7 +22,7 @@
             class="switch-box-input"
             type="radio"
             :checked="activeKeyInd === ind"
-            @change="setActiveKey(ind)">
+            @click="setActiveKey(ind)">
           <label :for="'apiKey' + ind" class="switch-box-slider"></label>
         </div>
       </div>
@@ -45,8 +45,8 @@ export default {
         '',
         ''
       ],
-      activeKeyInd: Number(localStorage.getItem('keyInd')) || 0, // 激活的key
-      activeKey: localStorage.getItem('activeKey') || '' // 激活的key
+      activeKeyInd: '', // 激活的key
+      activeKey: '' // 激活的key
     }
   },
   mounted () {
@@ -57,6 +57,8 @@ export default {
     // for (let k of this.keysList) {
     //   localTinyKeysParsed.push(k)
     // }
+    this.activeKeyInd = Number(localStorage.getItem('keyInd')) || 0
+    this.activeKey = localStorage.getItem('activeKey') || ''
     if (!localStorage.getItem('tinyKeys')) {
       localStorage.setItem('tinyKeys', JSON.stringify([]))
       let localTinyKeys = localStorage.getItem('tinyKeys')
@@ -67,9 +69,8 @@ export default {
       localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
     } else {
       this.keysList = JSON.parse(localStorage.getItem('tinyKeys'))
-      // console.log(33334, JSON.parse(this.keysList))
     }
-    // this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
+    this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
     // if (!this.activeKeyInd) {
     //   localStorage.setItem('activeKey', JSON.stringify(this.keysList[0]))
     // }
