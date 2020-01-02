@@ -26,7 +26,6 @@ function generateDir (targetDir) {
   // 同步生成目标文件夹
   if (!fs.existsSync(targetDir)) {
     fs.mkdir(targetDir, err => {
-      // TODO 文件夹已存在处理
       if (err && err.code === 'EEXIST') {
         return false
       }

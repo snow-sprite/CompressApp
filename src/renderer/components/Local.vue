@@ -26,7 +26,6 @@
       </div>
     </label>
     <!-- result -->
-    <!-- TODO 参考tinipngy官网样式 -->
     <ul id="result-list" class="show-result" v-if="appPicsList.length > 0">
       <li class="thumb-box" v-for="(item, ind) in appPicsList" :key="ind">
         <div class="detail">
@@ -96,8 +95,6 @@ export default {
   methods: {
     dragEnterArea (e) {
       e.preventDefault()
-      // TODO not work.
-      // this.$electron.ipcRenderer.send('onDragStart')
     },
     fileUpload (e) { // 拖拽文件上传
       e.preventDefault()

@@ -18,7 +18,7 @@ var targetPath = ''
 let renderArr = []
 let caleInd = 1
 let currentInd
-// 与render进程通信{单图类型}
+// {单图类型}
 ipcMain.on('uploadSingleImgMessage', (event, fPath, globalKey) => {
   tinify.key = globalKey
   sourcePath = fPath
@@ -28,14 +28,12 @@ ipcMain.on('uploadSingleImgMessage', (event, fPath, globalKey) => {
 })
 
 function reBuildSingleImg (event, sourcePath, targetPath) {
-  // 重命名目标文件
   let realName = path.basename(sourcePath)
   let minName = `${path.basename(realName, path.extname(realName))}.min${path.extname(realName)}`
   let targetPathWithStat = `${targetPath}${path.sep}${minName}`
 
   // 页面渲染列表
   let fStat = fs.statSync(sourcePath)
-  // 这里的作用是根据后缀名称渲染不同结果
   let extname = path.extname(sourcePath).slice(1)
   if (imagesType.indexOf(extname) > -1) {
     renderArr.unshift({
@@ -72,7 +70,7 @@ function reBuildSingleImg (event, sourcePath, targetPath) {
     })
     // 重新计数，重绘图表
     event.sender.send('finishedItem', renderArr)
-    // 完成后，通知render区，做提醒
+    // 提醒
     event.sender.send('AllDone')
   })
 }
