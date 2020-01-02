@@ -1,6 +1,6 @@
 {
   "name": "compress_your_images",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "author": {
     "name": "zhiozhou@Cid",
     "email": "959418392@qq.com",
@@ -76,7 +76,6 @@
     },
     "publish": {
       "provider": "github",
-      "repo": "snow-sprite/CompressApp",
       "vPrefixedTagName": true
     }
   },
