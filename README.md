@@ -2,20 +2,25 @@
 
 > A compressed picture desktop program based on electron-vue
 
-#### 支持（在该文件夹当前目录生成）
+#### Local
 
-- [x] 单文件夹（与源文件夹目录层级一致）
-- [x] 单图片 （直接生成对应.min图片）
-- [x] 多图片 （所有图片全部生成到目标子目录下）
-- [x] 文件夹及图片 （与原目录一致）
+- [x] 单文件夹（生成到当前目录以_compressed结尾的新文件夹下，并打包zip）
+- [x] 单图片 （生成到当前图片目录下对应的.min图片）
+- [x] 文件夹及图片 （生成到当前目录以dirs_images_compressed结尾的新文件下，并打包zip）
+- [x] 多图片 （生成到当前目录以imgs_compressed结尾的新文件下，并打包zip）
+- [x] 多文件夹 （生成到当前目录以dirs_compressed结尾的新文件下，并打包zip）
+
+#### Online
+
+- [x] 仅支持有后缀的在线图片，生成到系统【下载】文件夹下
 
 #### sample graph
 
-![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/local.png)
+![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/local.min.png)
 
-![online](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/online.png)
+![online](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/online.min.png)
 
-![settings](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/settings.png)
+![settings](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/settings.min.png)
 
 #### Build Setup
 

@@ -39,28 +39,41 @@ export default {
       tinypngApiLink: 'https://tinypng.com/developers',
       keysList: [
         'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN',
-        '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
+        // '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
+        '',
         '',
         '',
         ''
       ],
-      activeKeyInd: Number(localStorage.getItem('keyInd')) || 0, // 激活的key
-      activeKey: localStorage.getItem('activeKey') || '' // 激活的key
+      activeKeyInd: '', // 激活的key
+      activeKey: '' // 激活的key
     }
   },
   mounted () {
     // 保存keysList到本地
-    localStorage.setItem('tinyKeys', JSON.stringify([]))
-    let localTinyKeys = localStorage.getItem('tinyKeys')
-    let localTinyKeysParsed = JSON.parse(localTinyKeys)
-    for (let k of this.keysList) {
-      localTinyKeysParsed.push(k)
+    // localStorage.setItem('tinyKeys', JSON.stringify([]))
+    // let localTinyKeys = localStorage.getItem('tinyKeys')
+    // let localTinyKeysParsed = JSON.parse(localTinyKeys)
+    // for (let k of this.keysList) {
+    //   localTinyKeysParsed.push(k)
+    // }
+    this.activeKeyInd = Number(localStorage.getItem('keyInd')) || 0
+    this.activeKey = localStorage.getItem('activeKey') || ''
+    if (!localStorage.getItem('tinyKeys')) {
+      localStorage.setItem('tinyKeys', JSON.stringify([]))
+      let localTinyKeys = localStorage.getItem('tinyKeys')
+      let localTinyKeysParsed = JSON.parse(localTinyKeys)
+      for (let k of this.keysList) {
+        localTinyKeysParsed.push(k)
+      }
+      localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
+    } else {
+      this.keysList = JSON.parse(localStorage.getItem('tinyKeys'))
     }
-    localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
     this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
-    if (!this.activeKeyInd) {
-      localStorage.setItem('activeKey', JSON.stringify(this.keysList[0]))
-    }
+    // if (!this.activeKeyInd) {
+    //   localStorage.setItem('activeKey', JSON.stringify(this.keysList[0]))
+    // }
   },
   methods: {
     setActiveKey (ind) {
@@ -75,7 +88,7 @@ export default {
       // 监听当前对input apikey的操作
       if (ind === this.activeKeyInd) {
         this.activeKey = this.$refs.inputs[ind].value
-        localStorage.setItem('activeKey', this.activeKey)
+        localStorage.setItem('activeKey', JSON.stringify(this.activeKey))
         this.$store.commit('setGlobalKey', this.activeKey)
       }
       this.keysList[ind] = this.$refs.inputs[ind].value

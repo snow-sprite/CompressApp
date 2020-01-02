@@ -140,20 +140,14 @@ export default {
             }
             let type
             if (Object.keys(fileObj).length > 1) {
-              // 多文件夹 + 多图片 + (其他类型文件)
+              // TODO: 根据具体需求提示错误
               // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
               // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
               type = 'dirs_images'
             } else {
               if (Object.keys(fileObj)[0] === '') {
-                // 多文件夹
-                // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单文件夹哦:(')
-                // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
                 type = 'dirs'
               } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
-                // 多图片（多文件）
-                // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '暂时仅支持单图片哦:(')
-                // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
                 type = 'imgs'
               }
             }
