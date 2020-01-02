@@ -1,6 +1,6 @@
 {
   "name": "compress_your_images",
-  "version": "0.1.9",
+  "version": "0.1.16",
   "author": {
     "name": "zhiozhou@Cid",
     "email": "959418392@qq.com",
@@ -26,7 +26,7 @@
   ],
   "main": "./dist/electron/main.js",
   "scripts": {
-    "build": "node .electron-vue/build.js && electron-builder",
+    "build": "node .electron-vue/build.js && electron-builder --publish onTag",
     "build:dir": "node .electron-vue/build.js && electron-builder --dir",
     "build:clean": "cross-env BUILD_TARGET=clean node .electron-vue/build.js",
     "build:web": "cross-env BUILD_TARGET=web node .electron-vue/build.js",
@@ -73,8 +73,17 @@
     "linux": {
       "icon": "build/icons",
       "artifactName": "${productName}_setup_${version}.${ext}"
-    }
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "vPrefixedTagName": true,
+        "host": "github.com",
+        "releaseType": "release"
+      }
+    ]
   },
+  "release": "build",
   "dependencies": {
     "axios": "^0.18.0",
     "echarts": "^4.5.0",
@@ -103,7 +112,7 @@
     "del": "^3.0.0",
     "devtron": "^1.4.0",
     "electron": "^2.0.4",
-    "electron-builder": "^20.19.2",
+    "electron-builder": "^21.2.0",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
     "eslint": "^4.19.1",

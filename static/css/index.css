@@ -57,12 +57,12 @@
 }
 .charts-loading {
   margin: 0 auto;
-  margin-top: 160px;
+  margin-top: 200px;
   width: 80%;
   height: 172px;
 }
 .charts-box {
-  margin-top: 120px;
+  margin-top: 170px;
 }
 
 .charts-loading img {
@@ -85,7 +85,7 @@
   width: 100%;
   position: absolute;
   left: 0;
-  bottom: 30px;
+  bottom: 10px;
   text-align: center;
 }
 .statement span {

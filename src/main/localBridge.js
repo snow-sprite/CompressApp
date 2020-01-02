@@ -22,7 +22,7 @@ var FINISHEDFILENUM = 0
 
 // 要渲染的被压缩图片列表
 let renderArr = []
-// 与render进程通信{多文件类型}
+// {多文件类型}
 ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle, type) => {
   tinify.key = globalKey
 
@@ -66,7 +66,7 @@ function readFPath (fPath, eventReply, isSingle, type) {
       // 压缩后的文件的路径
       let compressedTargetPath = `${targetPath}${fileTmpPath}`
 
-      // 这里的作用是根据后缀名称渲染不同结果
+      // 保存文件信息
       let extname = path.extname(path.resolve(fPath)).slice(1)
       if (imagesType.indexOf(extname) > -1) {
         renderArr.push({
@@ -101,7 +101,7 @@ function readFPath (fPath, eventReply, isSingle, type) {
               return
             }
             FINISHEDFILENUM += 1
-            // 得到压缩后文件的size和path，推到原有数组里
+            // 保存压缩后的信息
             if (imagesType.indexOf(extname) > -1) {
               fs.lstat(generatePathName, function (errDoneFile, doneFileStat) {
                 if (errDoneFile) throw errDoneFile
@@ -116,7 +116,6 @@ function readFPath (fPath, eventReply, isSingle, type) {
                 }
               })
             }
-            // TODO sync生成压缩包
             if (FILENUM === FINISHEDFILENUM) {
               let targetFileName = path.basename(targetPath)
               let newTargetPath = `${path.dirname(targetPath)}${path.sep}`
@@ -135,10 +134,9 @@ function readFPath (fPath, eventReply, isSingle, type) {
           })
     } else if (stat.isDirectory()) {
       // read dir...
-      // 前面传过来的，根据需要选择是否要遍历文件夹
+      // 遍历文件夹
       fs.readdir(fPath, function (errDir, files) {
         if (errDir) throw errDir
-        // 同步生成目标目录
         walkDir(fPath, sourcePath, targetPath)
         for (let file of files) {
           readFPath(path.join(fPath, file), eventReply, isSingle, type)
@@ -148,9 +146,8 @@ function readFPath (fPath, eventReply, isSingle, type) {
   })
 }
 
-// 重构目标目录
+// comprese image..重构目标目录
 function compresePic (event, sPath, isSingle, type) {
-  // comprese image..
   try {
     fs.access(targetPath, fs.constants.F_OK, err => {
       // if there's not a target dir, make it first.
@@ -169,11 +166,9 @@ function compresePic (event, sPath, isSingle, type) {
 
 // 重构目标文件
 function rebuildTarget (target, sPath, event, isSingle, type) {
-  // 这两行是初始化列表
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
-  // 如果是全图片 则不清空压缩文件夹
   if (type !== 'imgs') reBuildDir(target)
   readFPath(sPath, event, isSingle, type)
 }
