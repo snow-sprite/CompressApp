@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import fs from 'fs'
 import { validityApi } from '../lib/validate'
 import { mapState } from 'vuex'
 export default {
@@ -117,12 +118,24 @@ export default {
             this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
           }, 2000)
           if (fileDataPath.length === 1) {
-            // 单张图 || 单个文件夹
-            if (/^image/gi.test(fileDataPath[0].type)) {
-            // 这里做个区分 单张图执行以下
-              this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey, this.isSingle)
-            } else if (!/^image/gi.test(fileDataPath[0].type) && fileDataPath[0].type === '') {
-            // 单个文件夹执行以下
+            let fileStat = fs.lstatSync(fileDataPath[0].path)
+            if (fileStat.isFile()) {
+              // 文件
+              if (/^image/gi.test(fileDataPath[0].type)) {
+                // 支持的图片格式
+                this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey, this.isSingle)
+              } else {
+                // 不支持的格式
+                this.$store.commit('SET_GLOBAL_LOAING_TEXT', '请上传合法的图片文件:（')
+                this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+                setTimeout(_ => {
+                  this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
+                  this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
+                  this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
+                }, 2000)
+              }
+            } else {
+            // 文件夹
               for (let f of fileDataPath) {
                 let filePath = f.path
                 this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle)
@@ -155,6 +168,7 @@ export default {
           }
         })
         .catch(err => {
+          console.log(100, err)
           this.$store.commit('SET_GLOBAL_LOAING_TEXT',
             `verification failed with code:${err.status}`
           )
