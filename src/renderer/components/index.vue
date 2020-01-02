@@ -20,9 +20,9 @@
         <div id="charts" class="charts"></div>
       </div>
       <p class="statement">
-        <span>Compress and generate</span>
+        <span>smaller and faster</span>
       </p>
-      <i class="copyright">&copy;zhiozhou@Cid</i>
+      <!-- <i class="copyright">&copy;zhiozhou@Cid</i> -->
     </ul>
     <div class="content">
       <Local v-show="activeNavInd === 0"/>
@@ -104,7 +104,7 @@
         let pieCharts = this.$echarts.init(document.getElementById('charts'))
         let options = {
           title: {
-            show: true,
+            show: false,
             text: 'Usage of 500 pictures',
             textStyle: {
               color: '#cdd0d5',
