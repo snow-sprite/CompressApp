@@ -17,7 +17,7 @@ import util from './lib'
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-electron-builder.html#auto-updating
  */
 
-import { autoUpdater } from 'electron-updater'
+// import { autoUpdater } from 'electron-updater'
 
 /**
  * Set `__static` path to static files in production
@@ -84,12 +84,12 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'production') autoUpdater.checkForUpdates()
 })
 */
-autoUpdater.setFeedURL({
-  provider: 'github',
-  url: 'https://github.com/snow-sprite/CompressApp'
-})
+// autoUpdater.setFeedURL({
+//   provider: 'github',
+//   url: 'https://github.com/snow-sprite/CompressApp'
+// })
 
-autoUpdater.on('update-available', function (info) {
-  console.log(1, info)
-  console.log('Update available.')
-})
+// autoUpdater.on('update-available', function (info) {
+//   console.log(1, info)
+//   console.log('Update available.')
+// })

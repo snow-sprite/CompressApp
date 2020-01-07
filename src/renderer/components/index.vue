@@ -20,7 +20,7 @@
         <div id="charts" class="charts"></div>
       </div>
       <p class="statement">
-        <span>smaller and faster</span>
+        <span>Smaller build size</span>
       </p>
       <!-- <i class="copyright">&copy;zhiozhou@Cid</i> -->
     </ul>

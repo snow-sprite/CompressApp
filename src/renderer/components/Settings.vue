@@ -3,7 +3,7 @@
   <div class="settings-content">
       <div class="set-title">
         <span>Set your Api keys here</span>
-        <div class="set-apikey-text" @click="openExternal">去获取Apikey..</div>
+        <div class="set-apikey-text" @click="openExternal">Get more Apikey..</div>
       </div>
     <div class="api-keys-list">
       <div class="api-key" v-for="(apiKey, ind) in keysList" :key="ind">
