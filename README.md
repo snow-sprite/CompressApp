@@ -2,6 +2,8 @@
 
 > A compressed picture desktop program based on electron-vue
 
+Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
+
 #### Local
 
 - [x] 单文件夹（生成到当前目录以_compressed结尾的新文件夹下，并打包zip）
