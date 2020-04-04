@@ -1,5 +1,6 @@
-import createTray from './tray'
+import {createTray, destroyTray} from './tray'
 
 export default {
-  createTray
+  createTray,
+  destroyTray
 }
