@@ -1,14 +1,22 @@
 'use strict'
 
-import { app, BrowserWindow } from 'electron'
+import {
+  app,
+  BrowserWindow,
+  Menu,
+  Tray,
+  dialog,
+  shell
+} from 'electron'
+import path from 'path'
+import pkg from '../../package.json'
+
 // Local
 import './localBridge'
 import './localSingleBridge'
 
 // Online
 import './onlineBridge'
-import util from './lib'
-
 /**
  * Auto Updater
  *
@@ -32,6 +40,37 @@ const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
+const BugsIssues = 'https://github.com/snow-sprite/CompressApp/issues'
+// 自定义任务栏
+const contextMenu = Menu.buildFromTemplate([{
+  label: 'Reload',
+  role: 'reload'
+}, {
+  label: 'About',
+  type: 'normal',
+  toolTip: 'about',
+  click: () => {
+    dialog.showMessageBox({
+      type: 'info',
+      title: 'About',
+      message: `
+        ${pkg.description}\n
+        version: ${pkg.version}\n
+        ${pkg.author.name}<${pkg.author.email}>`
+    })
+    // process.exit()
+  }
+}, {
+  label: 'Bugs Report',
+  type: 'normal',
+  click: () => {
+    shell.openExternal(BugsIssues)
+  }
+}, {
+  label: 'Quit',
+  role: 'quit'
+}])
+
 function createWindow () {
   /**
    * Initial window options
@@ -49,9 +88,10 @@ function createWindow () {
 
   mainWindow.loadURL(winURL)
 
-  mainWindow.on('closed', () => {
-    mainWindow = null
-    // taryIcon.destroy()
+  mainWindow.on('closed', e => {
+    // mainWindow = null
+    mainWindow.hide()
+    e.returnValue = false
   })
 
   mainWindow.on('ready-to-show', () => {
@@ -61,7 +101,14 @@ function createWindow () {
 
 app.on('ready', () => {
   createWindow()
-  util.createTray()
+  const trayIcon = new Tray(path.join(__static, './tray/18x18.png'))
+  trayIcon.on('right-click', () => {
+    trayIcon.popUpContextMenu(contextMenu)
+  })
+  trayIcon.on('click', () => {
+    mainWindow.show()
+    mainWindow.focus()
+  })
 })
 
 app.on('window-all-closed', () => {
@@ -75,6 +122,7 @@ app.on('activate', () => {
     createWindow()
   }
 })
+
 /*
 autoUpdater.on('update-downloaded', () => {
   autoUpdater.quitAndInstall()

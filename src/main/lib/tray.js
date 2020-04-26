@@ -7,10 +7,11 @@ import {
 import path from 'path'
 import pkg from '../../../package.json'
 
-function createTray () {
+let taryIcon
+const createTray = function () {
   const BugsIssues = 'https://github.com/snow-sprite/CompressApp/issues'
   // 自定义任务栏
-  const taryIcon = new Tray(path.join(__static, './tray/18x18.png'))
+  taryIcon = new Tray(path.join(__static, './tray/18x18.png'))
   const contextMenu = Menu.buildFromTemplate([{
     label: 'Reload',
     role: 'reload'
@@ -39,9 +40,17 @@ function createTray () {
     label: 'Quit',
     role: 'quit'
   }])
-  taryIcon.on('click', () => {
+
+  taryIcon.on('right-click', () => {
     taryIcon.popUpContextMenu(contextMenu)
   })
 }
 
-export default createTray
+const destryTray = function () {
+  taryIcon && taryIcon.destroy()
+}
+
+export {
+  createTray,
+  destryTray
+}
