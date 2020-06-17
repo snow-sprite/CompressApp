@@ -4,10 +4,12 @@ import App from './App'
 import router from './router'
 import store from './store'
 import echarts from 'echarts'
+import Element from 'element-ui'
 
 // css样式(由于项目初期使用原生js开发，所以css没有分离)
 import '../../static/css/master.css'
 import '../../static/css/index.css'
+import 'element-ui/lib/theme-chalk/index.css'
 
 // mixins
 import {
@@ -21,6 +23,7 @@ Object.keys(filters).forEach(fil => {
   Vue.filter(fil, filters[fil])
 })
 
+Vue.use(Element)
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.config.productionTip = false
 

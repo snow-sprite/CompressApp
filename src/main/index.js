@@ -6,11 +6,15 @@ import {
   Menu,
   Tray,
   dialog,
-  shell
+  shell,
+  ipcMain
 } from 'electron'
 import path from 'path'
 import pkg from '../../package.json'
-
+import {
+  updateHandleByDefault,
+  updateHandleByRoot
+} from '../renderer/lib/updater'
 // Local
 import './localBridge'
 import './localSingleBridge'
@@ -96,6 +100,14 @@ function createWindow () {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+
+    // 检测更新设置
+    let feedUrl = pkg.build.publish[0].url
+    updateHandleByDefault(mainWindow, feedUrl)
+
+    ipcMain.on('checkForUpdateByRoot', (event) => {
+      updateHandleByRoot(mainWindow, feedUrl)
+    })
   })
 }
 

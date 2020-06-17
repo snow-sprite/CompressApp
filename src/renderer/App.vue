@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'CompressYourImages'
-  }
+export default {
+  name: 'CompressYourImages'
+}
 </script>
 <style>
   /* CSS */

@@ -43,124 +43,232 @@
         <div class="loading-text">{{ globalLoadingText }}</div>
       </div>
     </div>
+    <!-- 更新消息框 -->
+    <el-dialog
+      title="提示"
+      width="400px"
+      :visible.sync="msgDialogVisible"
+      center
+      top="30vh"
+      :showClose="false"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      >
+      <span>检测到有最新版本<span style="font-size: 18px;font-weight: 600;color: yellowgreen;">{{ this.targetObj.version || '' }}</span>，是否需要更新？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="msgDialogVisible = false">No</el-button>
+        <el-button type="primary" @click="updateByRoot()">Yes</el-button>
+      </span>
+    </el-dialog>
+    <!-- 更新失败弹窗 -->
+    <el-dialog
+      title="提示"
+      width="400px"
+      :visible.sync="errorDialogVisible"
+      center
+      top="30vh"
+      :showClose="false"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      >
+      <span>{{ this.badTargetObj.message || '检查到更新出错' }}，是否需要重试？</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="errorDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="updateByRoot()">Retry</el-button>
+      </span>
+    </el-dialog>
+    <!-- 更新进度条 -->
+    <!-- <el-dialog
+      title="正在更新新版本,请稍候..."
+      :visible.sync="dialogVisible"
+      width="60%"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :showClose="false"
+      center
+    >
+      <div style="width:100%;height:20vh;line-height:20vh;text-align:center">
+        <el-progress
+          status="success"
+          :text-inside="true"
+          :stroke-width="20"
+          :percentage="percentage"
+          :width="strokeWidth"
+          :show-text="true"
+        ></el-progress>
+      </div>
+    </el-dialog> -->
   </div>
 </template>
 
 <script>
-  import Local from '@/components/Local'
-  import Online from '@/components/Online'
-  import Settings from '@/components/Settings'
-  import { mapState } from 'vuex'
-  export default {
-    name: 'CompressYourImages',
-    data () {
-      return {
-        activeNavInd: 0, // 激活的nav
-        navList: [{
-          name: 'Local'
-        }, {
-          name: 'Online'
-        }, {
-          name: 'Settings'
-        }]
-      }
-    },
-    computed: {
-      ...mapState({
-        count: state => state.Counter.count,
-        globalKey: state => state.Settings.globalKey,
-        isShowGlobalLoading: state => state.GlobalSettings.isShowGlobalLoading,
-        globalLoadingText: state => state.GlobalSettings.globalLoadingText,
-        isShowGlobalErrorBox: state => state.GlobalSettings.isShowGlobalErrorBox
-      })
-    },
-    components: {
-      Local,
-      Online,
-      Settings
-    },
-    mounted () {
-      // 获取当前apikey下载量
-      this.getCompressedCount()
-      // 设置apicount值
-      this.listenCount()
-    },
-    watch: {
-      count (newV, oldV) {
-        // 设置图表
-        if (newV) {
-          this.setPieCharts()
-        }
-      }
-    },
-    methods: {
-      jumpMap (ind) {
-        this.activeNavInd = ind
-      },
-      getCompressedCount () {
-        this.$store.dispatch('getCompressedCount', this.globalKey)
-      },
-      setPieCharts () {
-        let pieCharts = this.$echarts.init(document.getElementById('charts'))
-        let options = {
-          title: {
-            show: false,
-            text: 'Usage of 500 pictures',
-            textStyle: {
-              color: '#cdd0d5',
-              fontSize: 16,
-              fontWeight: 400
-            },
-            x: 'center',
-            y: 'bottom'
-          },
-          series: [{
-            type: 'pie',
-            radius: '80%',
-            center: ['50%', '50%'],
-            selectedMode: 'single',
-            label: {
-              normal: {
-                position: 'inner',
-                formatter: '{b}({c}): {d}%'
-              }
-            },
-            labelLine: {
-              normal: {
-                show: false
-              }
-            },
-            data: [
-              {value: this.count, name: 'used', selected: true},
-              {value: 500 - this.count, name: 'unused'}
-            ]
-          }],
-          color: [new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
-            offset: 0,
-            color: 'rgb(255, 255, 255)'
-          }, {
-            offset: 1,
-            color: 'rgb(251, 118, 123)'
-          }]),
-          new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
-            offset: 0,
-            color: 'rgb(155, 155, 255)'
-          }, {
-            offset: 1,
-            color: 'rgb(129, 227, 238)'
-          }])]
-        }
-        pieCharts.setOption(options)
-      },
-      listenCount () {
-        this.$electron.ipcRenderer.on('rebuildCount', (event, data) => {
-          if (data) {
-            this.$store.dispatch('getCompressedCount', this.globalKey)
-          }
-        })
+// import { updateHandle } from '../lib/updater'
+import Local from '@/components/Local'
+import Online from '@/components/Online'
+import Settings from '@/components/Settings'
+import { mapState } from 'vuex'
+export default {
+  name: 'CompressYourImages',
+  data () {
+    return {
+      activeNavInd: 0, // 激活的nav
+      navList: [{
+        name: 'Local'
+      }, {
+        name: 'Online'
+      }, {
+        name: 'Settings'
+      }],
+      msgDialogVisible: false, // 消息框是否显示
+      errorDialogVisible: false, // 更新错误弹窗是否显示
+      percentage: 0,
+      strokeWidth: 200,
+      timer: null,
+      // 更新文件信息
+      targetObj: {},
+      // 更新失败信息
+      badTargetObj: {}
+    }
+  },
+  computed: {
+    ...mapState({
+      count: state => state.Counter.count,
+      globalKey: state => state.Settings.globalKey,
+      isShowGlobalLoading: state => state.GlobalSettings.isShowGlobalLoading,
+      globalLoadingText: state => state.GlobalSettings.globalLoadingText,
+      isShowGlobalErrorBox: state => state.GlobalSettings.isShowGlobalErrorBox
+    })
+  },
+  components: {
+    Local,
+    Online,
+    Settings
+  },
+  watch: {
+    count (newV, oldV) {
+      // 设置图表
+      if (newV) {
+        this.setPieCharts()
       }
     }
+  },
+  methods: {
+    jumpMap (ind) {
+      this.activeNavInd = ind
+    },
+    getCompressedCount () {
+      this.$store.dispatch('getCompressedCount', this.globalKey)
+    },
+    setPieCharts () {
+      let pieCharts = this.$echarts.init(document.getElementById('charts'))
+      let options = {
+        title: {
+          show: false,
+          text: 'Usage of 500 pictures',
+          textStyle: {
+            color: '#cdd0d5',
+            fontSize: 16,
+            fontWeight: 400
+          },
+          x: 'center',
+          y: 'bottom'
+        },
+        series: [{
+          type: 'pie',
+          radius: '80%',
+          center: ['50%', '50%'],
+          selectedMode: 'single',
+          label: {
+            normal: {
+              position: 'inner',
+              formatter: '{b}({c}): {d}%'
+            }
+          },
+          labelLine: {
+            normal: {
+              show: false
+            }
+          },
+          data: [
+            {value: this.count, name: 'used', selected: true},
+            {value: 500 - this.count, name: 'unused'}
+          ]
+        }],
+        color: [new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
+          offset: 0,
+          color: 'rgb(255, 255, 255)'
+        }, {
+          offset: 1,
+          color: 'rgb(251, 118, 123)'
+        }]),
+        new this.$echarts.graphic.RadialGradient(0.5, 0.5, 1, [{
+          offset: 0,
+          color: 'rgb(155, 155, 255)'
+        }, {
+          offset: 1,
+          color: 'rgb(129, 227, 238)'
+        }])]
+      }
+      pieCharts.setOption(options)
+    },
+    listenCount () {
+      // 计算当前账号所已使用的压缩数量
+      this.$electron.ipcRenderer.on('rebuildCount', (event, data) => {
+        if (data) {
+          this.$store.dispatch('getCompressedCount', this.globalKey)
+        }
+      })
+    },
+    checkForUpdate () {
+      this.timer && clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.$electron.ipcRenderer.send('checkForUpdateByDefault')
+      }, 5000)
+    },
+    listenUpdateEvent () {
+      this.$electron.ipcRenderer.on('message', (event, arg) => {
+        console.log(1, arg)
+        switch (arg.cmd) {
+          case 'update-available':
+            this.msgDialogVisible = true
+            this.targetObj = { ...arg.message }
+            break
+          case 'download-progress':
+            let percent = Math.floor(arg.message.percent)
+            this.percentage = percent
+            console.log('this.per', this.percentage)
+            break
+          case 'error':
+            this.msgDialogVisible = false
+            this.errorDialogVisible = true
+            this.badTargetObj = { ...arg }
+            break
+          default:
+            this.msgDialogVisible = false
+        }
+      })
+    },
+    updateByRoot () {
+      this.msgDialogVisible = false
+      this.errorDialogVisible = false
+      // 主动触发更新机制
+      this.$electron.ipcRenderer.send('checkForUpdateByRoot')
+    }
+  },
+  mounted () {
+    // 主动去连接更新 20秒后开始检测新版本
+    this.checkForUpdate()
+    // 接收主进程版本更新消息
+    this.listenUpdateEvent()
+    // 获取当前apikey下载量
+    this.getCompressedCount()
+    // 设置apicount值
+    this.listenCount()
+  },
+  beforeDestroy () {
+    clearTimeout(this.timer)
   }
+}
 </script>
 
 <style>

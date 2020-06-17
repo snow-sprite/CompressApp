@@ -1,6 +1,6 @@
 {
   "name": "compress_your_images",
-  "version": "0.1.20",
+  "version": "4.2.12",
   "author": {
     "name": "zhiozhou@Cid",
     "email": "959418392@qq.com",
@@ -68,7 +68,14 @@
     },
     "win": {
       "icon": "build/icons/icon.ico",
-      "artifactName": "${productName}_setup_${version}.${ext}"
+      "artifactName": "${productName}_setup_${version}.${ext}",
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": "false",
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "createDesktopShortcut": true
     },
     "linux": {
       "icon": "build/icons",
@@ -76,10 +83,8 @@
     },
     "publish": [
       {
-        "provider": "github",
-        "vPrefixedTagName": true,
-        "host": "github.com",
-        "releaseType": "release"
+        "provider": "generic",
+        "url": "http://server.zhiozhou.top/"
       }
     ]
   },
@@ -92,7 +97,8 @@
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "element-ui": "^2.13.2"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
@@ -111,7 +117,7 @@
     "css-loader": "^0.28.11",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron": "^2.0.4",
+    "electron": "^4.0.1",
     "electron-builder": "^21.2.0",
     "electron-debug": "^1.5.0",
     "electron-devtools-installer": "^2.2.4",
