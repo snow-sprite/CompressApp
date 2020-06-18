@@ -68,7 +68,7 @@ const contextMenu = Menu.buildFromTemplate([{
   label: 'Bugs Report',
   type: 'normal',
   click: () => {
-    shell.openExternal(BugsIssues)
+    if (shell) shell.openExternal(BugsIssues)
   }
 }, {
   label: 'Quit',
@@ -103,10 +103,10 @@ function createWindow () {
 
     // 检测更新设置
     let feedUrl = pkg.build.publish[0].url
-    updateHandleByDefault(mainWindow, feedUrl)
-
+    if (mainWindow) updateHandleByDefault(mainWindow, feedUrl)
+    // 手动检测更新
     ipcMain.on('checkForUpdateByRoot', (event) => {
-      updateHandleByRoot(mainWindow, feedUrl)
+      if (mainWindow) updateHandleByRoot(mainWindow, feedUrl)
     })
   })
 }
@@ -123,15 +123,15 @@ app.on('ready', () => {
   })
 })
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
-
 app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
+  }
+})
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
   }
 })
 

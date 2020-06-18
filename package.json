@@ -1,6 +1,6 @@
 {
   "name": "compress_your_images",
-  "version": "4.2.12",
+  "version": "0.1.20",
   "author": {
     "name": "zhiozhou@Cid",
     "email": "959418392@qq.com",
@@ -39,7 +39,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "Compress your images",
+    "productName": "compress_your_images",
     "appId": "com.compress.zhiozhou",
     "directories": {
       "output": "build"

@@ -46,7 +46,7 @@
     <!-- 更新消息框 -->
     <el-dialog
       title="提示"
-      width="400px"
+      width="200px"
       :visible.sync="msgDialogVisible"
       center
       top="30vh"
@@ -54,16 +54,20 @@
       :close-on-click-modal="false"
       :close-on-press-escape="false"
       >
-      <span>检测到有最新版本<span style="font-size: 18px;font-weight: 600;color: yellowgreen;">{{ this.targetObj.version || '' }}</span>，是否需要更新？</span>
+      <div>
+        <p style="text-align: center;"><span>检测到有最新版本</span></p>
+        <p style="text-align: center;"><span style="font-size: 18px;font-weight: 600;color: yellowgreen;">v{{ this.targetObj.version || '1.20.3' }}</span></p>
+        <p style="text-align: center;">是否需要更新？</p>
+      </div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="msgDialogVisible = false">No</el-button>
-        <el-button type="primary" @click="updateByRoot()">Yes</el-button>
+        <el-button size="small" @click="msgDialogVisible = false">No</el-button>
+        <el-button size="small" type="primary" @click="updateByRoot()">Yes</el-button>
       </span>
     </el-dialog>
     <!-- 更新失败弹窗 -->
     <el-dialog
       title="提示"
-      width="400px"
+      width="200px"
       :visible.sync="errorDialogVisible"
       center
       top="30vh"
@@ -71,33 +75,34 @@
       :close-on-click-modal="false"
       :close-on-press-escape="false"
       >
-      <span>{{ this.badTargetObj.message || '检查到更新出错' }}，是否需要重试？</span>
+      <p style="text-align:center;"><span>{{ this.badTargetObj.message || '检测到更新出错: (' }}</span></p>
+      <p style="text-align:center;"><span>是否需要重试？</span></p>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="errorDialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="updateByRoot()">Retry</el-button>
+        <el-button size="small" @click="errorDialogVisible = false">Cancel</el-button>
+        <el-button size="small" type="primary" @click="updateByRoot()">Retry</el-button>
       </span>
     </el-dialog>
     <!-- 更新进度条 -->
-    <!-- <el-dialog
-      title="正在更新新版本,请稍候..."
-      :visible.sync="dialogVisible"
-      width="60%"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-      :showClose="false"
-      center
-    >
-      <div style="width:100%;height:20vh;line-height:20vh;text-align:center">
-        <el-progress
-          status="success"
-          :text-inside="true"
-          :stroke-width="20"
-          :percentage="percentage"
-          :width="strokeWidth"
-          :show-text="true"
-        ></el-progress>
-      </div>
-    </el-dialog> -->
+    <div class="updating-box">
+      <el-dialog
+        title="更新中..."
+        :visible.sync="refreshDialogVisible"
+        width="200px"
+        top="30vh"
+        :close-on-click-modal="false"
+        :close-on-press-escape="false"
+        :showClose="false"
+        center
+      >
+        <div style="width:100%;height:20vh;line-height:20vh;text-align:center">
+          <el-progress
+            type="circle"
+            :percentage="percentage"
+            :width="strokeWidth"
+          ></el-progress>
+        </div>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -119,15 +124,17 @@ export default {
       }, {
         name: 'Settings'
       }],
-      msgDialogVisible: false, // 消息框是否显示
-      errorDialogVisible: false, // 更新错误弹窗是否显示
+      msgDialogVisible: false, // 消息框显隐
+      errorDialogVisible: false, // 更新错误弹窗显隐
+      refreshDialogVisible: false, // 更新进度条弹窗显隐
       percentage: 0,
-      strokeWidth: 200,
+      strokeWidth: 100,
       timer: null,
       // 更新文件信息
       targetObj: {},
       // 更新失败信息
-      badTargetObj: {}
+      badTargetObj: {},
+      timing: 2000
     }
   },
   computed: {
@@ -223,11 +230,10 @@ export default {
       this.timer && clearTimeout(this.timer)
       this.timer = setTimeout(() => {
         this.$electron.ipcRenderer.send('checkForUpdateByDefault')
-      }, 5000)
+      }, this.timing)
     },
     listenUpdateEvent () {
       this.$electron.ipcRenderer.on('message', (event, arg) => {
-        console.log(1, arg)
         switch (arg.cmd) {
           case 'update-available':
             this.msgDialogVisible = true
@@ -236,7 +242,7 @@ export default {
           case 'download-progress':
             let percent = Math.floor(arg.message.percent)
             this.percentage = percent
-            console.log('this.per', this.percentage)
+            this.refreshDialogVisible = true
             break
           case 'error':
             this.msgDialogVisible = false
@@ -245,6 +251,8 @@ export default {
             break
           default:
             this.msgDialogVisible = false
+            this.errorDialogVisible = false
+            this.refreshDialogVisible = false
         }
       })
     },
@@ -256,7 +264,7 @@ export default {
     }
   },
   mounted () {
-    // 主动去连接更新 20秒后开始检测新版本
+    // 主动去连接更新 5秒后开始检测新版本
     this.checkForUpdate()
     // 接收主进程版本更新消息
     this.listenUpdateEvent()
@@ -344,4 +352,14 @@ export default {
         transform: rotate(1turn);
     }
 }
+.el-dialog { background: lightcyan; }
+
+/* 更新中弹窗 */
+.updating-box .el-dialog {
+  background: none;
+  box-shadow: none;
+  border: 0;
+}
+.updating-box .el-dialog__title { color: #fff; }
+.updating-box .el-progress__text { color: yellowgreen; }
 </style>

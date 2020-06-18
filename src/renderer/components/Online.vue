@@ -75,7 +75,7 @@ export default {
         })
         .catch(err => {
           this.$store.commit('SET_GLOBAL_LOAING_TEXT',
-            `verification failed with code:${err.status} :(`
+            `verification failed with code:${err.status} : (`
           )
           this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
           setTimeout(_ => {
