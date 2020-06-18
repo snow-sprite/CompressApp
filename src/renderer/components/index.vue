@@ -273,7 +273,7 @@ export default {
     // 设置apicount值
     this.listenCount()
   },
-  beforeDestroy () {
+  destroyed () {
     clearTimeout(this.timer)
   }
 }

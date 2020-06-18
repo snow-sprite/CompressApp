@@ -93,8 +93,9 @@ function createWindow () {
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', e => {
-    // mainWindow = null
-    mainWindow.hide()
+    // TODO 由于新添加的autoUpdater机制 mainWindow在关闭时已被销毁 不能托盘显示
+    // mainWindow && mainWindow.hide()
+    mainWindow = null
     e.returnValue = false
   })
 

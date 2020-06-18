@@ -39,7 +39,7 @@
     "postinstall": "npm run lint:fix"
   },
   "build": {
-    "productName": "compress_your_images",
+    "productName": "Compress your images",
     "appId": "com.compress.zhiozhou",
     "directories": {
       "output": "build"
@@ -75,7 +75,8 @@
       "oneClick": "false",
       "allowToChangeInstallationDirectory": true,
       "allowElevation": true,
-      "createDesktopShortcut": true
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     },
     "linux": {
       "icon": "build/icons",
