@@ -63,11 +63,11 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns",
+      "icon": "static/icons/mac/256x256.icns",
       "artifactName": "${productName}_setup_${version}.${ext}"
     },
     "win": {
-      "icon": "build/icons/icon.ico",
+      "icon": "static/icons/windows/256x256.ico",
       "artifactName": "${productName}_setup_${version}.${ext}",
       "target": "nsis"
     },
@@ -75,8 +75,11 @@
       "oneClick": "false",
       "allowToChangeInstallationDirectory": true,
       "allowElevation": true,
+      "installerHeaderIcon": "static/icons/windows/16x16.ico",
+      "installerIcon": "static/icons/windows/32x32.ico",
       "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
+      "createStartMenuShortcut": true,
+      "license": "LICENSE.txt"
     },
     "linux": {
       "icon": "build/icons",
