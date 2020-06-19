@@ -20,7 +20,7 @@
         <div id="charts" class="charts"></div>
       </div>
       <p class="statement">
-        <span>Smaller build size</span>
+        <span>v{{ version }}</span>
       </p>
       <!-- <i class="copyright">&copy;zhiozhou@Cid</i> -->
     </ul>
@@ -107,7 +107,7 @@
 </template>
 
 <script>
-// import { updateHandle } from '../lib/updater'
+import pkg from '../../../package.json'
 import Local from '@/components/Local'
 import Online from '@/components/Online'
 import Settings from '@/components/Settings'
@@ -124,6 +124,7 @@ export default {
       }, {
         name: 'Settings'
       }],
+      version: '', // 当前版本
       msgDialogVisible: false, // 消息框显隐
       errorDialogVisible: false, // 更新错误弹窗显隐
       refreshDialogVisible: false, // 更新进度条弹窗显隐
@@ -134,7 +135,7 @@ export default {
       targetObj: {},
       // 更新失败信息
       badTargetObj: {},
-      timing: 2000
+      timing: 2000 // 检测更新的延时时间
     }
   },
   computed: {
@@ -264,6 +265,7 @@ export default {
     }
   },
   mounted () {
+    this.version = pkg.version
     // 主动去连接更新 5秒后开始检测新版本
     this.checkForUpdate()
     // 接收主进程版本更新消息

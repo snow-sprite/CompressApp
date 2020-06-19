@@ -18,11 +18,11 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 
 #### sample graph
 
-![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/local.min.png)
+![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/local.min.png)
 
-![online](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/online.min.png)
+![online](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/online.min.png)
 
-![settings](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/build/demo/settings.min.png)
+![settings](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/settings.min.png)
 
 #### Build Setup
 
@@ -40,8 +40,4 @@ npm run build
 npm run build:clean && npm run build
 
 ```
-
-#### demo (download the app then run build)
-> CompressApp/build/mac/Compress your images.app
-
 ---

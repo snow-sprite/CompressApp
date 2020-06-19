@@ -12,7 +12,7 @@ let trayIcon
 export function createTray () {
   const BugsIssues = 'https://github.com/snow-sprite/CompressApp/issues'
   // 自定义任务栏
-  trayIcon = new Tray(path.join(__static, './tray/18x18.png'))
+  trayIcon = new Tray(path.join(__static, './tray/32x32.ico'))
   const contextMenu = Menu.buildFromTemplate([{
     label: 'Reload',
     role: 'reload'
