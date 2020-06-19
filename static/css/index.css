@@ -588,3 +588,18 @@ input::-ms-input-placeholder {
   color: #ccc;
 }
 /*-------- change-default-placeholder-color*/
+
+/* 更新信息字体 */
+.update-info-box {
+  border: 1px solid #d5fbd5;
+  background: #d5fbd5;
+  border-radius: 5px;
+}
+.update-info {
+  font-size: 12px;
+  padding: 0 10px;
+}
+.el-dialog--center .el-dialog__body { 
+  padding: 10px 25px 10px !important;
+  line-height: 25px;
+}

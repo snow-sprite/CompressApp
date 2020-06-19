@@ -20,7 +20,7 @@
         <div id="charts" class="charts"></div>
       </div>
       <p class="statement">
-        <span>v{{ version }}</span>
+        <span>{{ app.build && app.build.productName}} v{{ app.version }}</span>
       </p>
       <!-- <i class="copyright">&copy;zhiozhou@Cid</i> -->
     </ul>
@@ -45,8 +45,8 @@
     </div>
     <!-- 更新消息框 -->
     <el-dialog
-      title="提示"
-      width="200px"
+      title="提示╰(*°▽°*)╯"
+      width="300px"
       :visible.sync="msgDialogVisible"
       center
       top="30vh"
@@ -55,9 +55,10 @@
       :close-on-press-escape="false"
       >
       <div>
-        <p style="text-align: center;"><span>检测到有最新版本</span></p>
-        <p style="text-align: center;"><span style="font-size: 18px;font-weight: 600;color: yellowgreen;">v{{ this.targetObj.version || '1.20.3' }}</span></p>
-        <p style="text-align: center;">是否需要更新？</p>
+        <p style="font-weight: 700;"><span>检测到新版本</span><span style="font-size: 18px;font-weight: 600;color: yellowgreen;">v{{ this.targetObj.version || '1.20.3' }}</span><span>，是否更新？</span></p>
+        <ul class="update-info-box">
+          <li class="update-info" v-for="(item, ind) in updateInfo" :key="ind">{{ item }}</li>
+        </ul>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="msgDialogVisible = false">No</el-button>
@@ -66,8 +67,8 @@
     </el-dialog>
     <!-- 更新失败弹窗 -->
     <el-dialog
-      title="提示"
-      width="200px"
+      title='提示Σ(⊙▽⊙"a'
+      width="300px"
       :visible.sync="errorDialogVisible"
       center
       top="30vh"
@@ -75,8 +76,7 @@
       :close-on-click-modal="false"
       :close-on-press-escape="false"
       >
-      <p style="text-align:center;"><span>{{ this.badTargetObj.message || '检测到更新出错: (' }}</span></p>
-      <p style="text-align:center;"><span>是否需要重试？</span></p>
+      <p style="text-align:center;"><span>{{ this.badTargetObj.message || '检测到更新出错 : (' }}，是否需要重试？</span></p>
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="errorDialogVisible = false">Cancel</el-button>
         <el-button size="small" type="primary" @click="updateByRoot()">Retry</el-button>
@@ -112,6 +112,8 @@ import Local from '@/components/Local'
 import Online from '@/components/Online'
 import Settings from '@/components/Settings'
 import { mapState } from 'vuex'
+import updateInfo from '../../../updateInfo.json'
+
 export default {
   name: 'CompressYourImages',
   data () {
@@ -124,7 +126,8 @@ export default {
       }, {
         name: 'Settings'
       }],
-      version: '', // 当前版本
+      app: {}, // 项目名 & 版本
+      updateInfo: ['暂无更新介绍'], // 更新信息
       msgDialogVisible: false, // 消息框显隐
       errorDialogVisible: false, // 更新错误弹窗显隐
       refreshDialogVisible: false, // 更新进度条弹窗显隐
@@ -227,6 +230,12 @@ export default {
         }
       })
     },
+    setUpdateInfo () {
+      if (Object.keys(updateInfo).length > 0) this.updateInfo.pop()
+      Object.keys(updateInfo).forEach((key, ind) => {
+        this.updateInfo.push(`${ind + 1}：${updateInfo[key]}`)
+      })
+    },
     checkForUpdate () {
       this.timer && clearTimeout(this.timer)
       this.timer = setTimeout(() => {
@@ -265,7 +274,8 @@ export default {
     }
   },
   mounted () {
-    this.version = pkg.version
+    this.app = { ...pkg }
+    this.setUpdateInfo()
     // 主动去连接更新 5秒后开始检测新版本
     this.checkForUpdate()
     // 接收主进程版本更新消息
