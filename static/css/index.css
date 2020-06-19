@@ -80,7 +80,7 @@
 .statement span {
   display: block;
   width: 100%;
-  font-size: 18px;
+  font-size: 14px;
   color: #666;
 }
 .copyright {
@@ -94,7 +94,7 @@
   bottom: 8px;
   text-align: center;
 }
-.statement:hover {
+.statement span:hover {
   background-image: -webkit-linear-gradient(left, #cddc39, #e67e22 25%, #cddc39 50%, #e67e22 75%, #cddc39) !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
