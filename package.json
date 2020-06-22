@@ -88,7 +88,7 @@
     "publish": [
       {
         "provider": "generic",
-        "url": "http://server.zhiozhou.top/"
+        "url": "http://download.zhiozhou.top/"
       }
     ]
   },
