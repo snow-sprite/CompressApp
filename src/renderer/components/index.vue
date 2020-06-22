@@ -128,7 +128,7 @@ export default {
       }],
       app: {}, // 项目名 & 版本
       updateInfo: [], // 更新信息
-      msgDialogVisible: true, // 消息框显隐
+      msgDialogVisible: false, // 消息框显隐
       errorDialogVisible: false, // 更新错误弹窗显隐
       refreshDialogVisible: false, // 更新进度条弹窗显隐
       percentage: 0,

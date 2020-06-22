@@ -80,7 +80,7 @@
 .statement span {
   display: block;
   width: 100%;
-  font-size: 18px;
+  font-size: 14px;
   color: #666;
 }
 .copyright {
@@ -94,7 +94,7 @@
   bottom: 8px;
   text-align: center;
 }
-.statement:hover {
+.statement span:hover {
   background-image: -webkit-linear-gradient(left, #cddc39, #e67e22 25%, #cddc39 50%, #e67e22 75%, #cddc39) !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -588,3 +588,18 @@ input::-ms-input-placeholder {
   color: #ccc;
 }
 /*-------- change-default-placeholder-color*/
+
+/* 更新信息字体 */
+.update-info-box {
+  border: 1px solid #d5fbd5;
+  background: #d5fbd5;
+  border-radius: 5px;
+}
+.update-info {
+  font-size: 12px;
+  padding: 0 10px;
+}
+.el-dialog--center .el-dialog__body { 
+  padding: 10px 25px 10px !important;
+  line-height: 25px;
+}

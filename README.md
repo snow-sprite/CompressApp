@@ -16,6 +16,15 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 
 - [x] 仅支持有后缀的在线图片，默认生成到系统【下载】文件夹下
 
+### 更新信息写到根目录updateInfo.json中即可，键值可以随便填
+ - demo
+ ```
+  {
+    "abc": "首页左下角新增版本信息",
+    "012": "新增版本更新简介"
+  }
+ ```
+
 #### sample graph
 
 ![local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/local.min.png)
