@@ -495,10 +495,10 @@
   background: url(../img/upload-active.svg) no-repeat center center;
   background-size: 100% 100%;
 }
-/* .upload-area:hover .upload-area-text {
+.upload-area:hover .upload-area-text {
   color: rgb(51, 153, 255);
-  font-size: 24px;
-} */
+  /* font-size: 24px; */
+}
 .upload-area:hover .row-line {
   border-bottom: 2px dashed rgb(51, 153, 255);
 }

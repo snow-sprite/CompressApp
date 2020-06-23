@@ -114,7 +114,7 @@ function createWindow () {
 
 app.on('ready', () => {
   createWindow()
-  const trayIcon = new Tray(path.join(__static, './tray/18x18.png'))
+  const trayIcon = new Tray(path.join(__static, './tray/16x16.png'))
   trayIcon.on('right-click', () => {
     trayIcon.popUpContextMenu(contextMenu)
   })

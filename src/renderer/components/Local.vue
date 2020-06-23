@@ -148,16 +148,20 @@ export default {
             for (let f of fileDataPath) {
               fileObj[f.type] = 1
             }
+            /* 定义上传类型 */
             let type
             if (Object.keys(fileObj).length > 1) {
               // TODO: 根据具体需求提示错误
               // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
               // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+              // 上传类型有文件夹和图片
               type = 'dirs_images'
             } else {
               if (Object.keys(fileObj)[0] === '') {
+                // 上传类型为多文件夹
                 type = 'dirs'
               } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
+                // 上传类型为多图片
                 type = 'imgs'
               }
             }
@@ -168,7 +172,6 @@ export default {
           }
         })
         .catch(err => {
-          console.log(100, err)
           this.$store.commit('SET_GLOBAL_LOAING_TEXT',
             `verification failed with code:${err.status}`
           )
