@@ -155,6 +155,7 @@ export default {
               // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
               // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
               // 上传类型有文件夹和图片
+              // TODO：文件夹和图片上传有bug 6月23日 by @Cid
               type = 'dirs_images'
             } else {
               if (Object.keys(fileObj)[0] === '') {
