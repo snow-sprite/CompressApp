@@ -28,9 +28,9 @@ ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle, type) =>
 
   sourcePath = fPath
   if (isSingle) {
-    targetPath = path.resolve(`${fPath}_compressed`)
+    targetPath = path.resolve(`${fPath}ed`)
   } else {
-    targetPath = `${path.dirname(fPath)}${path.sep}${type}_compressed`
+    targetPath = `${path.dirname(fPath)}${path.sep}${type}ed`
   }
   compresePic(event, sourcePath, isSingle, type)
 })
@@ -51,7 +51,7 @@ ipcMain.on('validateApiLocalError', (event, errObj) => {
 // 读取文件夹
 function readFPath (fPath, eventReply, isSingle, type) {
   fs.lstat(fPath, function (errs, stat) {
-    if (errs) throw errs
+    if (errs) throw errs && process.exit()
     if (stat.isFile()) {
       //  compressing...
       /*
@@ -136,7 +136,7 @@ function readFPath (fPath, eventReply, isSingle, type) {
       // read dir...
       // 遍历文件夹
       fs.readdir(fPath, function (errDir, files) {
-        if (errDir) throw errDir
+        if (errDir) throw errDir && process.exit()
         walkDir(fPath, sourcePath, targetPath)
         for (let file of files) {
           readFPath(path.join(fPath, file), eventReply, isSingle, type)
@@ -169,6 +169,8 @@ function rebuildTarget (target, sPath, event, isSingle, type) {
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
-  if (type !== 'imgs') reBuildDir(target)
+
+  // 纯图片不用重新构建目录
+  if (type !== 'images') reBuildDir(target)
   readFPath(sPath, event, isSingle, type)
 }

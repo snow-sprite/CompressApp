@@ -81,7 +81,8 @@ export default {
   data () {
     return {
       isSingle: true, // 是否是单个文件或单个文件夹
-      appPicsList: [] // 渲染待压缩图片列表
+      appPicsList: [], // 渲染待压缩图片列表,
+      fileTag: '' // 待压缩的类型
     }
   },
   computed: {
@@ -135,10 +136,11 @@ export default {
                 }, 2000)
               }
             } else {
-            // 文件夹
+              // 文件夹
+              this.fileTag = 'folder'
               for (let f of fileDataPath) {
                 let filePath = f.path
-                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle)
+                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle, this.fileTag)
               }
             }
           } else if (fileDataPath.length > 1) {
@@ -148,27 +150,25 @@ export default {
             for (let f of fileDataPath) {
               fileObj[f.type] = 1
             }
-            /* 定义上传类型 */
-            let type
             if (Object.keys(fileObj).length > 1) {
               // TODO: 根据具体需求提示错误
               // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
               // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
               // 上传类型有文件夹和图片
               // TODO：文件夹和图片上传有bug 6月23日 by @Cid
-              type = 'dirs_images'
+              this.fileTag = 'folders-images'
             } else {
               if (Object.keys(fileObj)[0] === '') {
                 // 上传类型为多文件夹
-                type = 'dirs'
+                this.fileTag = 'folders'
               } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
                 // 上传类型为多图片
-                type = 'imgs'
+                this.fileTag = 'images'
               }
             }
             for (let f of fileDataPath) {
               let filePath = f.path
-              this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle, type)
+              this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle, this.fileTag)
             }
           }
         })
