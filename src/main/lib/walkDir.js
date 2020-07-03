@@ -1,9 +1,14 @@
 import fs from 'fs'
 import path from 'path'
+
 // 遍历源目标，生成对应的目标文件夹
 export const walkDir = (sPath, sourcePath, targetPath) => {
   // 遍历文件夹
   if (fs.statSync(sPath).isDirectory()) {
+    // 针对windows系统遍历数组生成对应目录 Created by Cid 2020/7/3
+    // catalogueList.forEach(catalogue => {
+    generateDir(targetPath)
+    // })
     let files = fs.readdirSync(sPath)
     for (let file of files) {
       let fileTemp = path.join(sPath, file)
