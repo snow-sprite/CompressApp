@@ -23,16 +23,15 @@ var FINISHEDFILENUM = 0
 // 要渲染的被压缩图片列表
 let renderArr = []
 // {多文件类型}
-ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle, type) => {
+ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle) => {
   tinify.key = globalKey
 
   sourcePath = fPath
-  if (isSingle) {
-    targetPath = path.resolve(`${fPath}ed`)
-  } else {
-    targetPath = `${path.dirname(fPath)}${path.sep}${type}ed`
-  }
-  compresePic(event, sourcePath, isSingle, type)
+  // 设置一个目标压缩父目录
+  targetPath = path.resolve(`${sourcePath}ed`)
+  if (!isSingle) targetPath = `sourcePath${path.sep}${path.basename(sourcePath)}`
+  console.log('targetPath++++++++targetPath+++++++++++++', targetPath)
+  compresePic(event, sourcePath)
 })
 
 // 错误捕获
@@ -49,7 +48,7 @@ ipcMain.on('validateApiLocalError', (event, errObj) => {
 })
 
 // 读取文件夹
-function readFPath (fPath, eventReply, isSingle, type) {
+function readFPath (eventReply, fPath, type) {
   fs.lstat(fPath, function (errs, stat) {
     if (errs) throw errs && process.exit()
     if (stat.isFile()) {
@@ -139,7 +138,7 @@ function readFPath (fPath, eventReply, isSingle, type) {
         if (errDir) throw errDir && process.exit()
         walkDir(fPath, sourcePath, targetPath)
         for (let file of files) {
-          readFPath(path.join(fPath, file), eventReply, isSingle, type)
+          readFPath(eventReply, path.join(fPath, file), type)
         }
       })
     }
@@ -147,16 +146,16 @@ function readFPath (fPath, eventReply, isSingle, type) {
 }
 
 // comprese image..重构目标目录
-function compresePic (event, sPath, isSingle, type) {
+function compresePic (event, sPath) {
   try {
     fs.access(targetPath, fs.constants.F_OK, err => {
       // if there's not a target dir, make it first.
       if (err) {
         fs.mkdir(targetPath, () => {
-          rebuildTarget(targetPath, sPath, event, isSingle, type)
+          rebuildTarget(event, targetPath, sPath)
         })
       } else {
-        rebuildTarget(targetPath, sPath, event, isSingle, type)
+        rebuildTarget(event, targetPath, sPath)
       }
     })
   } catch (error) {
@@ -165,12 +164,11 @@ function compresePic (event, sPath, isSingle, type) {
 }
 
 // 重构目标文件
-function rebuildTarget (target, sPath, event, isSingle, type) {
+function rebuildTarget (event, target, sPath) {
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
 
-  // 纯图片不用重新构建目录
-  if (type !== 'images') reBuildDir(target)
-  readFPath(sPath, event, isSingle, type)
+  reBuildDir(target)
+  readFPath(event, sPath)
 }

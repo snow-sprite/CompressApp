@@ -81,8 +81,7 @@ export default {
   data () {
     return {
       isSingle: true, // 是否是单个文件或单个文件夹
-      appPicsList: [], // 渲染待压缩图片列表,
-      fileTag: '' // 待压缩的类型
+      appPicsList: [] // 渲染待压缩图片列表,
     }
   },
   computed: {
@@ -137,38 +136,51 @@ export default {
               }
             } else {
               // 文件夹
-              this.fileTag = 'folder'
               for (let f of fileDataPath) {
                 let filePath = f.path
-                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle, this.fileTag)
+                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle)
               }
             }
           } else if (fileDataPath.length > 1) {
             // 多文件 || 多文件夹
             this.isSingle = false
-            let fileObj = {}
-            for (let f of fileDataPath) {
-              fileObj[f.type] = 1
-            }
-            if (Object.keys(fileObj).length > 1) {
-              // TODO: 根据具体需求提示错误
-              // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
-              // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-              // 上传类型有文件夹和图片
-              // TODO：文件夹和图片上传有bug 6月23日 by @Cid
-              this.fileTag = 'folders-images'
-            } else {
-              if (Object.keys(fileObj)[0] === '') {
-                // 上传类型为多文件夹
-                this.fileTag = 'folders'
-              } else if (/^image/gi.test(Object.keys(fileObj)[0])) {
-                // 上传类型为多图片
-                this.fileTag = 'images'
-              }
-            }
+            // let fileObj = {}
+            // // 给文件夹设置一个默认type
+            // let fType
+            // for (let f of fileDataPath) {
+            //   // 给文件夹设置一个默认type
+            //   fType = f.type || 'folder'
+            //   fileObj[fType] = 1
+            // }
+            // console.log('fileObj', fileObj)
+            // if (Object.keys(fileObj).length > 1) {
+            //   // TODO: 根据具体需求提示错误
+            //   // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
+            //   // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
+
+            //   // 上传类型为多图片
+            //   this.fileTag = 'images'
+
+            //   /**
+            //    * 上传类型有文件夹和图片
+            //    * 如果fileObj的folder（手动给fType赋的值一致）为1（1也是手动给赋的值） 说明有文件夹有文件
+            //    */
+            //   Object.keys(fileObj).forEach(f => {
+            //     console.log('f', f, fileObj[f], fileObj)
+            //     if (f === 'folder') this.fileTag = 'folders-images'
+            //   })
+            // } else {
+            //   if (fType === 'folder') {
+            //     // 上传类型为多文件夹
+            //     this.fileTag = 'folders'
+            //   } else if (/^image/gi.test(fType)) {
+            //     // 上传类型为多图片
+            //     this.fileTag = 'images'
+            //   }
+            // }
             for (let f of fileDataPath) {
               let filePath = f.path
-              this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle, this.fileTag)
+              this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle)
             }
           }
         })
