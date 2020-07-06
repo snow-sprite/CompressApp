@@ -10,26 +10,36 @@ import { walkDir } from './lib/walkDir'
 import { reBuildDir } from './lib/rmDir'
 // images white list
 import imagesType from './lib/imagesType'
+
+import generateHash from './lib/hash'
 // 源文件夹
-var sourcePath = ''
+let sourcePath = ''
 // 目标文件夹
-var targetPath = ''
+let targetPath = ''
 
 // 文件数量
-var FILENUM = 0
+let FILENUM = 0
 // 已压缩文件数
-var FINISHEDFILENUM = 0
+let FINISHEDFILENUM = 0
 
 // 要渲染的被压缩图片列表
 let renderArr = []
 // {多文件类型}
-ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle) => {
+ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle, tag) => {
   tinify.key = globalKey
 
   sourcePath = fPath
+  // TODO: 清空上次生成的目标目录
+  // if (targetPath) {
+  //   reBuildDir(targetPath)
+  //   if (fs.existsSync(`${targetPath}.zip`)) fs.unlinkSync(`${targetPath}.zip`)
+  // }
   // 设置一个目标压缩父目录
-  targetPath = path.resolve(`${sourcePath}ed`)
-  if (!isSingle) targetPath = `sourcePath${path.sep}${path.basename(sourcePath)}`
+  targetPath = `${sourcePath}_${generateHash()}`
+  if (!isSingle) {
+    // 同local.vue中传的保持一致
+    targetPath = `${path.dirname(sourcePath)}${path.sep}${path.basename(path.dirname(sourcePath))}_${generateHash()}`
+  }
   console.log('targetPath++++++++targetPath+++++++++++++', targetPath)
   compresePic(event, sourcePath)
 })
@@ -48,7 +58,7 @@ ipcMain.on('validateApiLocalError', (event, errObj) => {
 })
 
 // 读取文件夹
-function readFPath (eventReply, fPath, type) {
+function readFPath (eventReply, fPath) {
   fs.lstat(fPath, function (errs, stat) {
     if (errs) throw errs && process.exit()
     if (stat.isFile()) {
@@ -66,7 +76,7 @@ function readFPath (eventReply, fPath, type) {
       let compressedTargetPath = `${targetPath}${fileTmpPath}`
 
       // 保存文件信息
-      let extname = path.extname(path.resolve(fPath)).slice(1)
+      let extname = path.extname(fPath).slice(1)
       if (imagesType.indexOf(extname) > -1) {
         renderArr.push({
           isSupport: true,
@@ -91,7 +101,7 @@ function readFPath (eventReply, fPath, type) {
       generatePathName = `${compressedTargetPath}${path.sep}${minName}`
       // tinypng api
       tinify
-        .fromFile(path.resolve(fPath))
+        .fromFile(fPath)
         .toFile(
           generatePathName,
           (errTiny, b) => {
@@ -138,7 +148,7 @@ function readFPath (eventReply, fPath, type) {
         if (errDir) throw errDir && process.exit()
         walkDir(fPath, sourcePath, targetPath)
         for (let file of files) {
-          readFPath(eventReply, path.join(fPath, file), type)
+          readFPath(eventReply, path.join(fPath, file))
         }
       })
     }

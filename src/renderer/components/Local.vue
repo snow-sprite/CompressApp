@@ -81,7 +81,8 @@ export default {
   data () {
     return {
       isSingle: true, // 是否是单个文件或单个文件夹
-      appPicsList: [] // 渲染待压缩图片列表,
+      appPicsList: [], // 渲染待压缩图片列表,
+      fileTag: '' // 上传类型 判断是纯文件 || 纯文件夹 || （文件夹&&文件）
     }
   },
   computed: {
@@ -100,12 +101,8 @@ export default {
     fileUpload (e) { // 拖拽文件上传
       e.preventDefault()
       e.stopPropagation()
-      let fileDataPath = ''
-      if (e.type === 'drop') {
-        fileDataPath = e.dataTransfer.files
-      } else {
-        fileDataPath = e.target.files
-      }
+      let fileDataPath = e.dataTransfer.files || e.target.files
+
       this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
@@ -122,7 +119,7 @@ export default {
             if (fileStat.isFile()) {
               // 文件
               if (/^image/gi.test(fileDataPath[0].type)) {
-                // 支持的图片格式
+                // 支持的图片格式 单图片类型因为不破坏目标文件夹结构 可以追加 故单独使用
                 this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey, this.isSingle)
               } else {
                 // 不支持的格式
@@ -144,43 +141,27 @@ export default {
           } else if (fileDataPath.length > 1) {
             // 多文件 || 多文件夹
             this.isSingle = false
-            // let fileObj = {}
+            let fileObj = {}
             // // 给文件夹设置一个默认type
-            // let fType
-            // for (let f of fileDataPath) {
-            //   // 给文件夹设置一个默认type
-            //   fType = f.type || 'folder'
-            //   fileObj[fType] = 1
-            // }
-            // console.log('fileObj', fileObj)
-            // if (Object.keys(fileObj).length > 1) {
-            //   // TODO: 根据具体需求提示错误
-            //   // this.$store.commit('SET_GLOBAL_LOAING_TEXT', '您上传的格式暂不支持:(')
-            //   // this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-
-            //   // 上传类型为多图片
-            //   this.fileTag = 'images'
-
-            //   /**
-            //    * 上传类型有文件夹和图片
-            //    * 如果fileObj的folder（手动给fType赋的值一致）为1（1也是手动给赋的值） 说明有文件夹有文件
-            //    */
-            //   Object.keys(fileObj).forEach(f => {
-            //     console.log('f', f, fileObj[f], fileObj)
-            //     if (f === 'folder') this.fileTag = 'folders-images'
-            //   })
-            // } else {
-            //   if (fType === 'folder') {
-            //     // 上传类型为多文件夹
-            //     this.fileTag = 'folders'
-            //   } else if (/^image/gi.test(fType)) {
-            //     // 上传类型为多图片
-            //     this.fileTag = 'images'
-            //   }
-            // }
+            let fType
             for (let f of fileDataPath) {
-              let filePath = f.path
-              this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle)
+              // 给文件夹设置一个默认type
+              fType = f.type || 'folder'
+              fileObj[fType] = fileObj[fType] ? fileObj[fType] += 1 : 1
+            }
+            // 默认多图片类型
+            this.fileTag = 'images'
+
+            if (Object.keys(fileObj).length === 1) {
+              // 只有文件夹类型
+              if (fileObj['folder'] > 1) this.fileTag = 'folders'
+            } else if (Object.keys(fileObj).length > 1) {
+              // 包含文件夹&图片类型
+              if (fileObj['folder'] >= 1) this.fileTag = 'folders-images'
+            }
+
+            for (let f of fileDataPath) {
+              this.$electron.ipcRenderer.send('uploadMultipleMessage', f.path, this.globalKey, this.isSingle, this.fileTag)
             }
           }
         })
