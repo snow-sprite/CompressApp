@@ -114,32 +114,24 @@ export default {
             this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
             this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
           }, 2000)
+
           if (fileDataPath.length === 1) {
+            this.isSingle = true
             let fileStat = fs.lstatSync(fileDataPath[0].path)
             if (fileStat.isFile()) {
-              // 文件
-              if (/^image/gi.test(fileDataPath[0].type)) {
-                // 支持的图片格式 单图片类型因为不破坏目标文件夹结构 可以追加 故单独使用
-                this.$electron.ipcRenderer.send('uploadSingleImgMessage', fileDataPath[0].path, this.globalKey, this.isSingle)
-              } else {
-                // 不支持的格式
-                this.$store.commit('SET_GLOBAL_LOAING_TEXT', '请上传合法的图片文件:（')
-                this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', true)
-                setTimeout(_ => {
-                  this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
-                  this.$store.commit('TOGGLE_GLOBAL_LOADING_ERROR_BOX', false)
-                  this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
-                }, 2000)
+              // 文件类型 支持的图片格式 单图片类型因为不破坏目标文件夹结构 可以追加 故单独使用
+              for (let f of fileDataPath) {
+                // if (/^image/gi.test(f.type)) {
+                this.$electron.ipcRenderer.send('uploadSingleImgMessage', f.path, this.globalKey, this.isSingle)
+                // }
               }
             } else {
-              // 文件夹
+              this.fileTag = 'folder'
               for (let f of fileDataPath) {
-                let filePath = f.path
-                this.$electron.ipcRenderer.send('uploadMultipleMessage', filePath, this.globalKey, this.isSingle)
+                this.$electron.ipcRenderer.send('uploadMultipleMessage', f.path, this.globalKey, this.isSingle, this.fileTag)
               }
             }
-          } else if (fileDataPath.length > 1) {
-            // 多文件 || 多文件夹
+          } else {
             this.isSingle = false
             let fileObj = {}
             // // 给文件夹设置一个默认type
@@ -149,6 +141,7 @@ export default {
               fType = f.type || 'folder'
               fileObj[fType] = fileObj[fType] ? fileObj[fType] += 1 : 1
             }
+
             // 默认多图片类型
             this.fileTag = 'images'
 
@@ -159,7 +152,6 @@ export default {
               // 包含文件夹&图片类型
               if (fileObj['folder'] >= 1) this.fileTag = 'folders-images'
             }
-
             for (let f of fileDataPath) {
               this.$electron.ipcRenderer.send('uploadMultipleMessage', f.path, this.globalKey, this.isSingle, this.fileTag)
             }

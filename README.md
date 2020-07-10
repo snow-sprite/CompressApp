@@ -4,20 +4,21 @@
 
 Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 
-#### Local
+#### Local 🚀🚀
 
-- [x] 单文件夹（生成到当前目录以_compressed结尾的新文件夹下，并打包zip）
-- [x] 单图片 （生成到当前图片目录下对应的.min图片）
-- [x] 多图片 （生成到当前目录以imgs_compressed结尾的新文件下，并打包zip）
-- [ ] 多文件夹 （生成到当前目录以dirs_compressed结尾的新文件下，并打包zip）
-- [ ] 文件夹及图片 （生成到当前目录以dirs_images_compressed结尾的新文件下，并打包zip）
+支持：
+- [x] 单文件夹
+- [x] 单图片
+- [x] 多图片
+- [x] 多文件夹 
+- [x] 文件夹及图片
 
-#### Online
+#### Online 🚅🚅
 
 - [x] 仅支持有后缀的在线图片，默认生成到系统【下载】文件夹下
 
 ### 更新信息写到根目录updateInfo.json中即可，键值可以随便填
- - demo
+ - demo 🍐🍐
  ```
   {
     "abc": "首页左下角新增版本信息",
@@ -25,16 +26,20 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
   }
  ```
 
-#### sample graph
+### TODO 🕞🚦🚧
+- [ ] 不支持的文件内容从源文件夹copy一份到目标文件夹下
 
-![Local](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/Local.min.png)
+#### sample graph 📌📌
 
-![Online](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/Online.min.png)
+![Local](https://github.com/snow-sprite/CompressApp/blob/master/demo/Local.min.png?raw=true)
 
-![Settings](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/Settings.min.png)
-![Compressed](https://raw.githubusercontent.com/snow-sprite/CompressApp/master/demo/Compressed.min.png)
+![Online](https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true)
 
-#### Build Setup
+![Settings](https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true)
+
+![Compressed](https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true)
+
+#### Build Setup ✒✒
 
 ``` bash
 # install dependencies

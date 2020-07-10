@@ -10,9 +10,9 @@ import path from 'path'
 import imagesType from './lib/imagesType'
 
 // 源文件夹
-var sourcePath = ''
+let sourcePath = ''
 // 目标文件夹
-var targetPath = ''
+let targetPath = ''
 
 // 要渲染的被压缩图片列表
 let renderArr = []
@@ -55,22 +55,28 @@ function reBuildSingleImg (event, sourcePath, targetPath) {
   }
   event.sender.send('filesList', renderArr)
 
-  // 压缩
-  tinify.fromFile(sourcePath).toFile(targetPathWithStat, errTiny => {
-    if (errTiny && errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0) {
-      event.sender.send('limitCountErrorEvent')
-      return
-    }
-    fs.lstat(targetPathWithStat, function (errDoneFile, doneFileStat) {
-      if (errDoneFile) throw errDoneFile
-      currentInd = renderArr.length - caleInd
-      renderArr[currentInd].compressedSize = doneFileStat.size
-      caleInd += 1
+  // 只有图片才会进行压缩操作 页面上传文件不再做限制与非图片提示
+  if (imagesType.indexOf(extname) > -1) {
+    // 压缩
+    tinify.fromFile(sourcePath).toFile(targetPathWithStat, (errTiny) => {
+      if (
+        errTiny &&
+        errTiny.message.indexOf('Your monthly limit has been exceeded') >= 0
+      ) {
+        event.sender.send('limitCountErrorEvent')
+        return
+      }
+      fs.lstat(targetPathWithStat, function (errDoneFile, doneFileStat) {
+        if (errDoneFile) throw errDoneFile
+        currentInd = renderArr.length - caleInd
+        renderArr[currentInd].compressedSize = doneFileStat.size
+        caleInd += 1
+        event.sender.send('finishedItem', renderArr)
+      })
+      // 重新计数，重绘图表
       event.sender.send('finishedItem', renderArr)
+      // 提醒
+      event.sender.send('AllDone')
     })
-    // 重新计数，重绘图表
-    event.sender.send('finishedItem', renderArr)
-    // 提醒
-    event.sender.send('AllDone')
-  })
+  }
 }

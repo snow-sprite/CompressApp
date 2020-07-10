@@ -29,19 +29,14 @@ ipcMain.on('uploadMultipleMessage', (event, fPath, globalKey, isSingle, tag) => 
   tinify.key = globalKey
 
   sourcePath = fPath
-  // TODO: 清空上次生成的目标目录
-  // if (targetPath) {
-  //   reBuildDir(targetPath)
-  //   if (fs.existsSync(`${targetPath}.zip`)) fs.unlinkSync(`${targetPath}.zip`)
-  // }
   // 设置一个目标压缩父目录
   targetPath = `${sourcePath}_${generateHash()}`
   if (!isSingle) {
     // 同local.vue中传的保持一致
     targetPath = `${path.dirname(sourcePath)}${path.sep}${path.basename(path.dirname(sourcePath))}_${generateHash()}`
   }
-  console.log('targetPath++++++++targetPath+++++++++++++', targetPath)
-  compresePic(event, sourcePath)
+
+  compresePic(event, sourcePath, isSingle, tag)
 })
 
 // 错误捕获
@@ -58,7 +53,7 @@ ipcMain.on('validateApiLocalError', (event, errObj) => {
 })
 
 // 读取文件夹
-function readFPath (eventReply, fPath) {
+function readFPath (eventReply, fPath, isSingle) {
   fs.lstat(fPath, function (errs, stat) {
     if (errs) throw errs && process.exit()
     if (stat.isFile()) {
@@ -71,7 +66,10 @@ function readFPath (eventReply, fPath) {
       // 这里的是压缩后的名字 例如：avatar.min.png
       let minName = `${path.basename(realName, path.extname(realName))}.min${path.extname(realName)}`
       let filePath = path.dirname(fPath)
-      let fileTmpPath = filePath.slice(sourcePath.length)
+      let fileTmpPath
+
+      fileTmpPath = filePath.slice(sourcePath.length)
+      if (!isSingle) fileTmpPath = filePath.slice(path.dirname(sourcePath).length)
       // 压缩后的文件的路径
       let compressedTargetPath = `${targetPath}${fileTmpPath}`
 
@@ -146,9 +144,9 @@ function readFPath (eventReply, fPath) {
       // 遍历文件夹
       fs.readdir(fPath, function (errDir, files) {
         if (errDir) throw errDir && process.exit()
-        walkDir(fPath, sourcePath, targetPath)
+        walkDir(fPath, sourcePath, targetPath, isSingle)
         for (let file of files) {
-          readFPath(eventReply, path.join(fPath, file))
+          readFPath(eventReply, path.join(fPath, file), isSingle)
         }
       })
     }
@@ -156,16 +154,16 @@ function readFPath (eventReply, fPath) {
 }
 
 // comprese image..重构目标目录
-function compresePic (event, sPath) {
+function compresePic (event, sPath, isSingle, tag) {
   try {
     fs.access(targetPath, fs.constants.F_OK, err => {
       // if there's not a target dir, make it first.
-      if (err) {
+      if (err && err.code === 'ENOENT') {
         fs.mkdir(targetPath, () => {
-          rebuildTarget(event, targetPath, sPath)
+          rebuildTarget(event, targetPath, sPath, isSingle, tag)
         })
       } else {
-        rebuildTarget(event, targetPath, sPath)
+        rebuildTarget(event, targetPath, sPath, isSingle, tag)
       }
     })
   } catch (error) {
@@ -174,11 +172,12 @@ function compresePic (event, sPath) {
 }
 
 // 重构目标文件
-function rebuildTarget (event, target, sPath) {
+function rebuildTarget (event, target, sPath, isSingle, tag) {
   renderArr = []
   FILENUM = 0
   FINISHEDFILENUM = 0
 
-  reBuildDir(target)
-  readFPath(event, sPath)
+  // 压缩文件夹后 再次压缩先删除之前的文件夹及内容
+  if (tag !== 'images') reBuildDir(target)
+  readFPath(event, sPath, isSingle)
 }

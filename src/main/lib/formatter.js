@@ -14,7 +14,7 @@ export const pathLink = (link) => {
 
 export const downloadPath = () => {
   // 输出下载目录
-  var onlineCompressTarget = ''
+  let onlineCompressTarget = ''
   if (os.type() === 'Windows_NT') {
     // windows OS
     onlineCompressTarget = `C:\\Users\\Administrator\\Downloads\\`

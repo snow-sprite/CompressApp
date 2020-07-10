@@ -64,7 +64,6 @@ export function updateHandleByRoot (window, feedUrl) {
 
   // 更新下载进度事件
   autoUpdater.on('download-progress', function (progressObj) {
-    // console.log('JSON', JSON.stringify(progressObj))
     sendUpdateMessage({
       cmd: 'download-progress',
       message: progressObj
