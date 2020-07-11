@@ -41,7 +41,8 @@
   box-sizing: border-box;
   padding: 10px;
   padding-top: 20px;
-  background: linear-gradient(to bottom, rgba(17, 17, 17, 1), #ccc 70%, rgba(17, 17, 17, 1)),
+  background: url(../icons/icon_opacity.png) 160px 100px no-repeat,
+  linear-gradient(to bottom, rgba(17, 17, 17, 1), #ccc 70%, rgba(17, 17, 17, 1)),
   rgba(0, 0, 0, 0.2);
   position: relative;
 }
@@ -64,11 +65,11 @@
   color: #fff;
 }
 .charts {
-  width: 220px;
+  width: 200px;
   height: 210px;
 }
 .statement {
-  border-top: 1px solid #999;
+  /* border-top: 1px solid #999; */
   box-sizing: border-box;
   padding-top: 10px;
   width: 100%;
@@ -156,7 +157,8 @@
   box-sizing: border-box;
   padding: 10px;
   padding-top: 40px;
-  background: linear-gradient(to top, rgba(17, 17, 17, 1), #ccc 70%, rgba(17, 17, 17,1));
+  background: url(../icons/icon_opacity.png) -65px 100px no-repeat,
+  linear-gradient(to top, rgba(17, 17, 17, 1), #ccc 70%, rgba(17, 17, 17, 1)), rgba(0, 0, 0, 0.2);;
 }
 
 .online-search-box {

@@ -101,8 +101,14 @@ export default {
     fileUpload (e) { // 拖拽文件上传
       e.preventDefault()
       e.stopPropagation()
-      let fileDataPath = e.dataTransfer.files || e.target.files
-
+      console.log('e', e)
+      let fileDataPath = ''
+      if (e.type === 'drop') {
+        fileDataPath = e.dataTransfer.files
+      } else {
+        fileDataPath = e.target.files
+      }
+      console.log('fileDataPath', fileDataPath)
       this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
       this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
       validityApi()
