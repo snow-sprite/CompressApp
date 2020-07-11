@@ -119,8 +119,15 @@ app.on('ready', () => {
     trayIcon.popUpContextMenu(contextMenu)
   })
   trayIcon.on('click', () => {
-    mainWindow.show()
-    mainWindow.focus()
+    /**
+     * 由于autoupdater的缘故 关闭窗口默认不再最小化
+     * 再次打开系统托盘 需要先创建窗口
+     */
+    if (mainWindow === null) {
+      createWindow()
+    }
+    mainWindow && mainWindow.show()
+    mainWindow && mainWindow.focus()
   })
 })
 
