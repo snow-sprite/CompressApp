@@ -111,6 +111,8 @@ function createWindow () {
     })
   })
 }
+// 设置appId用于桌面通知
+app.setAppUserModelId(pkg.build.appId)
 
 app.on('ready', () => {
   createWindow()

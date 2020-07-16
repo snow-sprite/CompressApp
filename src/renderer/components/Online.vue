@@ -22,7 +22,7 @@
   </div>
 </template>
 <script>
-import os from 'os'
+// import os from 'os'
 import { validityApi } from '../lib/validate'
 import { mapState } from 'vuex'
 export default {
@@ -90,25 +90,26 @@ export default {
       // 压缩完成 发出通知
       this.$electron.ipcRenderer.on('compressedOnlineImg', (event, downloadPath) => {
         if (downloadPath) {
-          // windows用户需要授权 这里不发通知 直接弹出下载目录
-          if (os.type() === 'Windows_NT') {
-            this.$store.dispatch('openPath', downloadPath)
-            return
-          }
           if (!('Notification' in window)) {
-            console.log('This browser does not support desktop notification')
-            return false
-          }
-          let onLineNotification = new Notification('Compression succeeded', {
-            body: '🎉🎉🎉congratulations! 点击查看图片！',
-            icon: '../../../build/icons/logo.png'
-          })
-
-          onLineNotification.onclick = () => {
-            this.$store.dispatch('openPath', downloadPath)
+            console.log('This browser does not support desktop notification!')
+          } else if (Notification.permission === 'granted') {
+            this.createNotification(downloadPath)
+          } else if (Notification.permission !== 'denied') {
+            Notification.requestPermission().then(res => {
+              if (res === 'granted') this.createNotification(downloadPath)
+            })
           }
         }
       })
+    },
+    createNotification (downloadPath) {
+      let onLineNotification = new Notification('Compress succeeded', {
+        body: '🎉🎉🎉congratulations! 点击可查看图片！!',
+        icon: '../../../static/icons/icon.png'
+      })
+      onLineNotification.onclick = () => {
+        this.$store.dispatch('openPath', downloadPath)
+      }
     }
   }
 }

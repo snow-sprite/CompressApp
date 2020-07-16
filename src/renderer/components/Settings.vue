@@ -2,8 +2,8 @@
   <!-- Settings -->
   <div class="settings-content">
       <div class="set-title">
-        <span>Set your Api keys here</span>
-        <div class="set-apikey-text" @click="openExternal">Get more Apikey..</div>
+        <span>Choose your Api keys here</span>
+        <!-- <div class="set-apikey-text" @click="openExternal">Get more Apikey..</div> -->
       </div>
     <div class="api-keys-list">
       <div class="api-key" v-for="(apiKey, ind) in keysList" :key="ind">
@@ -39,11 +39,10 @@ export default {
       tinypngApiLink: 'https://tinypng.com/developers',
       keysList: [
         'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN',
-        // '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
-        '',
-        '',
-        '',
-        ''
+        '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
+        'RLqWky7WpTVHqhNSDBL1h4hSWvtbHvLQ',
+        'lnsMXTZLC7kcgxfcj5FF0yJ1VStyBm7X',
+        'NzjzpXlKB0fPwcZSw79lMFQqD06npB7v'
       ],
       activeKeyInd: '', // 激活的key
       activeKey: '' // 激活的key
@@ -83,6 +82,7 @@ export default {
       localStorage.setItem('keyInd', ind)
       this.$store.dispatch('getCompressedCount', this.keysList[ind])
       localStorage.setItem('activeKey', JSON.stringify(this.keysList[ind]))
+      this.$store.commit('setGlobalKey', this.activeKey)
     },
     updateCurrentApiKey (ind) {
       // 监听当前对input apikey的操作

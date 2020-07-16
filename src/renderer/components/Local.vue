@@ -193,17 +193,15 @@ export default {
         }
       })
       // 所有任务已完成，发出通知
-      this.$electron.ipcRenderer.on('AllDone', (event) => {
+      this.$electron.ipcRenderer.on('AllDone', () => {
         if (!('Notification' in window)) {
-          console.log('This browser does not support desktop notification')
-          return false
-        }
-        let localNotification = new Notification('Compression succeeded', {
-          body: '🎉🎉🎉congratulations!',
-          icon: '../../../build/icons/logo.png'
-        })
-        localNotification.onclick = () => {
-          console.log('通知被点击')
+          console.log('This browser does not support desktop notification!')
+        } else if (Notification.permission === 'granted') {
+          this.createNotification()
+        } else if (Notification.permission !== 'denied') {
+          Notification.requestPermission().then(res => {
+            if (res === 'granted') this.createNotification()
+          })
         }
       })
       // 压缩数量超过限制500张，提醒
@@ -216,6 +214,15 @@ export default {
           this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
         }, 2000)
       })
+    },
+    createNotification () {
+      let localNotification = new Notification('Compress succeeded', {
+        body: '🎉🎉🎉congratulations!',
+        icon: '../../../static/icons/icon.png'
+      })
+      localNotification.onclick = () => {
+        localNotification.close()
+      }
     },
     openPath (path) { // 根据path打开对话框
       this.$store.dispatch('openPath', path)
