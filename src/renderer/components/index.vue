@@ -12,10 +12,10 @@
         <span class="tab-text">{{ item.name }}</span>
         <i :class="{'after-icon': activeNavInd === ind}"></i>
       </li>
-      <div class="charts-loading" v-show="!count">
+      <div class="charts-loading" v-show="isChartsLoading">
         <img src="static/img/load/loading.gif" alt="">
       </div>
-      <div class="charts-box" v-show="count">
+      <div class="charts-box" v-show="!isChartsLoading">
         <!-- <span class="charts-title">Usage of 500 pictures：{{ count }}</span> -->
         <div id="charts" class="charts"></div>
       </div>
@@ -138,7 +138,8 @@ export default {
       targetObj: {},
       // 更新失败信息
       badTargetObj: {},
-      timing: 2000 // 检测更新的延时时间
+      timing: 2000, // 检测更新的延时时间
+      isChartsLoading: true
     }
   },
   computed: {
@@ -157,9 +158,24 @@ export default {
   },
   watch: {
     count (newV, oldV) {
+      this.isChartsLoading = true
       // 设置图表
       if (newV) {
-        this.setPieCharts()
+        this.timer && clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.isChartsLoading = false
+          this.setPieCharts()
+        }, this.timing)
+      }
+    },
+    globalKey (newK, oldK) {
+      this.isChartsLoading = true
+      if (newK) {
+        this.timer && clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          this.isChartsLoading = false
+          this.setPieCharts()
+        }, this.timing)
       }
     }
   },
@@ -284,6 +300,14 @@ export default {
     this.getCompressedCount()
     // 设置apicount值
     this.listenCount()
+
+    this.timer && clearTimeout(this.timer)
+    this.timer = setTimeout(() => {
+      if (this.count || this.count === 0) {
+        this.isChartsLoading = false
+        this.setPieCharts()
+      }
+    }, this.timing)
   },
   destroyed () {
     clearTimeout(this.timer)

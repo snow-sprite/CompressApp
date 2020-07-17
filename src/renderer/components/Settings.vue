@@ -39,7 +39,7 @@ export default {
       tinypngApiLink: 'https://tinypng.com/developers',
       keysList: [
         'fvDPnGNpDZRJsrtR5KdM4Qcbp8RvcYhN',
-        '8qv069yMQM9KGBj2yk6HnSpskZTYB7KK',
+        'Rqq4ZS1TPbQqyPPpdSbSDd9dyBzGK2Sv',
         'RLqWky7WpTVHqhNSDBL1h4hSWvtbHvLQ',
         'lnsMXTZLC7kcgxfcj5FF0yJ1VStyBm7X',
         'NzjzpXlKB0fPwcZSw79lMFQqD06npB7v'
@@ -48,40 +48,14 @@ export default {
       activeKey: '' // 激活的key
     }
   },
-  mounted () {
-    // 保存keysList到本地
-    // localStorage.setItem('tinyKeys', JSON.stringify([]))
-    // let localTinyKeys = localStorage.getItem('tinyKeys')
-    // let localTinyKeysParsed = JSON.parse(localTinyKeys)
-    // for (let k of this.keysList) {
-    //   localTinyKeysParsed.push(k)
-    // }
-    this.activeKeyInd = Number(localStorage.getItem('keyInd')) || 0
-    this.activeKey = localStorage.getItem('activeKey') || ''
-    if (!localStorage.getItem('tinyKeys')) {
-      localStorage.setItem('tinyKeys', JSON.stringify([]))
-      let localTinyKeys = localStorage.getItem('tinyKeys')
-      let localTinyKeysParsed = JSON.parse(localTinyKeys)
-      for (let k of this.keysList) {
-        localTinyKeysParsed.push(k)
-      }
-      localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
-    } else {
-      this.keysList = JSON.parse(localStorage.getItem('tinyKeys'))
-    }
-    this.$store.commit('setGlobalKey', this.keysList[this.activeKeyInd])
-    // if (!this.activeKeyInd) {
-    //   localStorage.setItem('activeKey', JSON.stringify(this.keysList[0]))
-    // }
-  },
   methods: {
     setActiveKey (ind) {
       // 设置当前激活的key
       this.activeKeyInd = ind
       this.activeKey = this.keysList[ind]
       localStorage.setItem('keyInd', ind)
-      this.$store.dispatch('getCompressedCount', this.keysList[ind])
-      localStorage.setItem('activeKey', JSON.stringify(this.keysList[ind]))
+      this.$store.dispatch('getCompressedCount', this.activeKey)
+      localStorage.setItem('activeKey', JSON.stringify(this.activeKey))
       this.$store.commit('setGlobalKey', this.activeKey)
     },
     updateCurrentApiKey (ind) {
@@ -98,7 +72,25 @@ export default {
       // 打开外部链接
       shell.openExternal(this.tinypngApiLink)
     }
+  },
+  mounted () {
+    // 保存keysList到本地
+    this.activeKeyInd = Number(localStorage.getItem('keyInd')) || 0
+    this.activeKey = localStorage.getItem('activeKey') || this.keysList[0]
+
+    // 更新下已有缓存 销毁的生命周期中暂无法清除
+    localStorage.setItem('tinyKeys', JSON.stringify([]))
+    let localTinyKeys = localStorage.getItem('tinyKeys')
+    let localTinyKeysParsed = JSON.parse(localTinyKeys)
+    for (let k of this.keysList) {
+      localTinyKeysParsed.push(k)
+    }
+    localStorage.setItem('tinyKeys', JSON.stringify(localTinyKeysParsed))
+    this.$store.commit('setGlobalKey', this.activeKey)
   }
+  // destroyed () {
+  //   localStorage.clear()
+  // }
 }
 </script>
 
