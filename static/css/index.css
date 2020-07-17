@@ -20,11 +20,11 @@
   width: 400px;
   height: 130px;
   position: relative;
-  top: calc(50% - 65px);
+  top: calc(50% - 100px);
 }
 .global-loading-wrong {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   background: url(../img/load/error.min.png) no-repeat;
   background-size: contain;
   margin: 0 auto;
