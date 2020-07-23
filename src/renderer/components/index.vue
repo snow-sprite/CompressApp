@@ -134,6 +134,8 @@ export default {
       percentage: 0,
       strokeWidth: 100,
       timer: null,
+      chartTimer: null, // 图表延时更新
+      keyTimer: null, // 全局key延时更新
       // 更新文件信息
       targetObj: {},
       // 更新失败信息
@@ -161,8 +163,8 @@ export default {
       this.isChartsLoading = true
       // 设置图表
       if (newV) {
-        this.timer && clearTimeout(this.timer)
-        this.timer = setTimeout(() => {
+        this.chartTimer && clearTimeout(this.chartTimer)
+        this.chartTimer = setTimeout(() => {
           this.isChartsLoading = false
           this.setPieCharts()
         }, this.timing)
@@ -171,8 +173,8 @@ export default {
     globalKey (newK, oldK) {
       this.isChartsLoading = true
       if (newK) {
-        this.timer && clearTimeout(this.timer)
-        this.timer = setTimeout(() => {
+        this.keyTimer && clearTimeout(this.keyTimer)
+        this.keyTimer = setTimeout(() => {
           this.isChartsLoading = false
           this.setPieCharts()
         }, this.timing)
@@ -253,8 +255,7 @@ export default {
       })
     },
     checkForUpdate () {
-      this.timer && clearTimeout(this.timer)
-      this.timer = setTimeout(() => {
+      setTimeout(() => {
         this.$electron.ipcRenderer.send('checkForUpdateByDefault')
       }, this.timing)
     },
@@ -311,6 +312,8 @@ export default {
   },
   destroyed () {
     clearTimeout(this.timer)
+    clearTimeout(this.keyTimer)
+    clearTimeout(this.chartTimer)
   }
 }
 </script>
