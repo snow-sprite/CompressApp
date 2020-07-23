@@ -292,10 +292,10 @@ export default {
   mounted () {
     this.app = { ...pkg }
     this.setUpdateInfo()
-    // 主动去连接更新 5秒后开始检测新版本
-    // this.checkForUpdate()
+    // 主动去连接更新 默认2秒后开始检测新版本
+    this.checkForUpdate()
     // 接收主进程版本更新消息
-    // this.listenUpdateEvent()
+    this.listenUpdateEvent()
     // 获取当前apikey下载量
     this.getCompressedCount()
     // 设置apicount值
