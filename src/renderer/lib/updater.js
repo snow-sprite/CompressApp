@@ -53,7 +53,7 @@ export function updateHandleByRoot (window, feedUrl) {
   autoUpdater.setFeedURL(feedUrl)
 
   // 1.手动执行时打开自动下载
-  // autoUpdater.autoDownload = true
+  autoUpdater.autoDownload = true
   // 监听没有可用更新事件
   autoUpdater.on('update-not-available', function (a, b, c) {
     sendUpdateMessage({
@@ -88,11 +88,11 @@ export function updateHandleByRoot (window, feedUrl) {
   })
 
   // 接收渲染进程消息，开始检查更新
-  // ipcMain.on('checkForUpdateByRoot', (e, arg) => {
-  //   // 执行自动更新检查
-  //   // sendUpdateMessage({cmd:'checkForUpdate',message:arg})
-  // autoUpdater.checkForUpdates()
-  // })
+  ipcMain.on('checkForUpdateByRoot', (e, arg) => {
+    // 执行自动更新检查
+    // sendUpdateMessage({cmd:'checkForUpdate',message:arg})
+    autoUpdater.checkForUpdates()
+  })
   autoUpdater.downloadUpdate()
 }
 
