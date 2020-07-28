@@ -91,6 +91,10 @@ function readFPath (eventReply, fPath, isSingle) {
           name: realName,
           size: stat.size
         })
+        // 复制不支持的格式文件到对应目标目录
+        fs.copyFile(fPath, `${compressedTargetPath}${path.sep}${realName}`, function (err) {
+          if (err) throw err
+        })
       }
       FILENUM = renderArr.length
       eventReply.sender.send('filesList', renderArr)
