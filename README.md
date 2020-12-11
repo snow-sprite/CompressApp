@@ -2,6 +2,20 @@
 
 > A compressed picture desktop program based on electron-vue
 
+<p align="center">
+  <a href="https://github.com/snow-sprite/CompressApp/stargazers" target="_blank">
+    <img alt="stars" src="https://img.shields.io/github/stars/snow-sprite/CompressApp?color=success&logo=github&style=flat-square" />
+  </a>
+
+  <a href="https://github.com/snow-sprite/CompressApp/network/members" target="_blank">
+    <img alt="forks" src="https://img.shields.io/github/forks/snow-sprite/CompressApp?color=yellow&logo=github&style=flat-square" />
+  </a>
+
+  <a href="https://github.com/snow-sprite/CompressApp/issues" target="_blank">
+    <img alt="issues" src="https://img.shields.io/github/issues/snow-sprite/CompressApp?color=important&logo=Issuu&logoColor=white&style=flat-square" />
+  </a>
+</p>
+
 Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 
 #### Local 🚀🚀
@@ -12,6 +26,7 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 - [x] 多图片
 - [x] 多文件夹 
 - [x] 文件夹及图片
+- [x] 非支持格式的文件原样到目标目录
 
 #### Online 🚅🚅
 
@@ -27,7 +42,7 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
  ```
 
 ### TODO 🕞🚦🚧
-- [ ] 不支持的文件内容从源文件夹copy一份到目标文件夹下
+- [ ] 添加一个国内的压缩api
 
 #### sample graph 📌📌
 
