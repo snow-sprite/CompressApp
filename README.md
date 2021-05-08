@@ -36,8 +36,8 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
  - demo 🍐🍐
  ```
   {
-    "abc": "首页左下角新增版本信息",
-    "012": "新增版本更新简介"
+    "更新1": "首页左下角新增版本信息",
+    "update2": "新增版本更新简介"
   }
  ```
 
