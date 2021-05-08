@@ -57,8 +57,8 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 #### Donate
 > If you find this project useful, you can buy author a glass of ~~tea~~ ~~coffee~~ juice.
 
-<span><img align="center" alt="WeChat" title="WeChat" src="https://github.com/snow-sprite/CompressApp/blob/master/donate/WeChat.png?raw=true" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/donate/Alipay.png?raw=true" /></span>
+<!-- <span><img align="center" alt="WeChat" title="WeChat" src="https://github.com/snow-sprite/CompressApp/blob/master/donate/WeChat.png?raw=true" /></span>
+<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/donate/Alipay.png?raw=true" /></span> -->
 
 
 #### Build Setup ✒✒
