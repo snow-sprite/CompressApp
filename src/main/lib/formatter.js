@@ -17,7 +17,8 @@ export const downloadPath = () => {
   let onlineCompressTarget = ''
   if (os.type() === 'Windows_NT') {
     // windows OS
-    onlineCompressTarget = `C:\\Users\\Administrator\\Downloads\\`
+    // onlineCompressTarget = `C:\\Users\\Administrator\\Downloads\\`
+    onlineCompressTarget = (process.env.HOMEPATH || process.env.HOME) + `\\Downloads\\`
   } else {
     // mac OS
     onlineCompressTarget = `/Users/${process.env.LOGNAME}/Downloads/`
