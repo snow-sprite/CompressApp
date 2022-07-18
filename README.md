@@ -53,10 +53,10 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 ![Settings](https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true)
 
 ![Compressed](https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true) -->
-<span><img align="center" alt="WeChat" title="WeChat" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Local.min.png?raw=true" width="300px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true" width="300px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true" width="300px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true" width="300px" /></span>
+<span><img align="center" alt="WeChat" title="WeChat" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Local.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true" width="00px" /></span>
+<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true" width="400px" /></span>
 #### Donate
 > If you find this project useful, you can buy author a glass of ~~tea~~ ~~coffee~~ juice.
 
