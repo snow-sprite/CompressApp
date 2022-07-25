@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * 窗口关闭打开托盘报错 ([39b9463](https://github.com/snow-sprite/CompressApp/commit/39b9463bb4e1ac14f3a1e3d59d773c4245c3f181))
+* 修复Windows下载目录无法打开；更新图片压缩完的查看地址直接定位到图片 ([16ca780](https://github.com/snow-sprite/CompressApp/commit/16ca780bd6a84c09a96a207682839048d0e51200))
 
 
 ### Features
