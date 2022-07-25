@@ -43,7 +43,7 @@ function reBuildSingleImg (event, sourcePath, targetPath) {
       size: fStat.size,
       path: `${sourcePath}`,
       compressedSize: null,
-      compressedPath: targetPath
+      compressedPath: `${targetPath}${path.sep}${minName}`
     })
   } else {
     renderArr.unshift({

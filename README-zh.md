@@ -1,8 +1,8 @@
 # Compress your images
 
-English | [简体中文](./README-zh.md)
+[English](./README.md) | 简体中文
 
-> A compressed picture desktop program based on electron-vue
+> 一款基于electron-vue的图片压缩桌面程序
 
 <p align="center">
   <a href="https://github.com/snow-sprite/CompressApp/stargazers" target="_blank">
@@ -18,31 +18,34 @@ English | [简体中文](./README-zh.md)
   </a>
 </p>
 
-The Typescript version：<https://github.com/snow-sprite/TsCompressApp>
+Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 
 #### Local 🚀🚀
 
-Support：
-- [x] A single folder
-- [x] A single picture
-- [x] Multiple images
-- [x] Multiple folders
-- [x] Multiple Folders and images
-- [x] Unsupported format files are copied to the destination directory
+支持：
+- [x] 单文件夹
+- [x] 单图片
+- [x] 多图片
+- [x] 多文件夹 
+- [x] 文件夹及图片
+- [x] 非支持格式的文件原样到目标目录
 
 #### Online 🚅🚅
 
-- [x] Only online pictures with suffixes are supported. By default, they are generated in the system 「Download」 folder
+- [x] 仅支持有后缀的在线图片，默认生成到系统【下载】文件夹下
 
-### The update information is written to the root directory updateInfo.json, and you can fill in any key
+### 更新信息写到根目录updateInfo.json中即可，键值可以随便填
  - demo 🍐🍐
  ```
   {
-    "update1": "Added version information on the home page",
-    "no.2": "Added introduction to version updates",
-    "c": '...'
+    "更新1": "首页左下角新增版本信息",
+    "update2": "新增版本更新简介",
+    "c": 'xxx...'
   }
  ```
+
+### TODO 🕞🚦🚧
+- [ ] 添加一个国内的压缩api
 
 #### sample graph 📌📌
 

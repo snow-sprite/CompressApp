@@ -83,7 +83,7 @@ function readFPath (eventReply, fPath, isSingle) {
           size: stat.size,
           path: `${fPath}`,
           compressedSize: null,
-          compressedPath: compressedTargetPath
+          compressedPath: `${compressedTargetPath}${path.sep}${minName}`
         })
       } else {
         renderArr.push({

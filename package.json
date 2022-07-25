@@ -1,6 +1,6 @@
 {
   "name": "compress_your_images",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": {
     "name": "zhiozhou@Cid",
     "email": "959418392@qq.com",
@@ -96,14 +96,14 @@
   "release": "build",
   "dependencies": {
     "axios": "^0.18.0",
-    "echarts": "^4.5.0",
+    "echarts": "^5.2.2",
     "electron-updater": "^4.2.0",
+    "element-ui": "^2.13.2",
     "tinify": "^1.6.0-beta.2",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1",
-    "element-ui": "^2.13.2"
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "ajv": "^6.5.0",

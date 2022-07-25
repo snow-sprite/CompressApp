@@ -39,6 +39,6 @@ function compressOnlineImg (eventReply, url) {
         eventReply.sender.send('limitCountErrorEvent')
         return
       }
-      eventReply.sender.send('compressedOnlineImg', compressedOnlineImgPath)
+      eventReply.sender.send('compressedOnlineImg', `${compressedOnlineImgPath}${path.sep}${minName}`)
     })
 }
