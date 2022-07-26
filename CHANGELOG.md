@@ -1,4 +1,4 @@
-## [0.2.1](https://github.com/snow-sprite/CompressApp/compare/v0.2.0...v0.2.1) (2022-07-25)
+## [0.2.1](https://github.com/snow-sprite/CompressApp/compare/v0.2.0...v0.2.1) (2022-07-26)
 
 
 ### Bug Fixes
@@ -13,6 +13,7 @@
 * 不支持的格式的文件copy到目标对应目录 ([1789009](https://github.com/snow-sprite/CompressApp/commit/178900915eefd561737c05ac1ba53a52ab98c635))
 * 打开自动更新开关 ([1c10b08](https://github.com/snow-sprite/CompressApp/commit/1c10b089a0a88c91c25765088350c8e2182f201c))
 * 更改错误提示图 ([3c4f772](https://github.com/snow-sprite/CompressApp/commit/3c4f7725122c7792d531f597c879939827c38848))
+* 更新CHANELOG ([f362f62](https://github.com/snow-sprite/CompressApp/commit/f362f62b12d6c36f53a5844faa026a97e8a23b69))
 * 更新demo图例 ([0820d12](https://github.com/snow-sprite/CompressApp/commit/0820d126a8716a75530f4cb977a916c3bae5567c))
 * 更新donate ([b8355c9](https://github.com/snow-sprite/CompressApp/commit/b8355c9d19aa778382e6c64e913c1ed9c1a4160c))
 * 更新donate ([9dd7737](https://github.com/snow-sprite/CompressApp/commit/9dd7737933103a5df202995b547c1c0fe4c09205))
