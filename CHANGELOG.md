@@ -24,6 +24,11 @@
 * update CHANGELOG.md ([697f5fd](https://github.com/snow-sprite/CompressApp/commit/697f5fd16e7e13ffc440077d07b6d9246192463c))
 
 
+### Reverts
+
+* 将echarts改回旧版本 ([52c66b9](https://github.com/snow-sprite/CompressApp/commit/52c66b9c444a6aa17b09b184a8e9e2e6314d23b3))
+
+
 
 # [0.2.0](https://github.com/snow-sprite/CompressApp/compare/v0.1.21...v0.2.0) (2020-07-11)
 
