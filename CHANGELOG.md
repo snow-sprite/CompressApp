@@ -21,6 +21,7 @@
 * 修改图标loading显示状态 ([bee24bc](https://github.com/snow-sprite/CompressApp/commit/bee24bccd037d36653e723f406aa22f8616681f2))
 * 修改issue模板&增加CHANGELOG日志 ([af10b31](https://github.com/snow-sprite/CompressApp/commit/af10b3176df873493926effb7ca2006526fe61f3))
 * 修改updater.js ([1d15c1d](https://github.com/snow-sprite/CompressApp/commit/1d15c1db26f3c083fa1bb238c91165a5a7444795))
+* update CHANGELOG.md ([697f5fd](https://github.com/snow-sprite/CompressApp/commit/697f5fd16e7e13ffc440077d07b6d9246192463c))
 
 
 

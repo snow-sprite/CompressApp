@@ -2,7 +2,7 @@
 
 English | [简体中文](./README-zh.md)
 
-> A compressed picture desktop program based on electron-vue
+> A compressed images desktop program based on electron-vue
 
 <p align="center">
   <a href="https://github.com/snow-sprite/CompressApp/stargazers" target="_blank">
