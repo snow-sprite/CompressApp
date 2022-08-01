@@ -53,15 +53,15 @@ Support：
 ![Settings](https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true)
 
 ![Compressed](https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true) -->
-<span><img align="center" alt="WeChat" title="WeChat" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Local.min.png?raw=true" width="400px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true" width="00px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true" width="400px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Local" title="Local" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Local.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Online" title="Online" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true" width="00px" /></span>
+<span><img align="center" alt="Settings" title="Settings" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Compressed" title="Compressed" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true" width="400px" /></span>
 #### Donate
 > If you find this project useful, you can buy author a glass of ~~tea~~ ~~coffee~~ juice.
 
-<span><img align="center" alt="WeChat" title="WeChat" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/alipay.png" width="300px" height="300px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/wechat.png" width="300px" height="300px" /></span>
+<span><img align="center" alt="WeChat" title="WeChat" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/wechat.png" width="300px" height="300px" /></span>
+<span><img align="center" alt="Alipay" title="Alipay" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/alipay.png" width="300px" height="300px" /></span>
 
 
 #### Build Setup ✒✒
