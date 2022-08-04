@@ -73,10 +73,12 @@ export default {
       shell.openExternal(this.tinypngApiLink)
     }
   },
-  mounted () {
+  created () {
     // 保存keysList到本地
     this.activeKeyInd = Number(localStorage.getItem('keyInd')) || 0
-    this.activeKey = localStorage.getItem('activeKey') || this.keysList[0]
+    // 解决由于tinify key多了""导致api验证不通过报401错误的问题
+    let localActiveKey = localStorage.getItem('activeKey')
+    this.activeKey = localActiveKey ? JSON.parse(localActiveKey) : this.keysList[0]
 
     // 更新下已有缓存 销毁的生命周期中暂无法清除
     localStorage.setItem('tinyKeys', JSON.stringify([]))
