@@ -6,7 +6,12 @@
         @click="jumpMap(ind)"
       >
         <span
-          :class="{'icon-local': item.name === 'Local', 'icon-online': item.name === 'Online', 'icon-settings': item.name === 'Settings'}"
+          :class="{
+            'icon-local': item.name === 'Local', 
+            'icon-online': item.name === 'Online', 
+            'icon-settings': item.name === 'Settings',
+            'icon-rename': item.name === 'Rename'
+          }"
           class="icon-left"
         ></span>
         <span class="tab-text">{{ item.name }}</span>
@@ -28,6 +33,7 @@
       <Local v-show="activeNavInd === 0"/>
       <Online v-show="activeNavInd === 1"/>
       <Settings v-show="activeNavInd === 2"/>
+      <Rename v-show="activeNavInd == 3" />
     </div>
     <div class="global-loading-box" v-show="isShowGlobalLoading">
       <div class="global-loading-wrapper">
@@ -111,6 +117,7 @@ import pkg from '../../../package.json'
 import Local from '@/components/Local'
 import Online from '@/components/Online'
 import Settings from '@/components/Settings'
+import Rename from '@/components/Rename'
 import { mapState } from 'vuex'
 import updateInfo from '../../../updateInfo.json'
 
@@ -118,13 +125,15 @@ export default {
   name: 'CompressYourImages',
   data () {
     return {
-      activeNavInd: 0, // 激活的nav
+      activeNavInd: 3, // 激活的nav
       navList: [{
         name: 'Local'
       }, {
         name: 'Online'
       }, {
         name: 'Settings'
+      }, {
+        name: 'Rename'
       }],
       app: {}, // 项目名 & 版本
       updateInfo: [], // 更新信息
@@ -156,7 +165,8 @@ export default {
   components: {
     Local,
     Online,
-    Settings
+    Settings,
+    Rename
   },
   watch: {
     count (newV, oldV) {

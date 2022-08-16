@@ -21,6 +21,9 @@ import './localSingleBridge'
 
 // Online
 import './onlineBridge'
+
+// Rename
+import './renames'
 /**
  * Auto Updater
  *
@@ -86,7 +89,7 @@ function createWindow () {
     useContentSize: true,
     maximizable: false,
     // transparent: true,
-    resizable: false,
+    resizable: true,
     show: false
   })
 

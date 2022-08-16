@@ -96,7 +96,7 @@
   text-align: center;
 }
 .statement span:hover {
-  background-image: -webkit-linear-gradient(left, #cddc39, #e67e22 25%, #cddc39 50%, #e67e22 75%, #cddc39) !important;
+  background-image: -webkit-linear-gradient(left, 	#00BFFF, #3399FF 5%, #FF4500 50%, #e67e22 75%, #FFD700) !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   -webkit-background-clip: text !important;
@@ -310,6 +310,16 @@
 
 .tab-settings:hover .icon-settings {
   background: url(../img/settings-active.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+
+.icon-rename {
+  background: url(../img/rename.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+
+.tab-settings:hover .icon-rename {
+  background: url(../img/rename-active.svg) no-repeat center center;
   background-size: 24px 24px;
 }
 .local-content {
@@ -604,4 +614,22 @@ input::-ms-input-placeholder {
 .el-dialog--center .el-dialog__body { 
   padding: 10px 25px 10px !important;
   line-height: 25px;
+}
+
+/* rename 批量重命名 */
+.rename-box {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.rename-title {
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: space-between;
+}
+.rename-upload {
+  margin-top: 20px;
 }
