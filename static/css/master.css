@@ -44,7 +44,7 @@ li {
 
 body {
   color: #333;
-  font-family: 'open sans', 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial, 'Microsoft YaHei', "sans-serif";
+  font-family: HarmonyOSRegular, 'PingFang SC', 'Lantinghei SC', 'Helvetica Neue', Helvetica, Arial, 'Microsoft YaHei', "sans-serif";
 }
 
 img {
@@ -67,6 +67,11 @@ a:hover {
   color: #397BFF;
 }
 
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .flex-between {
   display: flex;
   justify-content: space-between;
@@ -75,4 +80,14 @@ a:hover {
 .flex-around {
   display: flex;
   justify-content: space-around;
+}
+
+/* 字体引入 */
+@font-face {
+  font-family: HarmonyOSRegular;
+  src: url('../font/HarmonyOS_Sans_Regular.ttf');
+}
+@font-face {
+  font-family: "PangMenZhengDao";
+  src: url("../font/PangMenZhengDaoBiaoTiTi.ttf");
 }
