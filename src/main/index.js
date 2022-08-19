@@ -89,7 +89,7 @@ function createWindow () {
     useContentSize: true,
     maximizable: false,
     // transparent: true,
-    resizable: true,
+    resizable: false,
     show: false
   })
 

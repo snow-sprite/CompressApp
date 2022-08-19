@@ -34,12 +34,15 @@ Support：
 
 - [x] Only online pictures with suffixes are supported. By default, they are generated in the system 「Download」 folder
 
+#### Rename ✏️✏️
+Batch renaming. Only a single folder can be uploaded.(e.g. from .jpg to .png)
+
 ### The update information is written to the root directory updateInfo.json, and you can fill in any key
  - demo 🍐🍐
  ```
   {
-    "update1": "Added version information on the home page",
-    "no.2": "Added introduction to version updates",
+    "update1": "Fix Windows download address error",
+    "no.2": "Add the new batch renaming function",
     "c": '...'
   }
  ```

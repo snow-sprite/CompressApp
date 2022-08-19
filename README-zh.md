@@ -34,12 +34,15 @@ Typescript版本：<https://github.com/snow-sprite/TsCompressApp>
 
 - [x] 仅支持有后缀的在线图片，默认生成到系统【下载】文件夹下
 
+#### Rename ✏️✏️
+批量重命名文件后缀(如将.jpg转换为.png格式的，只支持单文件夹)
+
 ### 更新信息写到根目录updateInfo.json中即可，键值可以随便填
  - demo 🍐🍐
  ```
   {
-    "更新1": "首页左下角新增版本信息",
-    "update2": "新增版本更新简介",
+    "更新1": "修复windows环境下下载地址错误",
+    "update2": "新增批量重命名功能",
     "c": 'xxx...'
   }
  ```

@@ -4,13 +4,17 @@
       <li class="tab tab-settings"
         v-for="(item, ind) in navList" :key="ind"
         @click="jumpMap(ind)"
+        :class="{
+          'active-nav': activeNavInd === ind
+        }"
       >
         <span
           :class="{
             'icon-local': item.name === 'Local', 
             'icon-online': item.name === 'Online', 
             'icon-settings': item.name === 'Settings',
-            'icon-rename': item.name === 'Rename'
+            'icon-rename': item.name === 'Rename',
+            
           }"
           class="icon-left"
         ></span>
@@ -61,7 +65,7 @@
       :close-on-press-escape="false"
       >
       <div>
-        <p style="font-weight: 700;"><span>检测到新版本</span><span style="font-size: 18px;font-weight: 600;color: yellowgreen;">v{{ this.targetObj.version || '1.20.3' }}</span><span>，是否更新？</span></p>
+        <p style="font-weight: 700;"><span>检测到新版本</span><span style="font-size: 18px;font-weight: 600;color: yellowgreen;">v{{ this.targetObj.version || '0.2.2' }}</span><span>，是否更新？</span></p>
         <ul class="update-info-box">
           <li class="update-info" v-for="(item, ind) in updateInfo" :key="ind">{{ item }}</li>
         </ul>
@@ -125,7 +129,7 @@ export default {
   name: 'CompressYourImages',
   data () {
     return {
-      activeNavInd: 3, // 激活的nav
+      activeNavInd: 0, // 激活的nav
       navList: [{
         name: 'Local'
       }, {
