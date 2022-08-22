@@ -152,12 +152,16 @@ export default {
 
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
-          this.$electron.ipcRenderer.send(
-            'uploadMultipleRenames',
-            fileDataPath,
-            this.formInline.oldSuffix,
-            this.formInline.newSuffix
-          )
+          this.$store.commit('SET_GLOBAL_LOAING_TEXT', 'Start Renaming..')
+          this.$store.commit('OPEN_GLOBAL_LOAING_STATE')
+          setTimeout(() => {
+            this.$electron.ipcRenderer.send(
+              'uploadMultipleRenames',
+              fileDataPath,
+              this.formInline.oldSuffix,
+              this.formInline.newSuffix
+            )
+          }, 1000)
         } else {
           this.$message.warning('Please enter the "from" and "to" text boxes')
           return false
@@ -171,6 +175,8 @@ export default {
       this.$electron.ipcRenderer.on('renameDone', (ev, finishCount) => {
         this.finishCount = finishCount
         if (this.inputEvent && this.inputEvent.target) this.inputEvent.target.value = ''
+        this.$store.commit('SET_GLOBAL_LOAING_TEXT', '')
+        this.$store.commit('CLOSE_GLOBAL_LOAING_STATE')
       })
     },
     alertMessage () {
@@ -195,10 +201,6 @@ h3 {
 .right-icon {
   width: 16px;
   height: 16px;
-}
-.right-span {
-  position: relative;
-  bottom: 1px;
 }
 .info {
   text-align: left;
