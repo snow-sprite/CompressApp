@@ -36,8 +36,8 @@
     <div class="content">
       <Local v-show="activeNavInd === 0"/>
       <Online v-show="activeNavInd === 1"/>
-      <Settings v-show="activeNavInd === 2"/>
-      <Rename v-show="activeNavInd == 3" />
+      <Rename v-show="activeNavInd == 2" />
+      <Settings v-show="activeNavInd === 3"/>
     </div>
     <div class="global-loading-box" v-show="isShowGlobalLoading">
       <div class="global-loading-wrapper">
@@ -135,9 +135,9 @@ export default {
       }, {
         name: 'Online'
       }, {
-        name: 'Settings'
-      }, {
         name: 'Rename'
+      }, {
+        name: 'Settings'
       }],
       app: {}, // 项目名 & 版本
       updateInfo: [], // 更新信息

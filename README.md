@@ -60,6 +60,7 @@ Batch renaming. Only a single folder can be uploaded.(e.g. from .jpg to .png)
 <span><img align="center" alt="Online" title="Online" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true" width="400px" /></span>
 <span><img align="center" alt="Settings" title="Settings" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true" width="400px" /></span>
 <span><img align="center" alt="Compressed" title="Compressed" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Rename" title="Compressed" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Rename.min.png?raw=true" width="400px" /></span>
 #### Donate
 > If you find this project useful, you can buy author a glass of ~~tea~~ ~~coffee~~ juice.
 
