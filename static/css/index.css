@@ -124,6 +124,10 @@
 .tab:hover .after-icon {
   display: block;
 }
+.tab:hover .after-icon-animate {
+  display: block;
+  height: 56px;
+}
 /* .tab:hover .tab::after {
   content: '';
   display: block;
@@ -140,6 +144,20 @@
   right: 0;
   top: 0;
   background: rgb(51, 153, 255);
+}
+.after-icon-animate {
+  content: '';
+  width: 3px;
+  height: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: rgb(51, 153, 255);
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
 }
 /* .tab:hover i {
   display: block;
