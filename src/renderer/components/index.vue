@@ -19,7 +19,12 @@
           class="icon-left"
         ></span>
         <span class="tab-text">{{ item.name }}</span>
-        <i :class="{'after-icon': activeNavInd === ind}"></i>
+        <i 
+          :class="{
+            'after-icon-animate': activeNavInd != ind,
+            'after-icon': activeNavInd === ind,
+          }"
+        ></i>
       </li>
       <div class="charts-loading" v-show="isChartsLoading">
         <img src="static/img/load/loading.gif" alt="">
