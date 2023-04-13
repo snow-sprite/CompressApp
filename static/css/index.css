@@ -48,12 +48,12 @@
 }
 .charts-loading {
   margin: 0 auto;
-  margin-top: 200px;
+  margin-top: 150px;
   width: 80%;
   height: 172px;
 }
 .charts-box {
-  margin-top: 170px;
+  margin-top: 120px;
 }
 
 .charts-loading img {
@@ -96,7 +96,7 @@
   text-align: center;
 }
 .statement span:hover {
-  background-image: -webkit-linear-gradient(left, #cddc39, #e67e22 25%, #cddc39 50%, #e67e22 75%, #cddc39) !important;
+  background-image: -webkit-linear-gradient(left, 	#00BFFF, #3399FF 5%, #FF4500 50%, #e67e22 75%, #FFD700) !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   -webkit-background-clip: text !important;
@@ -116,13 +116,17 @@
   padding: 0 0 0 40px;
 }
 .tab:hover {
-  background: #ddd;
+  background: rgba(135, 206, 235, .1);
 }
 .tab:hover .tab-text {
   color: rgb(51, 153, 255);
 }
 .tab:hover .after-icon {
   display: block;
+}
+.tab:hover .after-icon-animate {
+  display: block;
+  height: 56px;
 }
 /* .tab:hover .tab::after {
   content: '';
@@ -140,6 +144,20 @@
   right: 0;
   top: 0;
   background: rgb(51, 153, 255);
+}
+.after-icon-animate {
+  content: '';
+  width: 3px;
+  height: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: rgb(51, 153, 255);
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -ms-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
 }
 /* .tab:hover i {
   display: block;
@@ -312,6 +330,41 @@
   background: url(../img/settings-active.svg) no-repeat center center;
   background-size: 24px 24px;
 }
+
+.icon-rename {
+  background: url(../img/rename.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+
+.tab-settings:hover .icon-rename {
+  background: url(../img/rename-active.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+.active-nav {
+  background: rgba(135, 206, 235, .2);
+}
+.active-nav .tab-text {
+  color: rgb(51, 153, 255);
+}
+.active-nav .icon-local {
+  background: url(../img/local-active.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+
+.active-nav .icon-online {
+  background: url(../img/online-active.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+
+.active-nav .icon-settings {
+  background: url(../img/settings-active.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+.active-nav .icon-rename {
+  background: url(../img/rename-active.svg) no-repeat center center;
+  background-size: 24px 24px;
+}
+
 .local-content {
   width: 100%;
   height: 100%;
@@ -604,4 +657,22 @@ input::-ms-input-placeholder {
 .el-dialog--center .el-dialog__body { 
   padding: 10px 25px 10px !important;
   line-height: 25px;
+}
+
+/* rename 批量重命名 */
+.rename-box {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.rename-title {
+  color: #fff;
+  font-size: 18px;
+  width: 100%;
+  /* margin: 0 auto; */
+  display: flex;
+  justify-content: space-between;
+}
+.rename-upload {
+  margin-top: 20px;
 }

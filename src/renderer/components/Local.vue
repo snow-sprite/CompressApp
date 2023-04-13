@@ -21,7 +21,8 @@
           id="file" 
           type="file" 
           style="display: none;" 
-          ref="inputBtn" 
+          ref="inputBtn"
+          multiple="multiple"
           @change="fileUpload"/>
       </div>
     </label>

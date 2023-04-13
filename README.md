@@ -34,12 +34,15 @@ Support：
 
 - [x] Only online pictures with suffixes are supported. By default, they are generated in the system 「Download」 folder
 
+#### Rename ✏️✏️
+Batch renaming. Only a single folder can be uploaded.(e.g. from .jpg to .png)
+
 ### The update information is written to the root directory updateInfo.json, and you can fill in any key
  - demo 🍐🍐
  ```
   {
-    "update1": "Added version information on the home page",
-    "no.2": "Added introduction to version updates",
+    "update1": "Fix Windows download address error",
+    "no.2": "Add the new batch renaming function",
     "c": '...'
   }
  ```
@@ -53,15 +56,16 @@ Support：
 ![Settings](https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true)
 
 ![Compressed](https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true) -->
-<span><img align="center" alt="WeChat" title="WeChat" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Local.min.png?raw=true" width="400px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true" width="00px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true" width="400px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Local" title="Local" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Local.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Online" title="Online" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Online.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Settings" title="Settings" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Settings.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Compressed" title="Compressed" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Compressed.min.png?raw=true" width="400px" /></span>
+<span><img align="center" alt="Rename" title="Compressed" src="https://github.com/snow-sprite/CompressApp/blob/master/demo/Rename.min.png?raw=true" width="400px" /></span>
 #### Donate
 > If you find this project useful, you can buy author a glass of ~~tea~~ ~~coffee~~ juice.
 
-<span><img align="center" alt="WeChat" title="WeChat" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/alipay.jpeg" width="270px" height="350px" /></span>
-<span><img align="center" alt="Alipay" title="Alipay" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/wechat.png" width="270px" height="350px" /></span>
+<span><img align="center" alt="WeChat" title="WeChat" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/wechat.png" width="300px" height="300px" /></span>
+<span><img align="center" alt="Alipay" title="Alipay" src="https://raw.githubusercontent.com/snow-sprite/picGoPublic/master/github-imgs/alipay.png" width="300px" height="300px" /></span>
 
 
 #### Build Setup ✒✒

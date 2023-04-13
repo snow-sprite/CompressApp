@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/snow-sprite/CompressApp/compare/v0.2.1...v0.2.2) (2022-08-22)
+
+
+### Features
+
+* ✨新增批量重命名功能 ([41efa54](https://github.com/snow-sprite/CompressApp/commit/41efa5433f535cfd62d727ccc02a34d749382428))
+
+
+
 ## [0.2.1](https://github.com/snow-sprite/CompressApp/compare/v0.2.0...v0.2.1) (2022-07-26)
 
 

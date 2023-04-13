@@ -21,6 +21,9 @@ import './localSingleBridge'
 
 // Online
 import './onlineBridge'
+
+// Rename
+import './renames'
 /**
  * Auto Updater
  *
